@@ -7,7 +7,7 @@ dp = Dispatcher(bot)
 @dp.message_handler(commands=['start'])
 async def start(message: types.Message):
     markup = types.ReplyKeyboardMarkup()
-    markup.add(types.KeyboardButton('Site', web_app=WebAppInfo(url='https://github.com/TkDmitry/TradingTeacher')))
+    markup.add(types.KeyboardButton('Site', web_app=WebAppInfo(url='https://tkdmitry.github.io/telegramBot/')))
     await message.answer('Hello', reply_markup=markup)
 
 # @dp.message_handler(commands=['start'])
