@@ -18,7 +18,7 @@
         <h1>Tdading Teacher</h1>
         <img src="https://cdn-icons-png.flaticon.com/512/3595/3595455.png">
         <p>Text</p>
-        <button id="buy">Купить</button>
+        <button id="buy">Купить!</button>
     </div>
     <form id="form">
         <input type="text" placeholder="Имя" id="user _name">
@@ -35,16 +35,16 @@
         buy.addEventListener("click", () => {
             document.getElementById("main").style.display="none";
             document.getElementById("form").style.display="bLock";
-            document.getElementById("user_name").value = tg.initDataUnsafe.first_name + " " + tg.initDataUnsafe.last_name;
+<!--            document.getElementById("user_name").value = tg.initDataUnsafe.first_name + " " + tg.initDataUnsafe.last_name;-->
 
         });
 
-        order.addEventListener("click", () => {
-            let name = document.getElementById ("User_name").value;
-            let email = document.getElementById("user_email").value;
-            let name = document.getElementById("User_name").value;
-            tg.close ();
-        });
+<!--        order.addEventListener("click", () => {-->
+<!--            let name = document.getElementById ("User_name").value;-->
+<!--            let email = document.getElementById("user_email").value;-->
+<!--            let name = document.getElementById("User_name").value;-->
+<!--            tg.close ();-->
+<!--        });-->
 
     </script>
 
