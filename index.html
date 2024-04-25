@@ -18,8 +18,9 @@
             font-family: 'Montserrat', sans-serif;
             font-weight: 200;
             color: var (--tg-theme-text-color);
-            background: var (--tg-theme-bg-color);
+            background: var (--tg-theme-bg-color); var(--tg-color-scheme)
         }
+
         #start {
             width: 100%;
             padding: 20px;
@@ -45,10 +46,13 @@
 
         button {
             border: 0;
-            border-radius: 5px; margin-top: 50px; height: 66px;
+            border-radius: 5px;
+            margin-top: 50px;
+            height: 66px;
             width: 200px;
             font-size: 28px;
-            font-weight: 500; cursor: pointer;
+            font-weight: 500;
+            cursor: pointer;
             transition: all 580m ease;
             color: var(--tg-theme-button-color);
             background: var (--tg-theme-button-text-color);
@@ -59,9 +63,19 @@
         }
 
         #form {
-            display:none;
+            display: none;
             text-align: center;
         }
+        .container {
+            border: solid 2px #806868;
+            display: flex;
+            flex-direction: row;
+        }
+        .item {
+           border: 2px;
+           margin:10px
+        }
+
     </style>
 </head>
 <body>
@@ -72,7 +86,17 @@
     <div id="main">
         <h1>Trading Teacher</h1>
         <img src="https://cdn-icons-png.flaticon.com/512/3595/3595455.png">
-        <p>Text</p>
+        <div class="container">
+            <div class="item">
+              <p>Text</p>
+            </div>
+            <div class="item">
+              <p>Text</p>
+            </div>
+            <div class="item">
+              <p>Text</p>
+            </div>
+        </div>
         <button id="buy">Купить</button>
     </div>
     <form id="form">
