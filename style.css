@@ -40,7 +40,7 @@
             margin-top: 50px;
             height: 66px;
             width: 200px;
-            font-size: 28px;
+            font-size: 16px;
             font-weight: 500;
             cursor: pointer;
             transition: all 580m ease;
@@ -57,7 +57,7 @@
             text-align: center;
         }
         .container-main {
-
+            justify-content: space-between;
             display: flex;
             flex-direction: row;
         }
@@ -75,6 +75,7 @@
             border: solid 1px #FFFFFF;
             display: flex;
             flex-direction: row;
+            justify-content: space-between;
         }
         .item {
            background-color: #D9E8FB;
@@ -82,4 +83,21 @@
            padding: 10px;
            font-size: 10px;
            margin:10px;
+        }
+
+        #start {
+            border: solid 2px #FFFFFF;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            aling-item: center;
+        }
+
+        .istart {
+            background-color: #D9E8FB;
+            text-align: center;
+            padding: 10px;
+            font-size: 10px;
+            margin:10px;
         }
