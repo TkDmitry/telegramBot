@@ -7,6 +7,51 @@
 
     <title>Trading Teacher</title>
     <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 200;
+            color: var (--tg-theme-text-color);
+            background: var (--tg-theme-bg-color);
+        }
+
+        #main {
+            width: 100%;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            margin-top: 50px;
+            margin-bottom: 10px;
+        }
+
+        img {
+            width: 70px;
+            margin: 30px auto;
+        }
+
+        button {
+            border: 0;
+            border-radius: 5px; margin-top: 50px; height: 66px;
+            width: 200px;
+            font-size: 28px;
+            font-weight: 500; cursor: pointer;
+            transition: all 580m ease;
+            color: var(--tg-theme-button-color);
+            background: var (--tg-theme-button-text-color);
+        }
+
+        button:hover {
+            background: var(--tg-theme-secondary-bg-color);
+        }
+
         #form {
             display:none;
             text-align: center;
@@ -40,9 +85,9 @@
         });
 
 <!--        order.addEventListener("click", () => {-->
-<!--            let name = document.getElementById ("User_name").value;-->
+<!--            let name = document.getElementById ("user_name").value;-->
 <!--            let email = document.getElementById("user_email").value;-->
-<!--            let name = document.getElementById("User_name").value;-->
+<!--            let name = document.getElementById("user_name").value;-->
 <!--            tg.close ();-->
 <!--        });-->
 
