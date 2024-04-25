@@ -20,8 +20,14 @@
             color: var (--tg-theme-text-color);
             background: var (--tg-theme-bg-color);
         }
+        #start {
+            width: 100%;
+            padding: 20px;
+            text-align: center;
+        }
 
         #main {
+            display:none;
             width: 100%;
             padding: 20px;
             text-align: center;
@@ -59,11 +65,15 @@
     </style>
 </head>
 <body>
+    <div id="start">
+       <p>Hello, Trader!</p>
+       <button id="go">Go!</button>
+    </div>
     <div id="main">
-        <h1>Tdading Teacher</h1>
+        <h1>Trading Teacher</h1>
         <img src="https://cdn-icons-png.flaticon.com/512/3595/3595455.png">
         <p>Text</p>
-        <button id="buy">Купить!</button>
+        <button id="buy">Купить</button>
     </div>
     <form id="form">
         <input type="text" placeholder="Имя" id="user _name">
@@ -74,8 +84,14 @@
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script>
         let tg = window.Telegram.WebApp;
+        let go = document.getElementById("go");
         let buy = document.getElementById("buy");
         let order = document.getElementById("order");
+
+        go.addEventListener("click", () => {
+            document.getElementById("start").style.display="none";
+            document.getElementById("main").style.display="bLock";
+        });
 
         buy.addEventListener("click", () => {
             document.getElementById("main").style.display="none";
