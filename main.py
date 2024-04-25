@@ -1,13 +1,13 @@
 from aiogram import Bot, Dispatcher, executor, types
 from aiogram.types.web_app_info import WebAppInfo
 
-bot = Bot('7087256266:AAFkJW78YiTV1WRm0SmlQh1zZzO9-qI5s34')
+bot = Bot('')
 dp = Dispatcher(bot)
 
 @dp.message_handler(commands=['start'])
 async def start(message: types.Message):
     markup = types.InlineKeyboardMarkup()
-    markup.add(types.InlineKeyboardButton('Site', web_app=WebAppInfo(url='https://tkdmitry.github.io/telegramBot/')))
+    markup.add(types.KeyboardButton('Site', web_app=WebAppInfo(url='https://tkdmitry.github.io/telegramBot/')))
     await message.answer('Hello', reply_markup=markup)
 
 # @dp.message_handler(commands=['start'])
