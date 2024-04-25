@@ -30,12 +30,12 @@
     <script>
         let tg = window.Telegram.WebApp;
         let buy = document.getElementById("buy");
-        let order = document.getElementById("order'");
+        let order = document.getElementById("order");
 
         buy.addEventListener("click", () => {
             document.getElementById("main").style.display="none";
             document.getElementById("form").style.display="bLock";
-            document.getElementById("user_name").value = tg.initDataUnsafe.first_name + " " + tg.initDataUnsafe.last_name;
+<!--            document.getElementById("user_name").value = tg.initDataUnsafe.first_name + " " + tg.initDataUnsafe.last_name;-->
 
         });
 
