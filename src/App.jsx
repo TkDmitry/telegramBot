@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import './App.css';
 import Header from './components/Header';
 import GiftCard from './components/GiftCard';
-import GiftCard from './components/GiftCard';
 import gift1 from './assets/gift1.png';
 import CategoryList from './components/CategoryList';
 import giftIcon from './assets/gift.png';
