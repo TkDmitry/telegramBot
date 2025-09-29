@@ -1,0 +1,103 @@
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 200;
+            color: var (--tg-theme-text-color);
+            background: var (--tg-theme-bg-color); var(--tg-color-scheme)
+        }
+
+        #start {
+            width: 100%;
+            padding: 20px;
+            text-align: center;
+        }
+
+        #main {
+            display:none;
+            width: 100%;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            margin-top: 50px;
+            margin-bottom: 10px;
+        }
+
+        img {
+            width: 70px;
+            margin: 30px auto;
+        }
+
+        button {
+            border: 0;
+            border-radius: 5px;
+            margin-top: 50px;
+            height: 66px;
+            width: 200px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 580m ease;
+            color: var(--tg-theme-button-color);
+            background: var (--tg-theme-button-text-color);
+        }
+
+        button:hover {
+            background: var(--tg-theme-secondary-bg-color);
+        }
+
+        #form {
+            display: none;
+            text-align: center;
+        }
+        .container-main {
+            justify-content: space-between;
+            display: flex;
+            flex-direction: row;
+        }
+        .container-menu {
+
+            display: flex;
+            flex-direction: column;
+        }
+        .imenu {
+
+           margin:10px
+        }
+
+        .container {
+            border: solid 1px #FFFFFF;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+        .item {
+           background-color: #D9E8FB;
+           text-align: center;
+           padding: 10px;
+           font-size: 10px;
+           margin:10px;
+        }
+
+        #start {
+            border: solid 2px #FFFFFF;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            aling-item: center;
+        }
+
+        .istart {
+            background-color: #D9E8FB;
+            text-align: center;
+            padding: 10px;
+            font-size: 10px;
+            margin:10px;
+        }
