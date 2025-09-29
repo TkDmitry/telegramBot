@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../styles/CategoryList.css'; 
+import './CategoryList.css'; 
 
 function CategoryList({ categories, onSelect }) {
   return (

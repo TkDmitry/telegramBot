@@ -1,5 +1,7 @@
 import React from 'react';
-import '../../styles/GiftCard.css';
+import './GiftCard.css';
+
+
 
 function GiftCard({ image, title, price, onClick }) {
   return (

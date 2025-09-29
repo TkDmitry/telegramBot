@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import '../../styles/GiftCard.css';
+import './GiftCard.css';
+
+
 
 
 function OrderForm({ onSubmit }) {
