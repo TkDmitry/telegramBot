@@ -8,7 +8,9 @@
             font-family: 'Montserrat', sans-serif;
             font-weight: 200;
             color: var (--tg-theme-text-color);
-            background: var (--tg-theme-bg-color); var(--tg-color-scheme)
+            background: var(--tg-theme-bg-color);
+            color: var(--tg-theme-text-color);
+
         }
 
         #start {
