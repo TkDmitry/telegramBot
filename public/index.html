@@ -48,9 +48,9 @@
         <button id="buy">Купить</button>
     </div>
     <form id="form">
-        <input type="text" placeholder="Имя" id="user _name">
+        <input type="text" placeholder="Имя" id="user_name">
         <input type="text" placeholder="Email" id="user_email">
-        <input type="text" placeholder= "Телефон" id="user _phone">
+        <input type="text" placeholder= "Телефон" id="user_phone">
         <button id="order">Оформить</button>
     </form>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
@@ -62,22 +62,25 @@
 
         go.addEventListener("click", () => {
             document.getElementById("start").style.display="none";
-            document.getElementById("main").style.display="bLock";
+            document.getElementById("main").style.display="block";
         });
 
         buy.addEventListener("click", () => {
             document.getElementById("main").style.display="none";
-            document.getElementById("form").style.display="bLock";
-<!--            document.getElementById("user_name").value = tg.initDataUnsafe.first_name + " " + tg.initDataUnsafe.last_name;-->
+            document.getElementById("form").style.display="block";
+            document.getElementById("user_name").value = tg.initDataUnsafe.first_name + " " + tg.initDataUnsafe.last_name;
 
         });
+        order.addEventListener("click", () => {
+            let name = document.getElementById("user_name").value;
+            let email = document.getElementById("user_email").value;
+            let phone = document.getElementById("user_phone").value;
 
-<!--        order.addEventListener("click", () => {-->
-<!--            let name = document.getElementById ("user_name").value;-->
-<!--            let email = document.getElementById("user_email").value;-->
-<!--            let name = document.getElementById("user_name").value;-->
-<!--            tg.close ();-->
-<!--        });-->
+            // Можно отправить данные на сервер или в Telegram
+            tg.sendData(JSON.stringify({ name, email, phone }));
+
+            tg.close(); // Закрыть Mini App
+        });
 
     </script>
 

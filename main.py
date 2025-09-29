@@ -1,34 +1,32 @@
-from aiogram import Bot, Dispatcher, executor, types
-from aiogram.types.web_app_info import WebAppInfo
+import asyncio
+from aiogram import Bot, Dispatcher, Router
+from aiogram.client.default import DefaultBotProperties
+from aiogram.enums import ParseMode
+from aiogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, WebAppInfo
+from aiogram.filters import Command
+from aiogram.fsm.storage.memory import MemoryStorage
 
-bot = Bot('')
-dp = Dispatcher(bot)
+TOKEN = "8348782064:AAHJVoZLD3lH63rzSJjoqcPNWlhcZqjUnLQ"
 
-@dp.message_handler(commands=['start'])
-async def start(message: types.Message):
-    markup = types.InlineKeyboardMarkup()
-    markup.add(types.KeyboardButton('Site', web_app=WebAppInfo(url='https://tkdmitry.github.io/telegramBot/')))
-    await message.answer('Hello', reply_markup=markup)
+# Инициализация бота с parse_mode
+bot = Bot(token=TOKEN, default=DefaultBotProperties(parse_mode=ParseMode.HTML))
+dp = Dispatcher(storage=MemoryStorage())
+router = Router()
 
-# @dp.message_handler(commands=['start'])
-# async def start(message: types.Message):
-#     await message.answer('Hello!')
-#
-# @dp.message_handler(commands=['inline'])
-# async def info(message: types.Message):
-#     markup = types.InlineKeyboardMarkup()
-#     markup.add(types.InlineKeyboardButton('Hello', callback_data='hello'))
-#     await message.reply('Hello', reply_markup=markup)
-#
-# @dp.callback_query_handler()
-# async def callback (call):
-#     await call.message.answer(call.data)
-#
-# @dp.message_handler(commands=['reply'])
-# async def reply(message: types. Message):
-#     markup = types.ReplyKeyboardMarkup (one_time_keyboard=True)
-#     markup.add(types.KeyboardButton('Site'))
-#     markup.add(types.KeyboardButton ('Website'))
-#     await message.answer('Hello', reply_markup=markup)
+# ✅ Используем фильтр Command вместо commands=["start"]
+@router.message(Command("start"))
+async def start_handler(message: Message):
+    markup = InlineKeyboardMarkup(
+        inline_keyboard=[
+            [InlineKeyboardButton(text="Открыть Mini App", web_app=WebAppInfo(url="https://tkdmitry.github.io/telegramBot/"))]
+        ]
+    )
+    await message.answer("Привет! Вот твоя Mini App:", reply_markup=markup)
 
-executor.start_polling(dp)
+dp.include_router(router)
+
+async def main():
+    await dp.start_polling(bot)
+
+if __name__ == "__main__":
+    asyncio.run(main())
