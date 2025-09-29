@@ -1,0 +1,39 @@
+.gift-card {
+    background-color: var(--tg-theme-bg-color);
+    color: var(--tg-theme-text-color);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    padding: 16px;
+    margin: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+  
+  .gift-card:hover {
+    transform: scale(1.03);
+  }
+  
+  .gift-image {
+    width: 100%;
+    max-width: 200px;
+    border-radius: 8px;
+  }
+  
+  .gift-info {
+    text-align: center;
+    margin-top: 12px;
+  }
+  
+  .gift-title {
+    font-size: 18px;
+    margin: 0;
+  }
+  
+  .gift-price {
+    font-size: 16px;
+    color: var(--tg-theme-hint-color);
+  }
+  
