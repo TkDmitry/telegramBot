@@ -34,11 +34,19 @@ jobs:
       - name: Install Asciidoctor
         run: gem install asciidoctor asciidoctor-pdf
       
-      - name: Build Documentation
+      - name: Install Asciidoctor and PlantUML
         run: |
-          mkdir -p build/docs
-          asciidoctor docs/index.adoc -o build/docs/index.html
-          asciidoctor-pdf docs/index.adoc -o build/docs/crosspay.pdf
+          gem install asciidoctor asciidoctor-pdf
+          sudo apt-get update && sudo apt-get install -y plantuml
+          # Или для Mac в GitHub Actions:
+          # brew install plantuml
+      
+      - name: Generate PlantUML diagrams
+        run: |
+          mkdir -p build/docs/images
+          plantuml -tpng plantuml/architecture.puml -o build/docs/images/
+          plantuml -tsvg plantuml/architecture.puml -o build/docs/images/
+      
       # === КОНЕЦ ДОБАВЛЕННЫХ СТРОК ===
 
       - name: Deploy to GitHub Pages
