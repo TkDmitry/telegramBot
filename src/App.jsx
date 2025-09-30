@@ -1,4 +1,4 @@
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import ProgressBar from './components/ProgressBar';
 import StartPage from './pages/StartPage';
 import ProfilePage from './pages/ProfilePage';
@@ -14,7 +14,7 @@ function App() {
 
   // Карта шагов для прогресс-бара
   const stepMap = {
-    '/': 0,           // KYC (по умолчанию стартовый шаг)
+    '/kycpage': 0,    // KYC
     '/transfer': 1,   // Перевод
     '/payment': 2,    // Оплата
     '/status': 3,     // Статус
@@ -29,17 +29,17 @@ function App() {
       {currentStep !== undefined && <ProgressBar currentStep={currentStep} />}
 
       <Routes>
-        {/* Стартовая страница и профиль вне основного flow */}
+        {/* редирект с корня на стартовую */}
         <Route path="/" element={<Navigate to="/start" replace />} />
         <Route path="/start" element={<StartPage />} />
         <Route path="/profile" element={<ProfilePage />} />
 
         {/* Основной flow */}
-        <Route path="/kycpage" element={<KYCPage />} />            {/* шаг 1 */}
-        <Route path="/transfer" element={<TransferForm />} /> {/* шаг 2 */}
-        <Route path="/payment" element={<PaymentPage />} />   {/* шаг 3 */}
-        <Route path="/status" element={<TransferStatus />} /> {/* шаг 4 */}
-        <Route path="/card" element={<CardPage />} />         {/* шаг 5 */}
+        <Route path="/kycpage" element={<KYCPage />} />        {/* шаг 1 */}
+        <Route path="/transfer" element={<TransferForm />} />  {/* шаг 2 */}
+        <Route path="/payment" element={<PaymentPage />} />    {/* шаг 3 */}
+        <Route path="/status" element={<TransferStatus />} />  {/* шаг 4 */}
+        <Route path="/card" element={<CardPage />} />          {/* шаг 5 */}
       </Routes>
     </>
   );
