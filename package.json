@@ -2,7 +2,7 @@
   "name": "telegramBot",
   "version": "1.0.0",
   "private": true,
-  "homepage": "https://tkdmitry.github.io/telegramBot",
+  "homepage": "https://tkdmitry.github.io/telegramBot/#/start",
   "dependencies": {
     "@twa-dev/sdk": "^0.0.6",
     "gh-pages": "^6.3.0",
