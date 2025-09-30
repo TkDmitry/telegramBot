@@ -1,26 +1,23 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Header from './components/Header';
-import KYCPage from './pages/KYCPage';
-import TransferForm from './pages/TransferForm';
-import PaymentPage from './pages/PaymentPage';
-import TransferStatus from './pages/TransferStatus';
-import CardPage from './pages/CardPage';
+import { Routes, Route, Link } from 'react-router-dom';
+import CardPage from './pages/CardPage.jsx';
+import KYCPage from './pages/KYCPage.jsx';
+import PaymentPage from './pages/PaymentPage.jsx';
 
 function App() {
   return (
-    <BrowserRouter>
-      <Header />
+    <>
+      <nav>
+        <Link to="/">Главная</Link>
+        <Link to="/gift/1">Подарок 1</Link>
+      </nav>
       <Routes>
-        <Route path="/" element={<KYCPage />} />
-        <Route path="/transfer" element={<TransferForm />} />
-        <Route path="/payment" element={<PaymentPage />} />
-        <Route path="/status" element={<TransferStatus />} />
-        <Route path="/card" element={<CardPage />} />
+        <Route path="/" element={<CardPage />} />
+        <Route path="/gift/:id" element={<KYCPage />} />
+        <Route path="*" element={<PaymentPage />} />
       </Routes>
-    </BrowserRouter>
+    </>
   );
 }
-
 export default App;
 
 
