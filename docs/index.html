@@ -536,7 +536,64 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h3 id="architecture-diagram"><a class="link" href="#architecture-diagram">Диаграмма взаимодействия</a></h3>
 <div class="listingblock">
 <div class="content">
-<pre>Unresolved directive in index.adoc - include::../plantuml/architecture.puml[]</pre>
+<pre>@startuml CrossPay MVP Architecture
+
+actor "Клиент" as Client
+participant "Telegram Bot" as Bot
+participant "Backend Server" as Backend
+participant "База данных" as DB
+participant "ЮKassa API" as YooMoney
+participant "BaaS Provider\n(A2PAY/Aftab)" as BaaS
+actor "Администратор" as Admin
+
+== Клиент инициирует перевод ==
+
+Client -&gt; Bot: /transfer &lt;сумма_в_rub&gt;
+Bot -&gt; Backend: POST /transfer {user_id, amount_rub}
+Backend -&gt; Backend: Генерирует ID транзакции
+Backend -&gt; DB: Сохраняет транзакцию (PENDING)
+Backend -&gt; Backend: Рассчитывает курс и сумму в EUR
+Backend -&gt; Bot: {transaction_id, amount_eur, payment_details}
+
+Bot -&gt; Client: "Переведите &lt;amount_rub&gt; RUB\nРеквизиты: ...\nКомментарий: &lt;transaction_id&gt;"
+
+== Клиент оплачивает ==
+
+Client -&gt; YooMoney: Оплата с комментарием &lt;transaction_id&gt;
+YooMoney -&gt; Backend: Webhook о платеже (автоматически)
+Backend -&gt; DB: Обновляет статус транзакции (PAID)
+
+== Админ подтверждает получение ==
+
+Admin -&gt; Backend: Просматривает список транзакций (ручная проверка)
+Backend -&gt; DB: Получает транзакции со статусом PAID
+Backend -&gt; Admin: Список транзакций для обработки
+
+Admin -&gt; Backend: Подтверждает транзакцию &lt;transaction_id&gt;
+Backend -&gt; BaaS: POST /cards/create {user_data}
+BaaS -&gt; Backend: {card_id, card_details}
+Backend -&gt; BaaS: POST /accounts/transfer {card_id, amount_eur}
+Backend -&gt; DB: Обновляет статус транзакции (COMPLETED)
+
+== Уведомление клиента ==
+
+Backend -&gt; Bot: Уведомление о готовности
+Bot -&gt; Client: "Ваша карта готова! \nНомер: XXXX-XXXX-XXXX-1234\nСрок: MM/YY\nCVV: 123"
+
+== Альтернативный поток: Автоматизация через n8n ==
+
+group Автоматическая обработка [Опционально]
+    participant "n8n" as N8N
+    participant "Email Bank" as Email
+    
+    Email -&gt; N8N: Новое письмо от банка
+    N8N -&gt; N8N: Парсит transaction_id из письма
+    N8N -&gt; Backend: POST /payment/confirm {transaction_id}
+    Backend -&gt; DB: Обновляет статус транзакции (PAID)
+    Backend -&gt; N8N: 200 OK
+end
+
+@enduml</pre>
 </div>
 </div>
 </div>
@@ -764,7 +821,7 @@ python app.py</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2025-09-30 18:40:56 UTC
+Last updated 2025-09-30 18:56:19 UTC
 </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/highlight.min.js"></script>
