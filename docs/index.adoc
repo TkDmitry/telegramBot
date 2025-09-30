@@ -34,10 +34,11 @@ CrossPay — это решение для международных перев�
 [[architecture-diagram]]
 === Диаграмма взаимодействия
 
-[plantuml,"CrossPay MVP Architecture",png]
-
+[plantuml,"diagram",png]
 ----
-include::./diagram.puml[]
+
+include::diagram.puml[]
+
 ----
 
 [[api-reference]]
