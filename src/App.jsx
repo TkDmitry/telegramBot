@@ -28,9 +28,7 @@ function App() {
       {currentStep !== undefined && <ProgressBar currentStep={currentStep} />}
 
       <Routes>
-        {/* редирект с корня на стартовую */}
-        <Route path="/" element={<Navigate to="/start" replace />} />
-        <Route path="/start" element={<StartPage />} />
+        <Route path="/" element={<StartPage />} />
         <Route path="/profile" element={<ProfilePage />} />
 
         {/* Основной flow */}
