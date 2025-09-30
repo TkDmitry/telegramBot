@@ -5,6 +5,7 @@
 :toclevels: 3
 :toc-title: Оглавление
 :csp: script-src 'self' 'unsafe-eval' https:; img-src 'self' https: data:;
+:imagesdir: images
 
 
 

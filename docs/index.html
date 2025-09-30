@@ -534,7 +534,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h3 id="architecture-diagram">2.2. Диаграмма взаимодействия</h3>
 <div class="listingblock">
 <div class="content">
-<pre>@startuml diagram
+<pre>Failed to generate image: Could not load PlantUML. Either require 'asciidoctor-diagram-plantuml' or specify the location of the PlantUML JAR(s) using the 'DIAGRAM_PLANTUML_CLASSPATH' environment variable. Alternatively a PlantUML binary can be provided (plantuml-native in $PATH).
+
+@startuml diagram
 
 actor "Клиент" as Client
 participant "Telegram Bot" as Bot
@@ -583,7 +585,7 @@ Bot -&gt; Client: "Ваша карта готова! \nНомер: XXXX-XXXX-XXX
 group Автоматическая обработка [Опционально]
     participant "n8n" as N8N
     participant "Email Bank" as Email
-    
+
     Email -&gt; N8N: Новое письмо от банка
     N8N -&gt; N8N: Парсит transaction_id из письма
     N8N -&gt; Backend: POST /payment/confirm {transaction_id}
@@ -819,7 +821,7 @@ python app.py</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2025-09-30 21:12:35 UTC
+Last updated 2025-09-30 21:20:58 UTC
 </div>
 </div>
 </body>
