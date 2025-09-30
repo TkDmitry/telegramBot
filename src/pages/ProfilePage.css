@@ -1,0 +1,57 @@
+.page.profile {
+    padding: 20px;
+    background: var(--bg-color, #121212);
+    color: var(--text-color, #f5f5f5);
+    min-height: 100vh;
+  }
+  
+  .profile-card {
+    background: var(--card-color, #1e1e1e);
+    padding: 16px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+  }
+  
+  .history-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .history-item {
+    background: var(--card-color, #1e1e1e);
+    padding: 12px;
+    border-radius: 10px;
+  }
+  
+  .history-item .status {
+    color: var(--accent-color, #4db6ac);
+    font-weight: bold;
+  }
+  
+  .history-item .date {
+    font-size: 12px;
+    opacity: 0.7;
+  }
+  
+  .empty {
+    opacity: 0.6;
+    font-style: italic;
+  }
+  
+  .main-btn {
+    margin-top: 20px;
+    width: 100%;
+    padding: 14px;
+    background: var(--accent-color, #4db6ac);
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .main-btn:hover {
+    background: #399187;
+  }
+  
