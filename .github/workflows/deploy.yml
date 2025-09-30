@@ -43,9 +43,9 @@ jobs:
       
       - name: Generate PlantUML diagrams
         run: |
-          mkdir -p build/docs/images
-          plantuml -tpng plantuml/architecture.puml -o build/docs/images/
-          plantuml -tsvg plantuml/architecture.puml -o build/docs/images/
+          mkdir -p build/docs/
+          plantuml -tpng plantuml/architecture.puml -o build/docs/
+          plantuml -tsvg plantuml/architecture.puml -o build/docs/
       
       # === КОНЕЦ ДОБАВЛЕННЫХ СТРОК ===
 
