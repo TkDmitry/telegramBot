@@ -1,105 +1,70 @@
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 200;
-            color: var (--tg-theme-text-color);
-            background: var(--tg-theme-bg-color);
-            color: var(--tg-theme-text-color);
-
-        }
-
-        #start {
-            width: 100%;
-            padding: 20px;
-            text-align: center;
-        }
-
-        #main {
-            display:none;
-            width: 100%;
-            padding: 20px;
-            text-align: center;
-        }
-
-        h1 {
-            margin-top: 50px;
-            margin-bottom: 10px;
-        }
-
-        img {
-            width: 70px;
-            margin: 30px auto;
-        }
-
-        button {
-            border: 0;
-            border-radius: 5px;
-            margin-top: 50px;
-            height: 66px;
-            width: 200px;
-            font-size: 16px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 580m ease;
-            color: var(--tg-theme-button-color);
-            background: var (--tg-theme-button-text-color);
-        }
-
-        button:hover {
-            background: var(--tg-theme-secondary-bg-color);
-        }
-
-        #form {
-            display: none;
-            text-align: center;
-        }
-        .container-main {
-            justify-content: space-between;
-            display: flex;
-            flex-direction: row;
-        }
-        .container-menu {
-
-            display: flex;
-            flex-direction: column;
-        }
-        .imenu {
-
-           margin:10px
-        }
-
-        .container {
-            border: solid 1px #FFFFFF;
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-        }
-        .item {
-           background-color: #D9E8FB;
-           text-align: center;
-           padding: 10px;
-           font-size: 10px;
-           margin:10px;
-        }
-
-        #start {
-            border: solid 2px #FFFFFF;
-            height: 400px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            aling-item: center;
-        }
-
-        .istart {
-            background-color: #D9E8FB;
-            text-align: center;
-            padding: 10px;
-            font-size: 10px;
-            margin:10px;
-        }
+/* Общий стиль страницы */
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: #f9fafc;
+    color: #333;
+  }
+  
+  /* Навигация */
+  nav {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    background: #0d47a1; /* глубокий синий */
+    padding: 12px 0;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  }
+  
+  nav a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 6px 12px;
+    border-radius: 6px;
+    transition: background 0.2s ease;
+  }
+  
+  nav a:hover {
+    background: rgba(255,255,255,0.15);
+  }
+  
+  /* Контент */
+  .page {
+    max-width: 600px;
+    margin: 30px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  }
+  
+  .page h2 {
+    margin-top: 0;
+    color: #0d47a1;
+  }
+  
+  button {
+    background: #0d47a1;
+    color: #fff;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
+    transition: background 0.2s ease;
+  }
+  
+  button:hover {
+    background: #1565c0;
+  }
+  
+  input {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+  }
+  
