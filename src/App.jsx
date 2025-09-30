@@ -21,23 +21,23 @@ function App() {
     '/card': 4,
   };
 
-  const currentStep = stepMap[location.pathname];
+  // const currentStep = stepMap[location.pathname];
 
+  const currentStep = stepMap[location.pathname] ?? 0;
+  
   return (
     <>
       {currentStep !== undefined && <ProgressBar currentStep={currentStep} />}
 
+      <ProgressBar currentStep={currentStep} />
       <Routes>
-        <Route path="/" element={<StartPage />} />
-        <Route path="/profile" element={<ProfilePage />} />
-
-        {/* Основной flow */}
-        <Route path="/kyc" element={<KYCPage />} />
+        <Route path="/" element={<KYCPage />} />          {/* дефолт */}
         <Route path="/transfer" element={<TransferForm />} />
         <Route path="/payment" element={<PaymentPage />} />
         <Route path="/status" element={<TransferStatus />} />
         <Route path="/card" element={<CardPage />} />
       </Routes>
+      
     </>
   );
 }
