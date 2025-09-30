@@ -30,11 +30,12 @@ function App() {
 
       <Routes>
         {/* Стартовая страница и профиль вне основного flow */}
+        <Route path="/" element={<Navigate to="/start" replace />} />
         <Route path="/start" element={<StartPage />} />
         <Route path="/profile" element={<ProfilePage />} />
 
         {/* Основной flow */}
-        <Route path="/" element={<KYCPage />} />            {/* шаг 1 */}
+        <Route path="/kycpage" element={<KYCPage />} />            {/* шаг 1 */}
         <Route path="/transfer" element={<TransferForm />} /> {/* шаг 2 */}
         <Route path="/payment" element={<PaymentPage />} />   {/* шаг 3 */}
         <Route path="/status" element={<TransferStatus />} /> {/* шаг 4 */}
