@@ -1,26 +1,33 @@
-import { Routes, Route, Link } from 'react-router-dom';
-import CardPage from './pages/CardPage.jsx';
-import KYCPage from './pages/KYCPage.jsx';
-import PaymentPage from './pages/PaymentPage.jsx';
-import TransferStatus from './pages/TransferStatus.jsx';
-import TransferForm from './pages/TransferForm.jsx';
-import './App.css';
+import { Routes, Route, useLocation } from 'react-router-dom';
+import ProgressBar from './components/ProgressBar';
+import CardPage from './pages/CardPage';
+import KYCPage from './pages/KYCPage';
+import PaymentPage from './pages/PaymentPage';
+import TransferStatus from './pages/TransferStatus';
+import TransferForm from './pages/TransferForm';
 
 function App() {
+  const location = useLocation();
+
+  const stepMap = {
+    '/gift/1': 0,  // KYC
+    '/gift/3': 1,  // Перевод
+    '/payment': 2, // Оплата
+    '/gift/2': 3,  // Статус
+    '/': 4,        // Карта
+  };
+
+  const currentStep = stepMap[location.pathname] ?? 0;
+
   return (
     <>
-      <nav>
-        <Link to="/">Главная</Link>
-        <Link to="/gift/1">KYC</Link>
-        <Link to="/gift/2">Статус</Link>
-        <Link to="/gift/3">Перевод</Link>
-      </nav>
+      <ProgressBar currentStep={currentStep} />
       <Routes>
         <Route path="/" element={<CardPage />} />
         <Route path="/gift/1" element={<KYCPage />} />
         <Route path="/gift/2" element={<TransferStatus />} />
         <Route path="/gift/3" element={<TransferForm />} />
-        <Route path="*" element={<PaymentPage />} />
+        <Route path="/payment" element={<PaymentPage />} />
       </Routes>
     </>
   );
