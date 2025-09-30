@@ -31,8 +31,12 @@ jobs:
           
       - name: Install Asciidoctor and PlantUML
         run: |
-          gem install asciidoctor asciidoctor-pdf asciidoctor-diagram asciidoctor-diagram-plantuml
-          sudo apt-get update && sudo apt-get install -y graphviz default-jre
+          gem install asciidoctor asciidoctor-pdf asciidoctor-diagram
+          sudo apt-get update
+          sudo apt-get install -y default-jre graphviz plantuml
+          # symlink, чтобы asciidoctor-diagram видел бинарь
+          ln -s /usr/bin/plantuml /usr/local/bin/plantuml-native
+        
         
         
       
