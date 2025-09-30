@@ -1,0 +1,58 @@
+@startuml CrossPay MVP Architecture
+
+actor "Клиент" as Client
+participant "Telegram Bot" as Bot
+participant "Backend Server" as Backend
+participant "База данных" as DB
+participant "ЮKassa API" as YooMoney
+participant "BaaS Provider\n(A2PAY/Aftab)" as BaaS
+actor "Администратор" as Admin
+
+== Клиент инициирует перевод ==
+
+Client -> Bot: /transfer <сумма_в_rub>
+Bot -> Backend: POST /transfer {user_id, amount_rub}
+Backend -> Backend: Генерирует ID транзакции
+Backend -> DB: Сохраняет транзакцию (PENDING)
+Backend -> Backend: Рассчитывает курс и сумму в EUR
+Backend -> Bot: {transaction_id, amount_eur, payment_details}
+
+Bot -> Client: "Переведите <amount_rub> RUB\nРеквизиты: ...\nКомментарий: <transaction_id>"
+
+== Клиент оплачивает ==
+
+Client -> YooMoney: Оплата с комментарием <transaction_id>
+YooMoney -> Backend: Webhook о платеже (автоматически)
+Backend -> DB: Обновляет статус транзакции (PAID)
+
+== Админ подтверждает получение ==
+
+Admin -> Backend: Просматривает список транзакций (ручная проверка)
+Backend -> DB: Получает транзакции со статусом PAID
+Backend -> Admin: Список транзакций для обработки
+
+Admin -> Backend: Подтверждает транзакцию <transaction_id>
+Backend -> BaaS: POST /cards/create {user_data}
+BaaS -> Backend: {card_id, card_details}
+Backend -> BaaS: POST /accounts/transfer {card_id, amount_eur}
+Backend -> DB: Обновляет статус транзакции (COMPLETED)
+
+== Уведомление клиента ==
+
+Backend -> Bot: Уведомление о готовности
+Bot -> Client: "Ваша карта готова! \nНомер: XXXX-XXXX-XXXX-1234\nСрок: MM/YY\nCVV: 123"
+
+== Альтернативный поток: Автоматизация через n8n ==
+
+group Автоматическая обработка [Опционально]
+    participant "n8n" as N8N
+    participant "Email Bank" as Email
+    
+    Email -> N8N: Новое письмо от банка
+    N8N -> N8N: Парсит transaction_id из письма
+    N8N -> Backend: POST /payment/confirm {transaction_id}
+    Backend -> DB: Обновляет статус транзакции (PAID)
+    Backend -> N8N: 200 OK
+end
+
+@enduml
