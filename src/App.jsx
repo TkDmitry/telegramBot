@@ -12,29 +12,33 @@ import './App.css';
 function App() {
   const location = useLocation();
 
+  // Карта шагов для прогресс-бара
   const stepMap = {
-    '/gift/1': 0,   // KYC
-    '/gift/3': 1,   // Перевод
-    '/payment': 2,  // Оплата
-    '/gift/2': 3,   // Статус
-    '/card': 4,     // Карта
+    '/': 0,           // KYC (по умолчанию стартовый шаг)
+    '/transfer': 1,   // Перевод
+    '/payment': 2,    // Оплата
+    '/status': 3,     // Статус
+    '/card': 4,       // Карта
   };
 
   const currentStep = stepMap[location.pathname];
 
   return (
     <>
-      {/* Прогресс-бар показываем только на шаговых страницах */}
+      {/* Прогресс-бар показываем только на пошаговых страницах */}
       {currentStep !== undefined && <ProgressBar currentStep={currentStep} />}
 
       <Routes>
-        <Route path="/" element={<StartPage />} />
+        {/* Стартовая страница и профиль вне основного flow */}
+        <Route path="/start" element={<StartPage />} />
         <Route path="/profile" element={<ProfilePage />} />
-        <Route path="/gift/1" element={<KYCPage />} />
-        <Route path="/gift/2" element={<TransferStatus />} />
-        <Route path="/gift/3" element={<TransferForm />} />
-        <Route path="/payment" element={<PaymentPage />} />
-        <Route path="/card" element={<CardPage />} />
+
+        {/* Основной flow */}
+        <Route path="/" element={<KYCPage />} />            {/* шаг 1 */}
+        <Route path="/transfer" element={<TransferForm />} /> {/* шаг 2 */}
+        <Route path="/payment" element={<PaymentPage />} />   {/* шаг 3 */}
+        <Route path="/status" element={<TransferStatus />} /> {/* шаг 4 */}
+        <Route path="/card" element={<CardPage />} />         {/* шаг 5 */}
       </Routes>
     </>
   );
