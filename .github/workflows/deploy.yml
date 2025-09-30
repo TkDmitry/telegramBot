@@ -32,17 +32,22 @@ jobs:
       - name: Install Asciidoctor and PlantUML
         run: |
           gem install asciidoctor asciidoctor-pdf
-          sudo apt-get update && sudo apt-get install -y plantuml
+          sudo apt-get update && sudo apt-get install -y plantuml graphviz
       
-      - name: Generate PlantUML diagrams
+      - name: Generate PlantUML diagrams as images
         run: |
           mkdir -p build/docs/images
-          # ИСПРАВЛЕН ПУТЬ - теперь ищем в docs/
+          # Генерируем PNG из PUML файла
           plantuml -tpng docs/architecture.puml -o build/docs/images/
           plantuml -tsvg docs/architecture.puml -o build/docs/images/
+          echo "Generated diagrams:"
+          ls -la build/docs/images/
       
       - name: Build Documentation
         run: |
+          # Копируем все из docs кроме puml файлов
+          cp -r docs/* build/docs/ 2>/dev/null || true
+          # Генерируем HTML
           asciidoctor docs/index.adoc -o build/docs/index.html
           asciidoctor-pdf docs/index.adoc -o build/docs/crosspay.pdf
 
