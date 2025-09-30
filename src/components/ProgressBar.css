@@ -77,3 +77,13 @@
   .line.active {
     background: #0d47a1;
   }
+
+  .progress-step:hover .circle {
+    transform: scale(1.15);
+    background: #1565c0;
+  }
+  
+  .progress-step:hover .label {
+    color: #1565c0;
+  }
+  
