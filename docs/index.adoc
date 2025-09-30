@@ -35,7 +35,7 @@ CrossPay — это решение для международных перев�
 
 [plantuml, architecture-overview, svg]
 ----
-include::../plantuml/architecture.puml[]
+include::./architecture.puml[]
 ----
 
 [[api-reference]]
