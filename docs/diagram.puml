@@ -1,4 +1,4 @@
-@startuml CrossPay MVP Architecture
+@startuml diagram
 
 actor "Клиент" as Client
 participant "Telegram Bot" as Bot
