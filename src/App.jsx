@@ -6,6 +6,8 @@ import gift1 from './assets/gift1.png';
 import CategoryList from './components/CategoryList';
 import giftIcon from './assets/gift.png';
 import flowersIcon from './assets/flowers.png';
+import { useNavigate } from 'react-router-dom';
+
 
 const categories = [
     { id: 1, name: 'Подарки', icon: giftIcon },
@@ -13,6 +15,8 @@ const categories = [
   ];
 
 function App() {
+  const navigate = useNavigate();
+  
   return (
     <div>
         
