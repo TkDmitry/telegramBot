@@ -12,7 +12,7 @@ import './App.css';
 function App() {
   const location = useLocation();
 
-  // Карта шагов для прогресс-бара
+  // Карта шагов для прогресс-бара (без стартовой страницы!)
   const stepMap = {
     '/kyc': 0,
     '/transfer': 1,
@@ -21,25 +21,34 @@ function App() {
     '/card': 4,
   };
 
-  // const currentStep = stepMap[location.pathname];
+  const currentStep = stepMap[location.pathname];
 
-  const currentStep = stepMap[location.pathname] ?? 0;
-  
   return (
     <>
+      {/* Прогресс-бар показываем только на пошаговых страницах */}
       {currentStep !== undefined && <ProgressBar currentStep={currentStep} />}
 
-      <ProgressBar currentStep={currentStep} />
       <Routes>
-        <Route path="/" element={<KYCPage />} />          {/* дефолт */}
+        {/* редирект с корня на стартовую */}
+        <Route path="/" element={<Navigate to="/start" replace />} />
+
+        {/* Стартовая страница вне flow */}
+        <Route path="/start" element={<StartPage />} />
+        <Route path="/profile" element={<ProfilePage />} />
+
+        {/* Основной flow */}
+        <Route path="/kyc" element={<KYCPage />} />
         <Route path="/transfer" element={<TransferForm />} />
         <Route path="/payment" element={<PaymentPage />} />
         <Route path="/status" element={<TransferStatus />} />
         <Route path="/card" element={<CardPage />} />
+
+        {/* catch-all: любые неизвестные пути → старт */}
+        <Route path="*" element={<Navigate to="/start" replace />} />
       </Routes>
-      
     </>
   );
 }
 
 export default App;
+
