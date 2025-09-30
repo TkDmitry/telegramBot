@@ -2,7 +2,8 @@ import React, { useContext } from 'react';
 import { AppContext } from '../context/AppContext';
 
 function ProfilePage() {
-  const { user, transfer } = useContext(AppContext);
+  const context = useContext(AppContext) || {};
+  const { user, transfer } = context;
 
   return (
     <div className="page profile">
