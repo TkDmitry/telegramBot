@@ -38,8 +38,8 @@ jobs:
         run: |
           mkdir -p build/docs/images
           # Генерируем PNG из PUML файла
-          plantuml -tpng docs/architecture.puml -o build/docs/images/
-          plantuml -tsvg docs/architecture.puml -o build/docs/images/
+          plantuml -tpng docs/diagram.puml -o build/docs/images/
+          plantuml -tsvg docs/diagram.puml -o build/docs/images/
           echo "Generated diagrams:"
           ls -la build/docs/images/
       
