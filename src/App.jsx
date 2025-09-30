@@ -14,18 +14,17 @@ function App() {
 
   // Карта шагов для прогресс-бара
   const stepMap = {
-    '/kycpage': 0,    // KYC
-    '/transfer': 1,   // Перевод
-    '/payment': 2,    // Оплата
-    '/status': 3,     // Статус
-    '/card': 4,       // Карта
+    '/kyc': 0,
+    '/transfer': 1,
+    '/payment': 2,
+    '/status': 3,
+    '/card': 4,
   };
 
   const currentStep = stepMap[location.pathname];
 
   return (
     <>
-      {/* Прогресс-бар показываем только на пошаговых страницах */}
       {currentStep !== undefined && <ProgressBar currentStep={currentStep} />}
 
       <Routes>
@@ -35,11 +34,11 @@ function App() {
         <Route path="/profile" element={<ProfilePage />} />
 
         {/* Основной flow */}
-        <Route path="/kycpage" element={<KYCPage />} />        {/* шаг 1 */}
-        <Route path="/transfer" element={<TransferForm />} />  {/* шаг 2 */}
-        <Route path="/payment" element={<PaymentPage />} />    {/* шаг 3 */}
-        <Route path="/status" element={<TransferStatus />} />  {/* шаг 4 */}
-        <Route path="/card" element={<CardPage />} />          {/* шаг 5 */}
+        <Route path="/kyc" element={<KYCPage />} />
+        <Route path="/transfer" element={<TransferForm />} />
+        <Route path="/payment" element={<PaymentPage />} />
+        <Route path="/status" element={<TransferStatus />} />
+        <Route path="/card" element={<CardPage />} />
       </Routes>
     </>
   );
