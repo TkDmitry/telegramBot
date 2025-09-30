@@ -10,10 +10,16 @@ function ProfilePage() {
   return (
     <div className="page profile">
       <h2>👤 Профиль</h2>
-      <div className="profile-card">
-        <p><strong>Имя:</strong> {user?.name || 'Не указано'}</p>
-        <p><strong>Паспорт:</strong> {user?.passport || 'Не указано'}</p>
-      </div>
+      {user ? (
+        <div className="profile-card">
+          <p><strong>Имя:</strong> {user.first_name} {user.last_name}</p>
+          <p><strong>Username:</strong> @{user.username}</p>
+          <p><strong>Язык:</strong> {user.language_code}</p>
+          <p><strong>ID:</strong> {user.id}</p>
+        </div>
+      ) : (
+        <p>Пользователь не авторизован</p>
+      )}
 
       <h3>📜 История переводов</h3>
       {transfers && transfers.length > 0 ? (

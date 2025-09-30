@@ -1,17 +1,18 @@
-import React, { createContext, useState } from 'react';
+import { createContext, useState, useEffect } from 'react';
 
 export const AppContext = createContext();
 
 export function AppProvider({ children }) {
-  const [user, setUser] = useState(null); // данные KYC
-  const [transfer, setTransfer] = useState({
-    amount: 0,
-    eur: 0,
-    status: 'init',
-  });
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    if (window.Telegram?.WebApp?.initDataUnsafe?.user) {
+      setUser(window.Telegram.WebApp.initDataUnsafe.user);
+    }
+  }, []);
 
   return (
-    <AppContext.Provider value={{ user, setUser, transfer, setTransfer }}>
+    <AppContext.Provider value={{ user }}>
       {children}
     </AppContext.Provider>
   );
