@@ -21,42 +21,31 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Build project
+      - name: Build frontend
         run: npm run build
 
       - name: Setup Ruby for Asciidoctor
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.1'
-          
-      - name: Install Asciidoctor and PlantUML
+
+      - name: Install Asciidoctor and Diagram tools
         run: |
           gem install asciidoctor asciidoctor-pdf asciidoctor-diagram
           sudo apt-get update
-          sudo apt-get install -y default-jre graphviz plantuml
-          # symlink, чтобы asciidoctor-diagram видел бинарь
-          ln -s /usr/bin/plantuml /usr/local/bin/plantuml-native
-        
-        
-        
-      
-      - name: Generate PlantUML diagrams as images
+          sudo apt-get install -y default-jre graphviz
+
+      - name: Download PlantUML jar
         run: |
-          mkdir -p build/docs/images
-          # Генерируем PNG из PUML файла
-          plantuml -tpng docs/diagram.puml -o build/docs/images/
-          plantuml -tsvg docs/diagram.puml -o build/docs/images/
-          echo "Generated diagrams:"
-          ls -la build/docs/images/
-      
+          mkdir -p $HOME/plantuml
+          curl -L -o $HOME/plantuml/plantuml.jar https://github.com/plantuml/plantuml/releases/latest/download/plantuml.jar
+          echo "DIAGRAM_PLANTUML_CLASSPATH=$HOME/plantuml/plantuml.jar" >> $GITHUB_ENV
+
       - name: Build Documentation
         run: |
-          # Копируем все из docs кроме puml файлов
-          cp -r docs/* build/docs/ 2>/dev/null || true
-          # Генерируем HTML
+          mkdir -p build/docs
           asciidoctor -r asciidoctor-diagram docs/index.adoc -o build/docs/index.html
           asciidoctor-pdf -r asciidoctor-diagram docs/index.adoc -o build/docs/crosspay.pdf
-
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
