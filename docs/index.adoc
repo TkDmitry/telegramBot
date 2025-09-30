@@ -1,0 +1,175 @@
+= CrossPay MVP Documentation
+:toc: left
+:toclevels: 3
+:source-highlighter: highlightjs
+:icons: font
+:sectlinks: true
+:plantuml-server-url: http://www.plantuml.com/plantuml
+:imagesdir: ./images
+
+[[introduction]]
+== Введение
+
+CrossPay — это решение для международных переводов заработной платы из России в другие страны через Telegram Bot.
+
+* *Статус:* MVP
+* *Версия:* 0.1.0
+* *Целевая аудитория:* Экспаты, получающие зарплату в RUB
+
+[[architecture]]
+== Архитектура системы
+
+[[architecture-overview]]
+=== Обзор
+
+Основные компоненты системы:
+
+* *Telegram Bot* — интерфейс взаимодействия с пользователем
+* *Backend Server* — ядро системы (Python + Flask)
+* *PostgreSQL* — база данных
+* *ЮKassa API* — прием платежей в RUB
+* *BaaS Provider* — выпуск карт и управление счетами
+
+[[architecture-diagram]]
+=== Диаграмма взаимодействия
+
+[plantuml, architecture-overview, svg]
+----
+include::../plantuml/architecture.puml[]
+----
+
+[[api-reference]]
+== API Reference
+
+[[transfer-endpoint]]
+=== Инициация перевода
+
+[source,http]
+----
+POST /transfer HTTP/1.1
+Content-Type: application/json
+
+{
+  "user_id": 123456789,
+  "amount_rub": 50000,
+  "currency": "EUR"
+}
+----
+
+**Response:**
+[source,json]
+----
+{
+  "transaction_id": "txn_001",
+  "amount_eur": 476.19,
+  "payment_details": {
+    "account": "40702810000000000001",
+    "comment": "txn_001"
+  },
+  "exchange_rate": 105.0
+}
+----
+
+[[installation]]
+== Установка и настройка
+
+[[prerequisites]]
+=== Предварительные требования
+
+* Python 3.9+
+* PostgreSQL 12+
+* Telegram Bot Token
+* ЮKassa API keys
+* BaaS Provider account
+
+[[configuration]]
+=== Конфигурация
+
+.Create `.env` file:
+[source,bash]
+----
+# Database
+DATABASE_URL=postgresql://user:pass@localhost/crosspay
+
+# Telegram
+TELEGRAM_BOT_TOKEN=your_bot_token
+
+# Payment Providers
+YOO_MONEY_SHOP_ID=your_shop_id
+YOO_MONEY_SECRET_KEY=your_secret_key
+
+# BaaS
+BAAS_API_KEY=your_baas_key
+BAAS_BASE_URL=https://api.baas-provider.com
+
+# Exchange Rates
+DEFAULT_EXCHANGE_RATE=105.0
+COMMISSION_RATE=0.02
+----
+
+[[deployment]]
+== Деплой
+
+[[local-development]]
+=== Локальная разработка
+
+[source,bash]
+----
+# Клонирование репозитория
+git clone https://github.com/yourname/crosspay.git
+cd crosspay
+
+# Установка зависимостей
+pip install -r requirements.txt
+
+# Настройка базы данных
+python scripts/init_db.py
+
+# Запуск приложения
+python app.py
+----
+
+[[testing]]
+== Тестирование
+
+[[test-scenarios]]
+=== Сценарии тестирования
+
+.Успешный перевод:
+* Пользователь отправляет /transfer 50000
+* Система генерирует transaction_id
+* Пользователь оплачивает через ЮKassу
+* Админ подтверждает платеж
+* Система создает карту через BaaS API
+* Пользователь получает данные карты
+
+[[faq]]
+== Часто задаваемые вопросы
+
+[[comission]]
+=== Какие комиссии?
+
+* Конвертация RUB/EUR: 2%
+* Выпуск виртуальной карты: бесплатно
+* Выпуск физической карты: 5 EUR
+
+[[time]]
+=== Сколько времени занимает перевод?
+
+* Обработка платежа: 1-24 часа
+* Выпуск карты: мгновенно
+
+[[support]]
+== Поддержка
+
+* *Telegram канал:* https://t.me/crosspay_support
+* *Issues:* https://github.com/yourname/crosspay/issues
+* *Email:* support@crosspay.com
+
+[[changelog]]
+== История изменений
+
+== 0.1.0 (2024-01-01)
+* Первый рабочий MVP
+* Базовая интеграция с ЮKassa и A2PAY
+* Telegram Bot интерфейс

@@ -15,7 +15,12 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "docs:html": "asciidoctor docs/index.adoc -o build/docs/index.html",
+    "docs:pdf": "asciidoctor-pdf docs/index.adoc -o build/docs/crosspay.pdf",
+    "docs:all": "npm run docs:html && npm run docs:pdf",
+    "docs:serve": "cd build/docs && python3 -m http.server 8000",
+    "docs:clean": "rm -rf build/docs"
   },
   "browserslist": {
     "production": [
