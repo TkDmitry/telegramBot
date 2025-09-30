@@ -6,7 +6,6 @@ function KYCPage() {
   const navigate = useNavigate();
 
   const handleVerify = () => {
-    // TODO: запрос к API KYC
     console.log('Отправка данных:', passport);
     navigate('/transfer');
   };

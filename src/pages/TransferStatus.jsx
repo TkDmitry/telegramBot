@@ -5,17 +5,6 @@ function TransferStatus() {
   const [step, setStep] = useState(0);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setStep(prev => {
-        if (prev < 4) return prev + 1;
-        clearInterval(interval);
-        return prev;
-      });
-    }, 1500);
-    return () => clearInterval(interval);
-  }, []);
-
   const steps = [
     'Оплата получена',
     'Перевод в Казахстан',
@@ -23,6 +12,17 @@ function TransferStatus() {
     'SWIFT перевод',
     'Зачисление на карту',
   ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setStep(prev => {
+        if (prev < steps.length - 1) return prev + 1;
+        clearInterval(interval);
+        return prev;
+      });
+    }, 1500);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <div className="page">

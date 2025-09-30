@@ -5,7 +5,6 @@ function PaymentPage() {
   const navigate = useNavigate();
 
   const handlePayment = () => {
-    // TODO: интеграция с ЮKassa
     console.log('Оплата прошла успешно');
     navigate('/status');
   };

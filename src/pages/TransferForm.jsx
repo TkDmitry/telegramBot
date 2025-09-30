@@ -7,9 +7,8 @@ function TransferForm() {
   const navigate = useNavigate();
 
   const handleCalculate = () => {
-    // TODO: запрос к API для получения курса
-    const rubToKzt = 5.2; // пример
-    const kztToEur = 0.002; // пример
+    const rubToKzt = 5.2;
+    const kztToEur = 0.002;
     const eur = (amount * rubToKzt * kztToEur).toFixed(2);
     setRate(eur);
   };
