@@ -1,11 +1,10 @@
 = CrossPay MVP Documentation
+:sectnums:
+:sectnumlevels: 3
 :toc: left
 :toclevels: 3
-:source-highlighter: highlightjs
-:icons: font
-:sectlinks: true
-:plantuml-server-url: http://www.plantuml.com/plantuml
-:imagesdir: ./images
+:toc-title: Оглавление
+
 
 [[introduction]]
 == Введение
@@ -32,6 +31,8 @@ CrossPay — это решение для международных перев�
 
 [[architecture-diagram]]
 === Диаграмма взаимодействия
+
+[plantuml,"diagram",png]
 
 ----
 include::./architecture.puml[]
