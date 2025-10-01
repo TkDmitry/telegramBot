@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import NavBar from './components/NavBar/NavBar';
 import './StartPage.css';
 
 function StartPage() {
@@ -75,13 +76,7 @@ function StartPage() {
       </section>
 
       {/* Навигация */}
-      <footer className="navbar">
-        <button onClick={() => navigate('/')}>Главная</button>
-        <button onClick={() => navigate('/marketplace')}>Маркетплейс</button>
-        <button onClick={() => navigate('/collection')}>Коллекция</button>
-        <button onClick={() => navigate('/kyc')}>Кошелёк</button>
-        <button onClick={() => navigate('/profile')}>Профиль</button>
-      </footer>
+      <NavBar active="home" />
     </div>
   );
 }
