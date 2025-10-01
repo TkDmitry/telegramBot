@@ -7,7 +7,7 @@ import KYCPage from './pages/KYCPage';
 import PaymentPage from './pages/PaymentPage';
 import TransferStatus from './pages/TransferStatus';
 import TransferForm from './pages/TransferForm';
-import './ui.css';
+import './App.css';
 
 
 function App() {
