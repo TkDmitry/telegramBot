@@ -1,58 +1,57 @@
-@startuml diagram
+@startuml
+title CrossPay: Схема взаимодействия клиента, бота, бэкенда и банков
 
-actor "Клиент" as Client
-participant "Telegram Bot" as Bot
-participant "Backend Server" as Backend
-participant "База данных" as DB
-participant "ЮKassa API" as YooMoney
-participant "BaaS Provider\n(A2PAY/Aftab)" as BaaS
-actor "Администратор" as Admin
+actor Клиент
+participant "Telegram Mini App" as Бот
+participant "Backend (Flask)" as Бэкенд
+participant "ЮKassa"
+participant "BaaS Provider (Европа)"
+participant "SimplChain"
+participant "Банк-партнёр (Дубай)"
+participant "Европейский банк"
 
-== Клиент инициирует перевод ==
+== Авторизация и открытие карты ==
+Клиент -> Бот : Открывает Mini App
+Бот -> Бэкенд : Отправляет initDataUnsafe
+Бэкенд -> BaaS Provider : Запрос на выпуск карты
+BaaS Provider -> Бэкенд : Карта выпущена
+Бэкенд -> Бот : Подтверждение выпуска карты
+Бот -> Клиент : Карта готова
 
-Client -> Bot: /transfer <сумма_в_rub>
-Bot -> Backend: POST /transfer {user_id, amount_rub}
-Backend -> Backend: Генерирует ID транзакции
-Backend -> DB: Сохраняет транзакцию (PENDING)
-Backend -> Backend: Рассчитывает курс и сумму в EUR
-Backend -> Bot: {transaction_id, amount_eur, payment_details}
+== Указание суммы и выбор карты ==
+Клиент -> Бот : Вводит сумму и выбирает карту
+Бот -> Бэкенд : Запрос на конвертацию RUB → EUR
+Бэкенд -> Бот : Возвращает сумму в EUR
 
-Bot -> Client: "Переведите <amount_rub> RUB\nРеквизиты: ...\nКомментарий: <transaction_id>"
+== Покупка токенов через ЮKassa ==
+Клиент -> Бот : Подтверждает оплату
+Бот -> Бэкенд : Запрос на создание платежа
+Бэкенд -> ЮKassa : Создание платежа (RUB)
+ЮKassa -> Клиент : Редирект на форму оплаты
+ЮKassa -> Бэкенд : Уведомление об успешной оплате
 
-== Клиент оплачивает ==
+== Выпуск токенов и передача клиенту ==
+Бэкенд -> SimplChain : Выпуск simpl_coin и transport_coin
+SimplChain -> Бэкенд : Токены выпущены
+Бэкенд -> Бот : Подтверждение
+Бот -> Клиент : Токены зачислены на кошелёк
 
-Client -> YooMoney: Оплата с комментарием <transaction_id>
-YooMoney -> Backend: Webhook о платеже (автоматически)
-Backend -> DB: Обновляет статус транзакции (PAID)
+== Подтверждение перевода за границу ==
+Клиент -> Бот : Подтверждает перевод simpl_coin
+Бот -> Бэкенд : Запрос на трансграничную транзакцию
+Бэкенд -> SimplChain : Списание simpl_coin и transport_coin
+SimplChain -> Бэкенд : Токены списаны
 
-== Админ подтверждает получение ==
+== Перевод средств через банк-партнёр ==
+Бэкенд -> Банк-партнёр (Дубай) : Запрос на перевод EUR
+Банк-партнёр -> Европейский банк : Зачисление на карту клиента
+Европейский банк -> Банк-партнёр : Подтверждение зачисления
+Банк-партнёр -> Бэкенд : Средства зачислены
 
-Admin -> Backend: Просматривает список транзакций (ручная проверка)
-Backend -> DB: Получает транзакции со статусом PAID
-Backend -> Admin: Список транзакций для обработки
-
-Admin -> Backend: Подтверждает транзакцию <transaction_id>
-Backend -> BaaS: POST /cards/create {user_data}
-BaaS -> Backend: {card_id, card_details}
-Backend -> BaaS: POST /accounts/transfer {card_id, amount_eur}
-Backend -> DB: Обновляет статус транзакции (COMPLETED)
-
-== Уведомление клиента ==
-
-Backend -> Bot: Уведомление о готовности
-Bot -> Client: "Ваша карта готова! \nНомер: XXXX-XXXX-XXXX-1234\nСрок: MM/YY\nCVV: 123"
-
-== Альтернативный поток: Автоматизация через n8n ==
-
-group Автоматическая обработка [Опционально]
-    participant "n8n" as N8N
-    participant "Email Bank" as Email
-    
-    Email -> N8N: Новое письмо от банка
-    N8N -> N8N: Парсит transaction_id из письма
-    N8N -> Backend: POST /payment/confirm {transaction_id}
-    Backend -> DB: Обновляет статус транзакции (PAID)
-    Backend -> N8N: 200 OK
-end
+== Финализация и сжигание токенов ==
+Бэкенд -> SimplChain : Сжигание simpl_coin
+SimplChain -> Бэкенд : Токены уничтожены
+Бэкенд -> Бот : Завершение операции
+Бот -> Клиент : Перевод завершён
 
 @enduml
