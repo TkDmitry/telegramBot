@@ -1,0 +1,145 @@
+.page.main {
+    font-family: Arial, sans-serif;
+    padding: 16px;
+    background: #f9f9fb;
+    color: #222;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  /* Хедер */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+  
+  .header h1 {
+    font-size: 20px;
+    margin: 0;
+  }
+  
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  .balance {
+    font-weight: bold;
+  }
+  
+  /* Быстрые действия */
+  .quick-actions {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  
+  .quick-actions button {
+    flex: 1;
+    padding: 10px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  
+  .quick-actions button:hover {
+    background: #f0f0f0;
+  }
+  
+  /* Рекомендации */
+  .recommendations {
+    margin-bottom: 20px;
+  }
+  
+  .recommendations h2 {
+    margin-bottom: 12px;
+  }
+  
+  .recommendations .items {
+    display: flex;
+    gap: 16px;
+  }
+  
+  .recommendations .item {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 12px;
+    width: 150px;
+    text-align: center;
+  }
+  
+  .recommendations .item img {
+    width: 100%;
+    border-radius: 4px;
+    margin-bottom: 8px;
+  }
+  
+  /* Коллекции */
+  .collections {
+    margin-bottom: 20px;
+  }
+  
+  .collections ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .collections li {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 10px;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  /* Портфель */
+  .portfolio {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 12px;
+    margin-bottom: 20px;
+  }
+  
+  /* Новости */
+  .news {
+    margin-bottom: 20px;
+  }
+  
+  .news ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .news li {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 10px;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  /* Навигация */
+  .navbar {
+    display: flex;
+    justify-content: space-around;
+    padding: 12px;
+    background: #fff;
+    border-top: 1px solid #ddd;
+    position: sticky;
+    bottom: 0;
+  }
+  
