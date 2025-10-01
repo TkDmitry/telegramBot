@@ -79,7 +79,7 @@ function StartPage() {
         <button onClick={() => navigate('/')}>Главная</button>
         <button onClick={() => navigate('/marketplace')}>Маркетплейс</button>
         <button onClick={() => navigate('/collection')}>Коллекция</button>
-        <button onClick={() => navigate('/wallet')}>Кошелёк</button>
+        <button onClick={() => navigate('/kyc')}>Кошелёк</button>
         <button onClick={() => navigate('/profile')}>Профиль</button>
       </footer>
     </div>
