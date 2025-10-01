@@ -89,4 +89,4 @@ function StartPage() {
   );
 }
 
-export default MainPage;
+export default StartPage;
