@@ -20,8 +20,8 @@ function StartPage() {
       <section className="quick-actions">
         <button onClick={() => navigate('/marketplace')}>Маркетплейс</button>
         <button onClick={() => navigate('/collection')}>Моя коллекция</button>
-        <button onClick={() => navigate('/wallet')}>Кошелёк</button>
-        <button onClick={() => navigate('/subscription')}>Подписка Хедж</button>
+        <button onClick={() => navigate('/kyc')}>Кошелёк</button>
+        <button onClick={() => navigate('/profile')}>Профиль</button>
       </section>
 
       {/* Рекомендации */}
