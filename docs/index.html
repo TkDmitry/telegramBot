@@ -532,87 +532,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div class="sect2">
 <h3 id="architecture-diagram">2.2. Диаграмма взаимодействия</h3>
-<div class="listingblock">
+<div class="imageblock">
 <div class="content">
-<pre>Failed to generate image: PlantUML preprocessing failed: [From &lt;input&gt; (line 17) ]
-
-@startuml
-title CrossPay: Схема взаимодействия клиента, бота, бэкенда и банков
-
-actor Клиент
-participant "Telegram Mini App" as Бот
-participant "Backend (Flask)" as Бэкенд
-participant "ЮKassa"
-participant "BaaS Provider (Европа)"
-participant "SimplChain"
-participant "Банк-партнёр (Дубай)"
-participant "Европейский банк"
-
-== Авторизация и открытие карты ==
-Клиент -&gt; Бот : Открывает Mini App
-Бот -&gt; Бэкенд : Отправляет initDataUnsafe
-Бэкенд -&gt; BaaS Provider : Запрос на выпуск карты
-^^^^^
- Syntax Error? (Assumed diagram type: sequence)
-
-
-@startuml
-title CrossPay: Схема взаимодействия клиента, бота, бэкенда и банков
-
-actor Клиент
-participant "Telegram Mini App" as Бот
-participant "Backend (Flask)" as Бэкенд
-participant "ЮKassa"
-participant "BaaS Provider (Европа)"
-participant "SimplChain"
-participant "Банк-партнёр (Дубай)"
-participant "Европейский банк"
-
-== Авторизация и открытие карты ==
-Клиент -&gt; Бот : Открывает Mini App
-Бот -&gt; Бэкенд : Отправляет initDataUnsafe
-Бэкенд -&gt; BaaS Provider : Запрос на выпуск карты
-BaaS Provider -&gt; Бэкенд : Карта выпущена
-Бэкенд -&gt; Бот : Подтверждение выпуска карты
-Бот -&gt; Клиент : Карта готова
-
-== Указание суммы и выбор карты ==
-Клиент -&gt; Бот : Вводит сумму и выбирает карту
-Бот -&gt; Бэкенд : Запрос на конвертацию RUB → EUR
-Бэкенд -&gt; Бот : Возвращает сумму в EUR
-
-== Покупка токенов через ЮKassa ==
-Клиент -&gt; Бот : Подтверждает оплату
-Бот -&gt; Бэкенд : Запрос на создание платежа
-Бэкенд -&gt; ЮKassa : Создание платежа (RUB)
-ЮKassa -&gt; Клиент : Редирект на форму оплаты
-ЮKassa -&gt; Бэкенд : Уведомление об успешной оплате
-
-== Выпуск токенов и передача клиенту ==
-Бэкенд -&gt; SimplChain : Выпуск simpl_coin и transport_coin
-SimplChain -&gt; Бэкенд : Токены выпущены
-Бэкенд -&gt; Бот : Подтверждение
-Бот -&gt; Клиент : Токены зачислены на кошелёк
-
-== Подтверждение перевода за границу ==
-Клиент -&gt; Бот : Подтверждает перевод simpl_coin
-Бот -&gt; Бэкенд : Запрос на трансграничную транзакцию
-Бэкенд -&gt; SimplChain : Списание simpl_coin и transport_coin
-SimplChain -&gt; Бэкенд : Токены списаны
-
-== Перевод средств через банк-партнёр ==
-Бэкенд -&gt; Банк-партнёр (Дубай) : Запрос на перевод EUR
-Банк-партнёр -&gt; Европейский банк : Зачисление на карту клиента
-Европейский банк -&gt; Банк-партнёр : Подтверждение зачисления
-Банк-партнёр -&gt; Бэкенд : Средства зачислены
-
-== Финализация и сжигание токенов ==
-Бэкенд -&gt; SimplChain : Сжигание simpl_coin
-SimplChain -&gt; Бэкенд : Токены уничтожены
-Бэкенд -&gt; Бот : Завершение операции
-Бот -&gt; Клиент : Перевод завершён
-
-@enduml</pre>
+<img src="images/diagram.png" alt="diagram" width="1596" height="1394">
 </div>
 </div>
 </div>
@@ -840,7 +762,7 @@ python app.py</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2025-10-01 06:53:53 UTC
+Last updated 2025-10-01 09:03:14 UTC
 </div>
 </div>
 </body>
