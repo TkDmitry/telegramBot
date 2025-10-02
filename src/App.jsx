@@ -7,6 +7,7 @@ import KYCPage from './pages/KYCPage';
 import PaymentPage from './pages/PaymentPage';
 import TransferStatus from './pages/TransferStatus';
 import TransferForm from './pages/TransferForm';
+import SocionicsModule from './pages/SocionicsModule';
 import './ui.css';
 
 
