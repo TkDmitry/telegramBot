@@ -175,3 +175,16 @@ blockquote {
 @media (min-width: 481px) {
   .navbar button span { display: block; }
 }
+
+
+
+/* Профиль */
+.page.main h2 {
+  margin-bottom: 8px;
+}
+
+.list-item {
+  font-size: 14px;
+}
+
+/* Профиль end  */

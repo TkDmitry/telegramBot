@@ -22,7 +22,7 @@ async def start_handler(message: Message):
             [InlineKeyboardButton(text="📚 Документация", web_app=WebAppInfo(url="https://tkdmitry.github.io/telegramBot/docs"))]
         ]
     )
-    await message.answer("🛍️ Добро пожаловать в BookRandomCafe! Нажмите кнопку ниже чтобы открыть сообщество:", reply_markup=markup)
+    await message.answer("🧩 Добро пожаловать в BookRandomCafe! Нажмите кнопку ниже чтобы открыть сообщество:", reply_markup=markup)
 
 dp.include_router(router)
 
