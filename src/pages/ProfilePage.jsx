@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import NavBar from '../components/NavBar/NavBar'; // ✅ добавлен импорт
 import '../ui.css';
 
 function ProfilePage() {
@@ -80,6 +81,8 @@ function ProfilePage() {
         <p><strong>Соционика:</strong> {user.preferences.socionicsMatch}</p>
         <button className="btn btn-primary">Изменить настройки</button>
       </section>
+      {/* Навигация */}
+      <NavBar active="profile" />
     </div>
   );
 }

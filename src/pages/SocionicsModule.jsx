@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';   // ✅ импортируем useNavigate
 import NavBar from '../components/NavBar/NavBar'; // ✅ добавлен импорт
 import '../ui.css';
 
 function SocionicsModule() {
   const [result, setResult] = useState(null);
+  const navigate = useNavigate(); // ✅ инициализация
 
   const handleStartTest = () => {
     navigate('./socionics/test'); // или любой путь, который ты задал для SocionicsTest
