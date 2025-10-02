@@ -10,10 +10,10 @@ import './ui.css';
 
 
 function App() {
-  const location = useLocation();
+  // const location = useLocation();
 
 
-  const currentStep = stepMap[location.pathname];
+  // const currentStep = stepMap[location.pathname];
 
   return (
     <>
