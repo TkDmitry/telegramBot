@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import NavBar from '../components/NavBar/NavBar';
-import '../ui.css'; // UI-kit
+import '../ui.css'; // новый зелёно-золотой UI-kit
 
 function StartPage() {
   const navigate = useNavigate();
@@ -32,14 +32,14 @@ function StartPage() {
         <h2>Рекомендации сегодня</h2>
         <div style={{display: 'flex', gap: '12px', flexWrap: 'wrap'}}>
           <div className="card" style={{flex: '1 1 45%'}}>
-            <blockquote style={{fontStyle: 'italic', marginBottom: '8px'}}>
+            <blockquote>
               «И мы живём, не замечая чудес, пока кто-то не напомнит нам о них.»
             </blockquote>
             <p className="text-secondary">Из книги: "Мастер и Маргарита"</p>
             <button className="btn btn-primary" onClick={() => navigate('/matches')}>Найти единомышленников</button>
           </div>
           <div className="card" style={{flex: '1 1 45%'}}>
-            <blockquote style={{fontStyle: 'italic', marginBottom: '8px'}}>
+            <blockquote>
               «Чтение — это беседа с самыми лучшими людьми прошедших веков.»
             </blockquote>
             <p className="text-secondary">Из книги: "Размышления"</p>

@@ -1,14 +1,12 @@
 /* =========================================
-   BookMatch UI Kit (ui.css)
-   Theme: Dark, minimalist, content-first
-   Mobile-first responsive styles
+   BookMatch UI Kit — "Green Leather & Gold"
    ========================================= */
 
-/* Root variables */
+/* Цветовая палитра */
 :root {
-  --bg: #0e1a12;            /* тёмно-зелёный фон */
-  --bg-card: #14261b;       /* зелёная кожа */
-  --bg-elev: #1b3324;       /* чуть светлее для слоёв */
+  --bg: #0e1a12;            /* глубокий тёмно-зелёный фон */
+  --bg-card: #14261b;       /* кожа переплёта */
+  --bg-elev: #1b3324;       /* приподнятые блоки */
   --text: #f5f2e7;          /* тёплый светлый текст */
   --text-muted: #c0b89f;    /* приглушённое золото */
   --primary: #d4af37;       /* золотой акцент */
@@ -23,45 +21,82 @@
   --shadow-md: 0 6px 18px rgba(0,0,0,0.35);
 }
 
-
-/* Base reset */
-* { box-sizing: border-box; }
-html, body, #root { height: 100%; }
+/* Базовые стили */
 body {
   margin: 0;
-  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
-  background: linear-gradient(180deg, #0e1014 0%, #0f1115 100%);
+  font-family: 'Inter', Georgia, serif;
+  background: var(--bg);
   color: var(--text);
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Typography */
+.page {
+  background: transparent;
+  box-shadow: none;
+}
+
 h1, h2, h3 {
-  margin: 0 0 8px 0;
-  line-height: 1.25;
+  margin: 0 0 12px;
+  font-weight: 600;
+  color: var(--primary);
 }
-h1 { font-size: 22px; font-weight: 700; }
-h2 { font-size: 18px; font-weight: 600; color: var(--text); }
-p { margin: 0 0 8px 0; color: var(--text); }
-.text-secondary { color: var(--text-muted); }
 
-/* Layout */
-.page.main {
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 16px;
+p {
+  margin: 0 0 8px;
+  color: var(--text);
 }
-section { margin: 16px 0; }
+
+.text-secondary {
+  color: var(--text-muted);
+}
+
+/* Карточки */
 .card {
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
-  padding: 12px;
+  padding: 14px;
   box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.2s ease;
+}
+.card:hover {
+  box-shadow: var(--shadow-md);
 }
 
-/* Lists */
+/* Кнопки */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 38px;
+  padding: 0 16px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: #0e1a12;
+  border-color: var(--primary);
+}
+.btn-primary:hover {
+  background: var(--primary-hover);
+}
+
+.btn-secondary {
+  background: var(--secondary);
+  color: var(--text);
+  border-color: var(--secondary);
+}
+.btn-secondary:hover {
+  background: var(--secondary-hover);
+}
+
+/* Списки */
 .list {
   list-style: none;
   padding: 0;
@@ -69,9 +104,8 @@ section { margin: 16px 0; }
 }
 .list-item {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  gap: var(--gap);
+  align-items: center;
   padding: 12px;
   margin-bottom: 8px;
   background: var(--bg-elev);
@@ -79,133 +113,59 @@ section { margin: 16px 0; }
   border-radius: var(--radius-sm);
 }
 
-/* Buttons */
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  height: 36px;
-  padding: 0 14px;
-  border: 1px solid transparent;
-  border-radius: 10px;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.18s ease;
-  text-decoration: none;
-  white-space: nowrap;
-}
-.btn:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-.btn-primary {
-  color: #0b1220;
-  background: var(--primary);
-  border-color: var(--primary);
-}
-.btn-primary:hover { background: var(--primary-hover); }
-.btn-secondary {
-  color: var(--text);
-  background: var(--secondary);
-  border-color: var(--secondary);
-}
-.btn-secondary:hover { background: var(--secondary-hover); }
-
-/* Blockquote (for quotes on StartPage) */
+/* Цитаты */
 blockquote {
   margin: 0;
   padding: 12px 14px;
-  background: #1d2433;
-  color: #dbe6ff;
+  background: #1d2a20;
+  color: var(--primary);
   border-left: 3px solid var(--primary);
   border-radius: 8px;
+  font-style: italic;
 }
 
-/* Images */
-img {
-  display: block;
-  max-width: 100%;
-  border-radius: 8px;
-}
-
-/* NavBar baseline (optional, if not already styled) */
+/* Навигация (нижний бар) */
 .navbar {
-  position: sticky;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  display: flex;
+  justify-content: space-around;
+  padding: 8px 0;
   background: var(--bg-card);
   border-top: 1px solid var(--border);
-  padding: 8px 12px;
-  display: flex;
-  gap: 8px;
-  justify-content: space-around;
-  align-items: center;
+  position: sticky;
+  bottom: 0;
+  z-index: 10;
 }
-.navbar .nav-item {
+.navbar button {
+  flex: 1;
+  background: none;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   color: var(--text-muted);
   font-size: 12px;
-  padding: 6px 10px;
-  border-radius: 8px;
+  padding: 6px 0;
+  cursor: pointer;
+  transition: color 0.2s, transform 0.15s;
 }
-.navbar .nav-item.active {
-  color: var(--text);
-  background: var(--secondary);
+.navbar button svg {
+  width: 22px;
+  height: 22px;
+  fill: currentColor;
+  margin-bottom: 2px;
 }
-
-/* Utility: flex wrap rows */
-.row {
-  display: flex;
-  gap: var(--gap);
-  flex-wrap: wrap;
-}
-
-/* Utility: subtle separator */
-.hr {
-  height: 1px;
-  background: var(--border);
-  border: 0;
-  margin: 12px 0;
-}
-
-/* Responsive tweaks */
-@media (min-width: 640px) {
-  h1 { font-size: 24px; }
-  h2 { font-size: 20px; }
-  .card { padding: 14px; }
-}
-@media (min-width: 960px) {
-  .page.main { padding: 24px; }
-  .card { padding: 16px; }
-}
-
-/* Focus states for accessibility */
-.btn:focus,
-.list-item:focus,
-.navbar .nav-item:focus {
-  outline: 2px solid #94c1ff;
-  outline-offset: 2px;
-}
-
-/* Hover elevation */
-.card:hover {
-  box-shadow: var(--shadow-md);
-}
-
-/* Chip / badge (for counts like “участников: 120”) */
-.badge {
-  display: inline-block;
-  padding: 4px 8px;
-  font-size: 12px;
-  color: #0b1220;
-  background: var(--warning);
-  border-radius: 999px;
-}
-
-/* Inline link style */
-a.link {
+.navbar button.active {
   color: var(--primary);
-  text-decoration: none;
 }
-a.link:hover { text-decoration: underline; }
+.navbar button:hover {
+  color: var(--primary-hover);
+  transform: translateY(-2px);
+}
+
+/* Адаптивы */
+@media (max-width: 480px) {
+  .navbar button span { display: none; }
+}
+@media (min-width: 481px) {
+  .navbar button span { display: block; }
+}
