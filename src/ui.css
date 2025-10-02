@@ -4,22 +4,23 @@
 
 /* Цветовая палитра */
 :root {
-  --bg: #0e1a12;            /* глубокий тёмно-зелёный фон */
-  --bg-card: #14261b;       /* кожа переплёта */
-  --bg-elev: #1b3324;       /* приподнятые блоки */
-  --text: #f5f2e7;          /* тёплый светлый текст */
-  --text-muted: #c0b89f;    /* приглушённое золото */
-  --primary: #d4af37;       /* золотой акцент */
-  --primary-hover: #c19b2e; /* тёмное золото */
-  --secondary: #2a3d2f;     /* зелёный вторичный */
-  --secondary-hover: #344a38;
-  --border: #3a4d3c;
+  --bg: #1C1C1C;             /* Noir de Vigne — общий фон */
+  --bg-card: #284134;        /* Emerald Green — карточки */
+  --bg-elev: #809076;        /* Wasabi — приподнятые блоки */
+  --text: #F0D794;           /* Creased Khaki — тёплый текст */
+  --text-muted: #809076;     /* Wasabi — приглушённый текст */
+  --primary: #B86930;        /* Egyptian Earth — акцент */
+  --primary-hover: #a55c2b;  /* затемнённый акцент */
+  --secondary: #284134;      /* Emerald Green — вторичные кнопки */
+  --secondary-hover: #3a5a47;
+  --border: #809076;         /* границы */
   --radius-sm: 8px;
   --radius-md: 12px;
   --radius-lg: 16px;
   --shadow-sm: 0 2px 8px rgba(0,0,0,0.25);
   --shadow-md: 0 6px 18px rgba(0,0,0,0.35);
 }
+
 
 /* Базовые стили */
 body {
@@ -239,12 +240,13 @@ blockquote {
   background: var(--primary);
   transition: width 0.3s ease;
 }
-
+/* Прогресс-бар end*/
 /* Варианты ответов */
 .options {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
-/* Прогресс-бар end*/
+/* Варианты ответов end*/
+
 
