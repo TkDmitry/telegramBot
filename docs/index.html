@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.23">
-<title>CrossPay MVP Documentation</title>
+<title>BookMatch Mini App: Техническая и продуктовая документация</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -434,335 +434,764 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 @media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
 </style>
 </head>
-<body class="article toc2 toc-left">
+<body class="article">
 <div id="header">
-<h1>CrossPay MVP Documentation</h1>
-<div id="toc" class="toc2">
-<div id="toctitle">Оглавление</div>
-<ul class="sectlevel1">
-<li><a href="#introduction">1. Введение</a></li>
-<li><a href="#architecture">2. Архитектура системы</a>
-<ul class="sectlevel2">
-<li><a href="#architecture-overview">2.1. Обзор</a></li>
-<li><a href="#architecture-diagram">2.2. Диаграмма взаимодействия</a></li>
-</ul>
-</li>
-<li><a href="#api-reference">3. API Reference</a>
-<ul class="sectlevel2">
-<li><a href="#transfer-endpoint">3.1. Инициация перевода</a></li>
-</ul>
-</li>
-<li><a href="#installation">4. Установка и настройка</a>
-<ul class="sectlevel2">
-<li><a href="#prerequisites">4.1. Предварительные требования</a></li>
-<li><a href="#configuration">4.2. Конфигурация</a></li>
-</ul>
-</li>
-<li><a href="#deployment">5. Деплой</a>
-<ul class="sectlevel2">
-<li><a href="#local-development">5.1. Локальная разработка</a></li>
-</ul>
-</li>
-<li><a href="#testing">6. Тестирование</a>
-<ul class="sectlevel2">
-<li><a href="#test-scenarios">6.1. Сценарии тестирования</a></li>
-</ul>
-</li>
-<li><a href="#faq">7. Часто задаваемые вопросы</a>
-<ul class="sectlevel2">
-<li><a href="#comission">7.1. Какие комиссии?</a></li>
-<li><a href="#time">7.2. Сколько времени занимает перевод?</a></li>
-</ul>
-</li>
-<li><a href="#support">8. Поддержка</a></li>
-<li><a href="#changelog">9. История изменений</a></li>
-<li><a href="#_0_1_0_2024_01_01">10. 0.1.0 (2024-01-01)</a></li>
-</ul>
-</div>
+<h1>BookMatch Mini App: Техническая и продуктовая документация</h1>
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="introduction">1. Введение</h2>
+<h2 id="_введение"><a class="anchor" href="#_введение"></a>1. Введение</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>CrossPay — это решение для международных переводов заработной платы из России в другие страны через Telegram Bot.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Статус:</strong> MVP</p>
-</li>
-<li>
-<p><strong>Версия:</strong> 0.1.0</p>
-</li>
-<li>
-<p><strong>Целевая аудитория:</strong> Экспаты, получающие зарплату в RUB</p>
-</li>
-</ul>
+<p>BookMatch Mini App — это мобильное приложение нового поколения для любителей чтения, которое объединяет книжный клуб, систему интеллектуального подбора собеседников и соционическое типирование. Приложение находится на стыке социальных сетей, рекомендательных сервисов и современных психологических подходов, что позволяет создавать уникальные социальные и интеллектуальные связи между пользователями.<br>
+Данная документация описывает ключевые модули приложения, их архитектуру, пользовательские сценарии и бизнес-логику, а также раскрывает детали технической реализации, UX/UI-особенности, стратегии монетизации и план запуска продукта на рынок. Документ структурирован в формате AsciiDoc и содержит схемы на Mermaid для ER-диаграмм, flowchart’ов и wireframe’ов.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="architecture">2. Архитектура системы</h2>
+<h2 id="_1_архитектура_приложения_общая"><a class="anchor" href="#_1_архитектура_приложения_общая"></a>2. 1. Архитектура приложения (общая)</h2>
 <div class="sectionbody">
-<div class="sect2">
-<h3 id="architecture-overview">2.1. Обзор</h3>
 <div class="paragraph">
-<p>Основные компоненты системы:</p>
+<p>BookMatch Mini App реализует мульти-модульную архитектуру с четким разделением ответственности между компонентами, соблюдая принципы SOLID/KISS/DRY для устойчивости и масштабируемости, а также трехслойную архитектуру: Presentation/UI, Domain/Business Logic, Data/Persistence. Клиент и сервер взаимодействуют через REST API и WebSocket для real-time-коммуникаций.</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Telegram Bot</strong> — интерфейс взаимодействия с пользователем</p>
-</li>
-<li>
-<p><strong>Backend Server</strong> — ядро системы (Python + Flask)</p>
-</li>
-<li>
-<p><strong>PostgreSQL</strong> — база данных</p>
-</li>
-<li>
-<p><strong>ЮKassa API</strong> — прием платежей в RUB</p>
-</li>
-<li>
-<p><strong>BaaS Provider</strong> — выпуск карт и управление счетами</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="architecture-diagram">2.2. Диаграмма взаимодействия</h3>
-<div class="imageblock">
-<div class="content">
-<img src="images/diagram.png" alt="diagram" width="1596" height="1394">
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="api-reference">3. API Reference</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="transfer-endpoint">3.1. Инициация перевода</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-http" data-lang="http">POST /transfer HTTP/1.1
-Content-Type: application/json
+<pre>Failed to generate image: Could not find the 'mmdc' executable in PATH; add it to the PATH or specify its location using the 'mmdc' document attribute
 
-{
-  "user_id": 123456789,
-  "amount_rub": 50000,
-  "currency": "EUR"
-}</code></pre>
+flowchart LR
+subgraph MobileApp
+UserInterface --&gt; DomainLogic
+DomainLogic --&gt; DataLayer
+end
+DataLayer &lt;--&gt;|REST/WebSocket| BackendAPI
+BackendAPI --&gt;|ORM| DB[(PostgreSQL)]
+BackendAPI --&gt; SocionicsService
+BackendAPI --&gt; RecommendationService
+BackendAPI --&gt; ChatService
+BackendAPI &lt;--&gt; NotificationService
+BackendAPI &lt;--&gt; AnalyticsService
+BackendAPI -.- PaymentGateway
+BackendAPI -.- BookDB[(Books Repository)]
+UserInterface -.-&gt; Notifications
+UserInterface -.-&gt; PushNotifications</pre>
 </div>
 </div>
 <div class="paragraph">
-<p><strong>Response:</strong></p>
+<p>В рамках такой архитектуры обеспечивается логическая и физическая независимость слоев, что ускоряет процесс разработки и последующего обслуживания проекта.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_2_модуль_профиль_пользователя"><a class="anchor" href="#_2_модуль_профиль_пользователя"></a>3. 2. Модуль «Профиль пользователя»</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_функциональность"><a class="anchor" href="#_функциональность"></a>3.1. Функциональность</h3>
+<div class="paragraph">
+<p>Регистрация через e-mail, номер телефона или соцсети (OAuth 2.0).
+Персональные данные: имя, аватар, пол, возраст, город, профессия, интересы, о себе.
+Соционический тип (результат теста или ручной ввод).
+Читательская идентичность: любимые жанры, избранные авторы, книжные достижения, текущие и прочитанные книги.
+Настройки приватности (что и кому показывать).
+Статистика: активность, участие в клубах, рейтинг, прогресс чтения.
+Достижения, бэджи, геймификация.
+История взаимодействий: друзья, подписки, лайки, сообщения.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_архитектура"><a class="anchor" href="#_архитектура"></a>3.2. Архитектура</h3>
+<div class="paragraph">
+<p>Каждый профиль представлен как обогащенная сутью User, расширяемая атрибутами через связанную коллекцию (Profile, BookPreferences, SocionicsProfile, Achievements).</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-json" data-lang="json">{
-  "transaction_id": "txn_001",
-  "amount_eur": 476.19,
-  "payment_details": {
-    "account": "40702810000000000001",
-    "comment": "txn_001"
-  },
-  "exchange_rate": 105.0
-}</code></pre>
+<pre>Failed to generate image: Could not find the 'mmdc' executable in PATH; add it to the PATH or specify its location using the 'mmdc' document attribute
+erDiagram
+USER ||--o{ PROFILE : has USER ||--|{ FRIENDSHIP : "friend" USER ||--o{ SOCIONICS_RESULT : "has" PROFILE ||--o{ BOOK_PREFERENCE : "likes" PROFILE ||--o{ ACHIEVEMENT : "unlocks" BOOK_PREFERENCE }o--|| BOOK : "refers to" FRIENDSHIP { int id PK int user_id FK int friend_id FK string status } PROFILE { int id PK int user_id FK string bio string avatar_url date birthday string city string occupation bool is_public } SOCIONICS_RESULT { int id PK int user_id FK string socionics_type date test_date string test_method bool verified } BOOK_PREFERENCE { int id PK int profile_id FK int book_id FK string genre int rating }</pre>
 </div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_пользовательские_сценарии"><a class="anchor" href="#_пользовательские_сценарии"></a>3.3. Пользовательские сценарии</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Быстрая регистрация с соцсетями, заполнение базовых данных. . Прохождение соционического теста (опционально). . Импорт книжной полки из сторонних сервисов (MyBook, ЛитРес, др.). . Персонализация приватности. . Просмотр достижений и статуса. . Изменение настроек и выход из аккаунта.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_бизнес_логика"><a class="anchor" href="#_бизнес_логика"></a>3.4. Бизнес-логика</h3>
+<div class="paragraph">
+<p>Только владелец профиля может редактировать свои данные, за исключением типа верифицированного социониковедом.
+Некоторые показатели (статистика, достижения) могут быть скрыты.
+Сводка активности формируется для анализа вовлеченности.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_uxui"><a class="anchor" href="#_uxui"></a>3.5. UX/UI</h3>
+<div class="paragraph">
+<p>Минимализм, быстрый доступ к основным параметрам.
+Дружественная анимация наград и достижений для поддержания интереса.
+Ярко выраженная кнопка для редактирования профиля.
+Соционический тип, если верифицирован, выделяется специальным бэйджем.</p>
+</div>
+<div class="paragraph">
+<p>flowchart TD A[Профиль] -&#8594; B[Аватар, имя, тип] A -&#8594; C[Короткая биография] A -&#8594; D[Книжная полка] A -&#8594; E[Достижения/бейджи] A -&#8594; F[Соционика] F -&#8594; G[Тип, пройденный тест, верификация] A -&#8594; H[Статистика] A -&#8594; I[Настройки]</p>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="installation">4. Установка и настройка</h2>
+<h2 id="_3_система_подбора_собеседников"><a class="anchor" href="#_3_система_подбора_собеседников"></a>4. 3. Система подбора собеседников</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="prerequisites">4.1. Предварительные требования</h3>
-<div class="ulist">
-<ul>
-<li>
-<p>Python 3.9+</p>
-</li>
-<li>
-<p>PostgreSQL 12+</p>
-</li>
-<li>
-<p>Telegram Bot Token</p>
-</li>
-<li>
-<p>ЮKassa API keys</p>
-</li>
-<li>
-<p>BaaS Provider account</p>
-</li>
-</ul>
+<h3 id="_функциональность_2"><a class="anchor" href="#_функциональность_2"></a>4.1. Функциональность</h3>
+<div class="paragraph">
+<p>Алгоритмы интеллектуального мэтчинга по соционике, интересам, книжным вкусам и поведению.
+Мгновенный сбор шорт-листа "Потенциальных собеседников" на основе compatibility-score.
+Фильтры (по городу, возрасту, полу, доступности для чата, жанровым интересам, типу).
+Альтернатива Tinder-like свайперу: листание карточек, лайк/скип/суперлайк.
+Smart-обучение: коррекция совместимости на основании реальных взаимодействий (переписка, отзывы, встречи).</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configuration">4.2. Конфигурация</h3>
-<div class="listingblock">
-<div class="title">Create <code>.env</code> file:</div>
-<div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash"># Database
-DATABASE_URL=postgresql://user:pass@localhost/crosspay
-
-# Telegram
-TELEGRAM_BOT_TOKEN=your_bot_token
-
-# Payment Providers
-YOO_MONEY_SHOP_ID=your_shop_id
-YOO_MONEY_SECRET_KEY=your_secret_key
-
-# BaaS
-BAAS_API_KEY=your_baas_key
-BAAS_BASE_URL=https://api.baas-provider.com
-
-# Exchange Rates
-DEFAULT_EXCHANGE_RATE=105.0
-COMMISSION_RATE=0.02</code></pre>
+<h3 id="_алгоритмы"><a class="anchor" href="#_алгоритмы"></a>4.2. Алгоритмы</h3>
+<div class="paragraph">
+<p>Базируется на гибридной модели:
+Алгоритм Гейла-Шэпли (stable matching) для поиска устойчивых пар по взаимному интересу и соционическим типам2.
+Поведенческая координация: анализ лайков, времени отклика, тематик разговоров.
+Параметры-исключения и индивидуальные критерии (черные списки, предпочтения).
+Машинное обучение для персонализации (history-aware recommendation).</p>
 </div>
 </div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="deployment">5. Деплой</h2>
-<div class="sectionbody">
 <div class="sect2">
-<h3 id="local-development">5.1. Локальная разработка</h3>
+<h3 id="_архитектура_2"><a class="anchor" href="#_архитектура_2"></a>4.3. Архитектура</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash"># Клонирование репозитория
-git clone https://github.com/yourname/crosspay.git
-cd crosspay
-
-# Установка зависимостей
-pip install -r requirements.txt
-
-# Настройка базы данных
-python scripts/init_db.py
-
-# Запуск приложения
-python app.py</code></pre>
+<pre>Failed to generate image: Could not find the 'mmdc' executable in PATH; add it to the PATH or specify its location using the 'mmdc' document attribute
+erDiagram USER ||--o{ MATCH_REQUEST : "initiates" USER ||--o{ MATCH_RESULT : "matched" MATCH_REQUEST { int id PK int user_id FK int candidate_id FK string status float socionics_score float interest_score date request_date } MATCH_RESULT { int id PK int user1_id FK int user2_id FK date match_date float compatibility bool is_active } SOCIONICS_RESULT ||--o{ MATCH_RESULT : "used by"</pre>
 </div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="testing">6. Тестирование</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="test-scenarios">6.1. Сценарии тестирования</h3>
-<div class="ulist">
-<div class="title">Успешный перевод:</div>
-<ul>
-<li>
-<p>Пользователь отправляет /transfer 50000</p>
-</li>
-<li>
-<p>Система генерирует transaction_id</p>
-</li>
-<li>
-<p>Пользователь оплачивает через ЮKassу</p>
-</li>
-<li>
-<p>Админ подтверждает платеж</p>
-</li>
-<li>
-<p>Система создает карту через BaaS API</p>
-</li>
-<li>
-<p>Пользователь получает данные карты</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="faq">7. Часто задаваемые вопросы</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="comission">7.1. Какие комиссии?</h3>
-<div class="ulist">
-<ul>
-<li>
-<p>Конвертация RUB/EUR: 2%</p>
-</li>
-<li>
-<p>Выпуск виртуальной карты: бесплатно</p>
-</li>
-<li>
-<p>Выпуск физической карты: 5 EUR</p>
-</li>
-</ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="time">7.2. Сколько времени занимает перевод?</h3>
-<div class="ulist">
-<ul>
+<h3 id="_пользовательские_сценарии_2"><a class="anchor" href="#_пользовательские_сценарии_2"></a>4.4. Пользовательские сценарии</h3>
+<div class="olist arabic">
+<ol class="arabic">
 <li>
-<p>Обработка платежа: 1-24 часа</p>
+<p>Поиск собеседников вручную или с помощью свайп-ленты. . Внесение предпочтений и ограничений. . Ожидание встречной реакции — матч случается только при взаимном интересе. . Возможность отметить лучших совпавших и негативный опыт. . Запуск диалога (открытие чата).</p>
 </li>
-<li>
-<p>Выпуск карты: мгновенно</p>
-</li>
-</ul>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_бизнес_логика_2"><a class="anchor" href="#_бизнес_логика_2"></a>4.5. Бизнес-логика</h3>
+<div class="paragraph">
+<p>Пользователь не может отправить более 10 новых запросов в сутки (антиспам).
+При изменении соционического типа пересчитываются шансы совпадений.
+Имеется просмотр статистики "вы понравились, но не ответили".
+Система запоминает параметры успешных мэтчей и учится оптимизировать выдачу.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_uxui_2"><a class="anchor" href="#_uxui_2"></a>4.6. UX/UI</h3>
+<div class="paragraph">
+<p>Свайпер с карточками профиля, дружелюбные анимации для лайка/скипа.
+Ярко выделены ключевые совпадения (социальный и соционический бейдж).
+Фильтры и сортировка доступны из основного экрана.
+Push-уведомления о новых совпадениях и проявленном интересе.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Failed to generate image: Could not find the 'mmdc' executable in PATH; add it to the PATH or specify its location using the 'mmdc' document attribute
+
+flowchart TD
+A[Лента совпадений] --&gt; B[Карточка пользователя]
+B --&gt; C[Кнопки: лайк/скип/детали профиля]
+A --&gt; D[Фильтрация]
+D --&gt; E[Параметры поиска]
+A --&gt; F[Рекомендации]
+F --&gt; G[Совместимость: % + бейдж]</pre>
+</div>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="support">8. Поддержка</h2>
+<h2 id="_4_книжное_комьюнити"><a class="anchor" href="#_4_книжное_комьюнити"></a>5. 4. Книжное комьюнити</h2>
 <div class="sectionbody">
-<div class="ulist">
-<ul>
+<div class="sect2">
+<h3 id="_функциональность_3"><a class="anchor" href="#_функциональность_3"></a>5.1. Функциональность</h3>
+<div class="paragraph">
+<p>Виртуальный книжный клуб с регулярными тематическими встречами и обсуждениями, чатами, опросами.
+User-generated content: блоги, рецензии, рейтинги, коллекции книжных подборок.
+Возможность создавать и вступать в микрокомьюнити по жанрам, авторам, городским книжным кружкам.
+Общая книжная полка, персональные и коллективные челленджи (на месяц, год).
+Система цитат (сбор и обмен), публикация цитат и заметок.
+Голосования за новые клубные книги.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_архитектура_3"><a class="anchor" href="#_архитектура_3"></a>5.2. Архитектура</h3>
+<div class="listingblock">
+<div class="content">
+<pre>Failed to generate image: Could not find the 'mmdc' executable in PATH; add it to the PATH or specify its location using the 'mmdc' document attribute
+
+erDiagram
+USER ||--o{ CLUB : "member"
+CLUB ||--o{ EVENT : "organizes"
+EVENT ||--o{ DISCUSSION : "initiates"
+USER ||--o{ REVIEW : "writes"
+BOOK ||--o{ REVIEW : "receives"
+USER ||--o{ COMMENT : "writes"
+BOOK ||--o{ QUOTE : "has"
+USER ||--o{ QUOTE : "collects"
+BOOK ||--|{ BOOK_CLUB : "in"
+CLUB { int id PK string name text description string genre string city int owner_id FK }
+EVENT { int id PK int club_id FK string title date event_date }
+DISCUSSION { int id PK int event_id FK string topic }
+REVIEW { int id PK int user_id FK int book_id FK text content int rating date review_date }
+QUOTE { int id PK int book_id FK int user_id FK text content string page_ref }</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_пользовательские_сценарии_3"><a class="anchor" href="#_пользовательские_сценарии_3"></a>5.3. Пользовательские сценарии</h3>
+<div class="olist arabic">
+<ol class="arabic">
 <li>
-<p><strong>Telegram канал:</strong> <a href="https://t.me/crosspay_support" class="bare">https://t.me/crosspay_support</a></p>
+<p>Вступление в комьюнити/клуб, участие в голосовании. . Создание собственного книжного клуба по интересам. . Публикация рецензии, лайк/дислайк обзоров. . Организация ивента — онлайн/оффлайн. . Просмотр топ-цитат месяца. . Участие в групповом марафоне (например, "12 книг в год").</p>
 </li>
-<li>
-<p><strong>Issues:</strong> <a href="https://github.com/yourname/crosspay/issues" class="bare">https://github.com/yourname/crosspay/issues</a></p>
-</li>
-<li>
-<p><strong>Email:</strong> <a href="mailto:support@crosspay.com">support@crosspay.com</a></p>
-</li>
-</ul>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_бизнес_логика_3"><a class="anchor" href="#_бизнес_логика_3"></a>5.4. Бизнес-логика</h3>
+<div class="paragraph">
+<p>Лимит личных клубов на одного пользователя — 3.
+Достижения и рейтинг клубов формируются по активности и вовлеченности.
+Голосования могут завершаться предложением следующей клубной книги.
+Антиспам-фильтры на контент и жалобы.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_uxui_3"><a class="anchor" href="#_uxui_3"></a>5.5. UX/UI</h3>
+<div class="paragraph">
+<p>Вкладки "Клубы", "Обсуждения", "Марафоны".
+Крупные обложки книг, адаптивная галерея цитат.
+Виньетки для членов клуба, эмодзи для рецензий.
+Интеграция карт для офлайн-ивентов.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Failed to generate image: Could not find the 'mmdc' executable in PATH; add it to the PATH or specify its location using the 'mmdc' document attribute
+
+flowchart TD
+
+A[Главная BookMatch Community] --&gt; B[Список клубов]
+A --&gt; C[Марафоны]
+A --&gt; D[Популярные книги/рецензии]
+B --&gt; E[Клуб: Лента/Участники/Чаты/События]
+D --&gt; F[Рецензии: обзор, лайки]
+C --&gt; G[Текущий челлендж]</pre>
+</div>
+</div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="changelog">9. История изменений</h2>
+<h2 id="_5_соционический_модуль"><a class="anchor" href="#_5_соционический_модуль"></a>6. 5. Соционический модуль</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_функциональность_4"><a class="anchor" href="#_функциональность_4"></a>6.1. Функциональность</h3>
+<div class="paragraph">
+<p>Встроенный адаптивный соционический тест на базе классических (по Аушре, Гуленко) и многофакторных опросников5.
+Тестирование на тип, дополнительные параметры (квадра, древо Рейнина).
+Краткие и полные описания соционических типов для образовательных целей.
+Верификация типа чек-листом или экспертной консультацией.
+Открытое и закрытое отображение типа в профиле.
+Расчет совместимости с другими типами и рекомендации для коммуникации.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_архитектура_4"><a class="anchor" href="#_архитектура_4"></a>6.2. Архитектура</h3>
+<div class="listingblock">
+<div class="content">
+<pre>Failed to generate image: Could not find the 'mmdc' executable in PATH; add it to the PATH or specify its location using the 'mmdc' document attribute
+
+erDiagram
+USER ||--o{ SOCIONICS_RESULT : "has" SOCIONICS_RESULT { int id PK int user_id FK string socionics_type date test_date string method float confidence bool verified } SOCIONICS_COMPATIBILITY { int id PK int type_a int type_b float compatibility_score string description } SOCIONICS_TYPE { string code PK string label string description string strengths string weaknesses }</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_пользовательские_сценарии_4"><a class="anchor" href="#_пользовательские_сценарии_4"></a>6.3. Пользовательские сценарии</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Сдача теста при первом входе или позже. . Получение краткого психологического профиля, рекомендации. . Поиск "дуалов" для общения, известные примеры (фильмы/литература). . Заказ платной экспертной верификации (опционально).</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_бизнес_логика_4"><a class="anchor" href="#_бизнес_логика_4"></a>6.4. Бизнес-логика</h3>
+<div class="paragraph">
+<p>Результат теста влияет на алгоритмы мэтчинга.
+Возможна единожды бесплатная попытка верификации типа.
+При смене ответов возможно повторное прохождение за плату.
+Тип скрыт от других пользователей по умолчанию, если не верифицирован или не включен в настройках приватности.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_uxui_4"><a class="anchor" href="#_uxui_4"></a>6.5. UX/UI</h3>
+<div class="paragraph">
+<p>Прогресс-бар и геймификация в процессе теста.
+Визуализация вашего типа в цветовой схеме (например, квадры).
+Справочник с быстрым поиском по типам.
+Советы по общению.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Failed to generate image: Could not find the 'mmdc' executable in PATH; add it to the PATH or specify its location using the 'mmdc' document attribute
+
+flowchart TD
+A[Модуль соционики] --&gt; B[Тестирование]
+A --&gt; C[Профиль типа]
+A --&gt; D[История прохождения тестов]
+A --&gt; E[Экспертная верификация]
+C --&gt; F[Совместимость с другими типами]
+E --&gt; G[Запрос/ответ эксперта]</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_6_чат_система"><a class="anchor" href="#_6_чат_система"></a>7. 6. Чат-система</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_функциональность_5"><a class="anchor" href="#_функциональность_5"></a>7.1. Функциональность</h3>
+<div class="paragraph">
+<p>Персональные чаты 1-1 и групповые (до 20 человек).
+Отправка текстовых сообщений, медиа (фото, видео, цитаты из книг).
+Встроенная интеграция ссылок на книги, рецензии и цитаты.
+Push-уведомления о новых сообщениях.
+Возможность начать чат только после взаимного мэтча.
+Система антиспама, жалобы, блокировки.
+Голосовые сообщения (опционально).</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_архитектура_5"><a class="anchor" href="#_архитектура_5"></a>7.2. Архитектура</h3>
+<div class="paragraph">
+<p>В чате используется WebSocket для обмена данными в реальном времени (Node.js/Socket.IO backend, PostgreSQL/Redis для хранения сообщений).</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Failed to generate image: Could not find the 'mmdc' executable in PATH; add it to the PATH or specify its location using the 'mmdc' document attribute
+
+erDiagram
+USER ||--o{ CHAT : "participant" CHAT ||--o{ MESSAGE : "contains" CHAT { int id PK string title bool is_group int owner_id FK date created_at } MESSAGE { int id PK int chat_id FK int sender_id FK text content string type date sent_at bool is_read string media_url } USER ||--o{ MESSAGE : "sends"</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_пользовательские_сценарии_5"><a class="anchor" href="#_пользовательские_сценарии_5"></a>7.3. Пользовательские сценарии</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Уведомление о новом мэтче — переход в диалог напрямую. . Групповой чат клуба — обсуждение, голосования, опросы. . Пересылка понравившейся цитаты или книги собеседнику. . Жалоба на нежелательное общение.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_бизнес_логика_5"><a class="anchor" href="#_бизнес_логика_5"></a>7.4. Бизнес-логика</h3>
+<div class="paragraph">
+<p>Новый диалог доступен только после взаимного интереса (мэтча).
+Сообщения хранятся до удаления пользователем или автоочистки через 90 дней неактивности.
+Возможность закреплять сообщения/рекомендации.
+Push-уведомления на новые, непрочитанные сообщения.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_uxui_5"><a class="anchor" href="#_uxui_5"></a>7.5. UX/UI</h3>
+<div class="paragraph">
+<p>Похожие на мессенджеры Telegram/WhatsApp: список чатов, превью последних сообщений.
+Аватарки, цветовое кодирование новых сообщений.
+Быстрая навигация к связанным объектам (книга, клуб, профиль).
+Опциональная темная тема.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Failed to generate image: Could not find the 'mmdc' executable in PATH; add it to the PATH or specify its location using the 'mmdc' document attribute
+
+flowchart TD
+A[Список чатов] --&gt; B[Обычные диалоги]
+A --&gt; C[Групповые чаты]
+B --&gt; D[Экран переписки]
+C --&gt; E[Обсуждение клуба]
+D --&gt; G[Отправить цитату/книгу]
+D --&gt; F[Кнопка закрепть/жалоба]</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_7_frontend_реализация"><a class="anchor" href="#_7_frontend_реализация"></a>8. 7. Frontend реализация</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_стек_технологий"><a class="anchor" href="#_стек_технологий"></a>8.1. Стек технологий</h3>
+<div class="paragraph">
+<p>React Native — кроссплатформенная основа для Android и iOS8.
+Redux для управления состоянием.
+TypeScript для строгой типизации.
+WebSocket (socket.io-client) — real-time обмен событиями.
+RESTful API (axios/fetch).
+Использование UI-библиотек (например, Material UI или Chakra UI для RN).
+Push-уведомления — Firebase Cloud Messaging (Android), Apple Push Notification Service (iOS).</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_архитектура_слоев"><a class="anchor" href="#_архитектура_слоев"></a>8.2. Архитектура слоев</h3>
+<div class="paragraph">
+<p>Presentation Layer: React Components (экраны, вайрфреймы, формы).
+State Layer: Redux, Thunk для асинхронных действий.
+Networking Layer: API-клиенты (auth, user, match, book, chat).
+Utils: хелперы, конвертеры моделей.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_особенности_реализации"><a class="anchor" href="#_особенности_реализации"></a>8.3. Особенности реализации</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Вся навигация реализована через стек- и таб-навигаторы. . Экраны: Профиль, Навигатор совпадений, Клубы, Модуль соционики, Чаты, Настройки. . Использование автообновляемых flatlist для лент. . Поддержка темной/светлой темы, плавные анимации. . Ленивая загрузка heavy-ресурсов (изображения, pull-to-refresh).</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_uxui_решения"><a class="anchor" href="#_uxui_решения"></a>8.4. UX/UI решения</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Контрастный дизайн, крупные кликабельные области. . Понятные иконки, расширенная доступность (размер шрифта, цветовой контраст). . F-образный паттерн размещения, минимализм, яркие акценты для ключевых действий. . Onboarding с визуальными подсказками.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_8_backend_реализация"><a class="anchor" href="#_8_backend_реализация"></a>9. 8. Backend реализация</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_стек_технологий_2"><a class="anchor" href="#_стек_технологий_2"></a>9.1. Стек технологий</h3>
+<div class="paragraph">
+<p>База: Node.js  / Express.js  (или FastAPI при необходимости Python-экосистемы).
+СУБД: PostgreSQL (данные пользователей, книжная база), Redis (кеширование, уведомления, очередь событий).
+WebSocket (socket.io) для чатов.
+Модуль соционики — отдельный сервис (Python/Flask или FastAPI), реализующий тест и расчет совместимости.
+Хранилище файлов: Amazon S3 / Cloud Storage.
+Оповещения: Push (через Firebase, APNS).
+Мониторинг/логирование: Sentry, Prometheus.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_архитектура_6"><a class="anchor" href="#_архитектура_6"></a>9.2. Архитектура</h3>
+<div class="paragraph">
+<p>flowchart TD A[Mobile App] -&#8594;|REST/WebSockets| B[API Gateway] B -&#8594; C[User Service] B -&#8594; D[Matchmaking Service] B -&#8594; E[Socionics Service] B -&#8594; F[Book Community Service] B -&#8594; G[Chat Service] C -&#8594; DB[(Postgres)] G -&#8594; REDIS[(Redis)] E -&#8594; H[Socionics DB] F -&#8594; I[Book Storage] B -&#8594; J[Notification Service] J -&#8594; K[Push/Email] M[Admin Dashboard] -&#8594; B</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_rest_api_кратко"><a class="anchor" href="#_rest_api_кратко"></a>9.3. REST API (кратко)</h3>
+<div class="paragraph">
+<p>/api/v1/auth — авторизация, регистрация.
+/api/v1/users — профиль.
+/api/v1/match — система подбора.
+/api/v1/books — книга, отзывы, цитаты.
+/api/v1/clubs — книжные клубы.
+/api/v1/socionics — соционический тест, результат, совместимость.
+/api/v1/chat — переписка.
+/api/v1/notifications.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_безопасность_и_масштабирование"><a class="anchor" href="#_безопасность_и_масштабирование"></a>9.4. Безопасность и масштабирование</h3>
+<div class="paragraph">
+<p>JWT токены, refresh токены для авторизации.
+Rate limiting.
+Масштабирование по микросервисам.
+PostgreSQL — мастер/реплика для плавного масштабирования.
+Redis Pub/Sub — real-time события (чаты, уведомления).</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_9_uxui_особенности"><a class="anchor" href="#_9_uxui_особенности"></a>10. 9. UX/UI особенности</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_ключевые_принципы"><a class="anchor" href="#_ключевые_принципы"></a>10.1. Ключевые принципы</h3>
+<div class="paragraph">
+<p>Мобильность — все критичные действия в 1-2 тапа.
+Адаптивность — поддержка разных размеров экранов, soft-клавиатур.
+Минимализм, крупные кнопки, понятные подписи.
+Осознанный онбординг: короткие подсказки, визуальные примеры функциональности.
+Сбалансировано между стандартными паттернами и ноткой индивидуальности1214.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_навигация"><a class="anchor" href="#_навигация"></a>10.2. Навигация</h3>
+<div class="paragraph">
+<p>Bottom tab navigation: Домой, Клубы, Мэтчинг, Соционика, Настройки.
+Логичное разделение функциональности по вкладкам.
+Быстрый возврат к основному действию (FAB, Back action).</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_визуальная_иерархия"><a class="anchor" href="#_визуальная_иерархия"></a>10.3. Визуальная иерархия</h3>
+<div class="paragraph">
+<p>Яркие action-кнопки, крупные заголовки.
+Белое пространство, разделение зон.
+Цветовая кодировка статусов (например, высокий % совместимости).</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_персонализация"><a class="anchor" href="#_персонализация"></a>10.4. Персонализация</h3>
+<div class="paragraph">
+<p>Темы (светлая, темная, индивидуальная).
+Геолокационные предложения книжных клубов.
+Онбординг с учетом предпочтений после регистрации.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_адаптивность_и_отзывчивость"><a class="anchor" href="#_адаптивность_и_отзывчивость"></a>10.5. Адаптивность и отзывчивость</h3>
+<div class="paragraph">
+<p>Использование flexbox-верстки.
+Тестирование на различных устройствах.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_геймификация"><a class="anchor" href="#_геймификация"></a>10.6. Геймификация</h3>
+<div class="paragraph">
+<p>Бейджи, лидерборды, прогресс-бары для челенджей.
+Мини-игры: угадай жанр по цитате.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_доступность"><a class="anchor" href="#_доступность"></a>10.7. Доступность</h3>
+<div class="paragraph">
+<p>Высокий контраст.
+Поддержка VoiceOver, TalkBack.
+Альтернативные тексты для иконок.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_10_монетизация"><a class="anchor" href="#_10_монетизация"></a>11. 10. Монетизация</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_актуальные_модели_для_bookmatch"><a class="anchor" href="#_актуальные_модели_для_bookmatch"></a>11.1. Актуальные модели для BookMatch</h3>
+<div class="paragraph">
+<p>Freemium: базовый доступ бесплатный, дополнительные плюшки (расширенные фильтры мэтчинга, экспертиза по соционике, эксклюзивный контент клубов) по подписке17.
+Подписка: ежемесячная, годовая; вариации — "Premium", "Club VIP", "Socionics Pro".
+Paywall для эксклюзивных клубных ивентов (ограниченные лекции, онлайн-интервью с авторами).
+Внутриприложенные покупки: подарки, тематические мини-игры, extra-суперлайки, анонимные отзывы.
+Реклама: ненавязчивые баннеры в ленте, отключаемые подпиской или при достижении порога активности.
+Партнерские программы с книжными магазинами (скидки через партнерскую ссылку).</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_ограничения_и_условия"><a class="anchor" href="#_ограничения_и_условия"></a>11.2. Ограничения и условия</h3>
+<div class="paragraph">
+<p>Монетизация активируется при достижении ретеншн-метрики Day 7 Retention &gt; 30%.
+Бесплатный trial – 7 дней премиум-функций.
+Бонусы за invite друзей.
+Скидки и временные акции.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_anti_patterns"><a class="anchor" href="#_anti_patterns"></a>11.3. Anti-patterns</h3>
+<div class="paragraph">
+<p>Нельзя навязывать подписку до демонстрации реальной пользы.
+Ограничение в базовом функционале не мешает критическим юзер-сторис (нет блокировки мэтчинга или чатов для бесплатных пользователей).</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_11_план_запуска"><a class="anchor" href="#_11_план_запуска"></a>12. 11. План запуска</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_предзапуск_pre_launch_1_2_месяца"><a class="anchor" href="#_предзапуск_pre_launch_1_2_месяца"></a>12.1. Предзапуск (Pre-Launch, 1-2 месяца)</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Формулирование уникального ценностного предложения (Unique Value Proposition)20. . Анализ рынка: оценка конкурентов (Tinder, Twinby, Meetch, Whattoread, соцсети книжников, Bookmate и др.); SWOT-анализ. . Определение целевой аудитории: портреты, проблемы, паттерны. . Тестирование идеи на фокус-группах; A/B-тесты вайрфреймов. . Создание промо-лендинга и предварительной базы бета-юзеров. . Медиа-поддержка: связка соцсетей, тематических форумов, лидеров мнений. . Разработка MVP (минимально жизнеспособного продукта). . Настройка аналитики (Mixpanel, Firebase, Amplitude). . Подготовка технической инфраструктуры (DevOps, CI/CD, мониторинг).</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Failed to generate image: Could not find the 'mmdc' executable in PATH; add it to the PATH or specify its location using the 'mmdc' document attribute
+flowchart TD
+A[Аналитика и подготовка] --&gt; B[Создание MVP]
+B --&gt; C[Внутренний тест]
+C --&gt; D[Загрузка в closed beta]
+D --&gt; E[Сбор обратной связи]
+E --&gt; F[Правки, доработка]
+F --&gt; G[Pre-launch маркетинг]
+G --&gt; H[Открытие публичной беты]
+H --&gt; I[Публичный релиз]</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_пилот_и_публичная_бета_2_месяца"><a class="anchor" href="#_пилот_и_публичная_бета_2_месяца"></a>12.2. Пилот и публичная бета (2 месяца)</h3>
+<div class="paragraph">
+<p>Invite-only бета для early adopters.
+Сбор отзывов, фиксация багов, итеративная доработка.
+Просмотр метрик: DAU, Retention, Conversion.
+Сообщества внутри приложения/telegram-канал для обратной связи.
+Поддержка расширенного функционала.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_релиз_launch_day_onwards"><a class="anchor" href="#_релиз_launch_day_onwards"></a>12.3. Релиз (Launch Day onwards)</h3>
+<div class="paragraph">
+<p>Открытый релиз в App Store, Google Play, RuStore (при необходимости).
+Стартовая промо-акция (bonuses, trial подписка).
+Партнерские публикации, инфлюенсеры, опросы, запуск клубных марафонов.
+SMM + ASO (App Store Optimization).</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_пост_релизная_поддержка"><a class="anchor" href="#_пост_релизная_поддержка"></a>12.4. Пост-релизная поддержка</h3>
+<div class="paragraph">
+<p>Быстрые фиксы багов.
+Внедрение новых фичей по результатам опросов.
+Сбор статистики, донастройка воронки активации и монетизации.
+Дополнительные рекламные кампании.
+Постоянная коммуникация с аудиторией.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_12_asciidoc_и_mermaid_рекомендации_по_оформлению"><a class="anchor" href="#_12_asciidoc_и_mermaid_рекомендации_по_оформлению"></a>13. 12. AsciiDoc и Mermaid: рекомендации по оформлению</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Все ключевые разделы оформляются в виде AsciiDoc с многоуровневыми заголовками (=, ==, ===).
+Диаграммы (ERD, flowcharts, wireframes) интегрируются через блоки:</p>
+</div>
+<div class="paragraph">
+<p>mermaid code</p>
+</div>
+<div class="paragraph">
+<p>При необходимости использовать аннотированные списки для задач и шагов.
+Для архитектурных схем и ERD — явно описывать отношения (см. выше).
+Для пользовательских сценариев предпочтительнее пошаговый формат.
+Все визуальные элементы должны быть подписаны и структурированы по смыслу.
+Для технических спецификаций использовать нумерованные и маркированные списки, таблицы.
+Документ поддерживает экспорт в HTML, PDF и другие форматы через Asciidoctor.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_13_примеры_asciidoc_оформления_и_шаблонов"><a class="anchor" href="#_13_примеры_asciidoc_оформления_и_шаблонов"></a>14. 13. Примеры AsciiDoc-оформления и шаблонов</h2>
 <div class="sectionbody">
 
 </div>
 </div>
 <div class="sect1">
-<h2 id="_0_1_0_2024_01_01">10. 0.1.0 (2024-01-01)</h2>
+<h2 id="_пример_блока_кода"><a class="anchor" href="#_пример_блока_кода"></a>Пример блока кода</h2>
 <div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
-<p>Первый рабочий MVP</p>
-</li>
-<li>
-<p>Базовая интеграция с ЮKassa и A2PAY</p>
-</li>
-<li>
-<p>Telegram Bot интерфейс</p>
-</li>
-</ul>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-typescript" data-lang="typescript">interface IBook
+{ id: string; title: string; author: string; genre: string; description?: string; }</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_пример_таблицы"><a class="anchor" href="#_пример_таблицы"></a>15. Пример таблицы</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 50%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Тип монетизации</th>
+<th class="tableblock halign-left valign-top">Описание</th>
+<th class="tableblock halign-left valign-top">Применимость в BookMatch</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Freemium</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Базовые функции бесплатно, доп. — по подписке</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Да</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Подписка</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Регулярная ежемесячная/годовая оплата</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Да</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Платный доступ</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Разовый платеж за весь функционал</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Нет (нишевые фичи)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Реклама</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Доход от показов в бесплатной версии</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Возможно</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In-app покупки</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Покупка отдельных функций/подарков</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Да</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_пример_внедрения_mermaid_диаграммы"><a class="anchor" href="#_пример_внедрения_mermaid_диаграммы"></a>16. Пример внедрения Mermaid-диаграммы</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre>Failed to generate image: Could not find the 'mmdc' executable in PATH; add it to the PATH or specify its location using the 'mmdc' document attribute
+
+erDiagram
+BOOK ||--o{ REVIEW : receives USER ||--o{ REVIEW : writes REVIEW { int id PK int user_id FK int book_id FK text content int rating date written_at }</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_14_заключение"><a class="anchor" href="#_14_заключение"></a>17. 14. Заключение</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>BookMatch Mini App — это не просто "мобильное приложение для чтения", а комплексная социальная экосистема, где объединены лучшие практики знакомств, книжного клубного общения, соционического анализа и лайфстайл-геймификации.<br>
+Техническая и продуктовая архитектура подобрана таким образом, чтобы минимизировать барьеры для вовлечения, обеспечить высокий retention, персонализированную ценность для пользователя и прозрачный путь монетизации проекта.<br>
+Только продуманное проектирование модулей, современный дизайн и работающая стратегия запуска открывают шанс занять заметное и устойчивое место на насыщенном рынке книжных и образовательных мини-приложений.<br></p>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2025-10-02 12:05:52 UTC
+Last updated 2025-10-02 12:08:19 UTC
 </div>
 </div>
 </body>
