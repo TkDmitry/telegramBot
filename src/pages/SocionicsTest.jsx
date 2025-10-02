@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import NavBar from '../components/NavBar/NavBar'; // ✅ добавлен импорт
 import '../ui.css';
 
 const questions = [

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import NavBar from '../components/NavBar/NavBar'; // ✅ добавлен импорт
 import '../ui.css';
 
 function SocionicsModule() {
@@ -11,7 +12,6 @@ function SocionicsModule() {
 
   return (
     <div className="page main">
-      {/* Тест */}
       <section className="card">
         <h2>🧩 Соционический тест</h2>
         {!result ? (
