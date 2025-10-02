@@ -2,8 +2,8 @@
   display: flex;
   justify-content: space-around;
   padding: 8px 0;
-  background: #161a22; /* тёмный фон */
-  border-top: 1px solid #2a3244;
+  background: var(--bg-card);
+  border-top: 1px solid var(--border);
   position: sticky;
   bottom: 0;
   z-index: 10;
@@ -16,7 +16,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: #a9b0bf; /* приглушённый серый */
+  color: var(--text-muted);
   font-size: 12px;
   padding: 6px 0;
   cursor: pointer;
@@ -31,23 +31,23 @@
 }
 
 .navbar button.active {
-  color: #6aa6ff; /* акцент BookMatch */
+  color: var(--primary); /* золото */
 }
 
 .navbar button:hover {
-  color: #94c1ff;
+  color: var(--primary-hover);
   transform: translateY(-2px);
 }
 
 /* Адаптивы */
 @media (max-width: 480px) {
   .navbar button span {
-    display: none; /* на мобильных только иконки */
+    display: none;
   }
 }
 
 @media (min-width: 481px) {
   .navbar button span {
-    display: block; /* на планшетах и выше показываем подписи */
+    display: block;
   }
 }

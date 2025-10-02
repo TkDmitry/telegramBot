@@ -6,26 +6,23 @@
 
 /* Root variables */
 :root {
-  --bg: #0f1115;
-  --bg-card: #161a22;
-  --bg-elev: #1b2130;
-  --text: #e6e9ef;
-  --text-muted: #a9b0bf;
-  --primary: #6aa6ff;
-  --primary-hover: #5a93e6;
-  --secondary: #30384a;
-  --secondary-hover: #3a4256;
-  --success: #29c38f;
-  --danger: #ff6b6b;
-  --warning: #ffc857;
-  --border: #2a3244;
+  --bg: #0e1a12;            /* тёмно-зелёный фон */
+  --bg-card: #14261b;       /* зелёная кожа */
+  --bg-elev: #1b3324;       /* чуть светлее для слоёв */
+  --text: #f5f2e7;          /* тёплый светлый текст */
+  --text-muted: #c0b89f;    /* приглушённое золото */
+  --primary: #d4af37;       /* золотой акцент */
+  --primary-hover: #c19b2e; /* тёмное золото */
+  --secondary: #2a3d2f;     /* зелёный вторичный */
+  --secondary-hover: #344a38;
+  --border: #3a4d3c;
   --radius-sm: 8px;
   --radius-md: 12px;
   --radius-lg: 16px;
   --shadow-sm: 0 2px 8px rgba(0,0,0,0.25);
   --shadow-md: 0 6px 18px rgba(0,0,0,0.35);
-  --gap: 12px;
 }
+
 
 /* Base reset */
 * { box-sizing: border-box; }
