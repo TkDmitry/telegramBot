@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/telegramBot/static/css/main.fa88990c.css",
+    "main.css": "/telegramBot/static/css/main.c74df828.css",
     "main.js": "/telegramBot/static/js/main.56015e85.js",
     "index.html": "/telegramBot/index.html",
-    "main.fa88990c.css.map": "/telegramBot/static/css/main.fa88990c.css.map",
+    "main.c74df828.css.map": "/telegramBot/static/css/main.c74df828.css.map",
     "main.56015e85.js.map": "/telegramBot/static/js/main.56015e85.js.map"
   },
   "entrypoints": [
-    "static/css/main.fa88990c.css",
+    "static/css/main.c74df828.css",
     "static/js/main.56015e85.js"
   ]
 }
