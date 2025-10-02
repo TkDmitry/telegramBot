@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import NavBar from '../components/NavBar/NavBar';
-import '../ui.css'; // подключаем UI-kit
+import '../ui.css'; // UI-kit
 
 function StartPage() {
   const navigate = useNavigate();
@@ -10,75 +10,77 @@ function StartPage() {
     <div className="page main">
       {/* Хедер */}
       <header className="card" style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
-        <h1>FinTech Mini App</h1>
+        <h1>BookMatch Mini App</h1>
         <div>
-          <span className="text-secondary">Баланс: 1200 T</span>
-          <button className="btn btn-primary" style={{marginLeft: '12px'}} onClick={() => navigate('/kyc')}>
-            Пополнить
+          <span className="text-secondary">Прочитано книг: 42</span>
+          <button className="btn btn-primary" style={{marginLeft: '12px'}} onClick={() => navigate('/profile')}>
+            Добавить книгу
           </button>
         </div>
       </header>
 
       {/* Быстрые действия */}
       <section className="card" style={{display: 'flex', gap: '12px', flexWrap: 'wrap'}}>
-        <button className="btn btn-secondary" onClick={() => navigate('/marketplace')}>Маркетплейс</button>
-        <button className="btn btn-secondary" onClick={() => navigate('/collection')}>Моя коллекция</button>
-        <button className="btn btn-secondary" onClick={() => navigate('/kyc')}>Кошелёк</button>
+        <button className="btn btn-secondary" onClick={() => navigate('/quotes')}>Мои цитаты</button>
+        <button className="btn btn-secondary" onClick={() => navigate('/matches')}>Совпадения</button>
+        <button className="btn btn-secondary" onClick={() => navigate('/clubs')}>Книжные клубы</button>
         <button className="btn btn-secondary" onClick={() => navigate('/profile')}>Профиль</button>
       </section>
 
-     {/* Рекомендации */}
-     <section>
+      {/* Рекомендации */}
+      <section>
         <h2>Рекомендации сегодня</h2>
         <div style={{display: 'flex', gap: '12px', flexWrap: 'wrap'}}>
           <div className="card" style={{flex: '1 1 45%'}}>
-            <img src="/nft1.png" alt="NFT #021" style={{width: '100%', borderRadius: '8px', marginBottom: '8px'}} />
-            <p className="text-secondary">Автор: ArtistX</p>
-            <p>Цена: 75 T</p>
-            <button className="btn btn-primary">Купить</button>
+            <blockquote style={{fontStyle: 'italic', marginBottom: '8px'}}>
+              «И мы живём, не замечая чудес, пока кто-то не напомнит нам о них.»
+            </blockquote>
+            <p className="text-secondary">Из книги: "Мастер и Маргарита"</p>
+            <button className="btn btn-primary" onClick={() => navigate('/matches')}>Найти единомышленников</button>
           </div>
           <div className="card" style={{flex: '1 1 45%'}}>
-            <img src="/nft2.png" alt="NFT #087" style={{width: '100%', borderRadius: '8px', marginBottom: '8px'}} />
-            <p className="text-secondary">Стикер Pack A</p>
-            <p>Цена: 25 T</p>
-            <button className="btn btn-primary">Купить</button>
+            <blockquote style={{fontStyle: 'italic', marginBottom: '8px'}}>
+              «Чтение — это беседа с самыми лучшими людьми прошедших веков.»
+            </blockquote>
+            <p className="text-secondary">Из книги: "Размышления"</p>
+            <button className="btn btn-primary" onClick={() => navigate('/matches')}>Совпадения по цитате</button>
           </div>
         </div>
       </section>
 
-      {/* Коллекции */}
+      {/* Книжные клубы */}
       <section>
-        <h2>Актуальные коллекции</h2>
+        <h2>Актуальные клубы</h2>
         <ul className="list">
           <li className="list-item">
-            Сезон 1 — новые релизы: 12
-            <button className="btn btn-secondary" onClick={() => navigate('/collection/season1')}>Открыть</button>
+            Философия и классика — участников: 120
+            <button className="btn btn-secondary" onClick={() => navigate('/clubs/philosophy')}>Вступить</button>
           </li>
           <li className="list-item">
-            Мем-арт — новые релизы: 7
-            <button className="btn btn-secondary" onClick={() => navigate('/collection/meme')}>Открыть</button>
+            Современная проза — участников: 85
+            <button className="btn btn-secondary" onClick={() => navigate('/clubs/prose')}>Вступить</button>
           </li>
         </ul>
       </section>
 
-      {/* Сводка активов */}
+      {/* Моя библиотека */}
       <section className="card">
-        <h2>Мои активы</h2>
-        <p>Всего NFT: 18 | На продаже: 4 | Оценка портфеля: 2340 T</p>
-        <button className="btn btn-primary" onClick={() => navigate('/collection')}>Перейти</button>
+        <h2>Моя библиотека</h2>
+        <p>Прочитано: 42 | Читаю сейчас: 3 | Хочу прочитать: 15</p>
+        <button className="btn btn-primary" onClick={() => navigate('/profile')}>Открыть</button>
       </section>
 
-      {/* Новости */}
+      {/* Новости и события */}
       <section>
         <h2>Новости и события</h2>
         <ul className="list">
           <li className="list-item">
-            Дроп «Легенды» завтра в 18:00
+            Онлайн-дискуссия по «1984» завтра в 19:00
             <button className="btn btn-secondary">Подробнее</button>
           </li>
           <li className="list-item">
-            Премиум Хедж: новый опцион RUB/EUR до 500 €
-            <button className="btn btn-secondary">Управлять</button>
+            Читательский челлендж: «7 книг за октябрь»
+            <button className="btn btn-secondary">Присоединиться</button>
           </li>
         </ul>
       </section>
