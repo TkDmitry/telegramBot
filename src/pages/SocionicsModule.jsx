@@ -58,7 +58,7 @@ function SocionicsModule() {
         </ul>
       </section>
       {/* Навигация */}
-      <NavBar active="socionics" />
+      {/* <NavBar active="socionics" /> */}
     </div>
   );
 }

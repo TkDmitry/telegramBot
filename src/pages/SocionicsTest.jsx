@@ -89,7 +89,7 @@ function SocionicsTest() {
         </section>
       )}
       {/* Навигация */}
-      <NavBar active="socionics" />
+      {/* <NavBar active="socionics" /> */}
     </div>
   );
 }
