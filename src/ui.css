@@ -35,6 +35,10 @@ body {
   box-shadow: none;
 }
 
+.page.main section {
+  margin-bottom: 20px;
+}
+
 h1, h2, h3 {
   margin: 0 0 12px;
   font-weight: 600;
@@ -58,7 +62,9 @@ p {
   padding: 14px;
   box-shadow: var(--shadow-sm);
   transition: box-shadow 0.2s ease;
+  margin-bottom: 16px; /* ← добавляем отступ снизу */
 }
+
 .card:hover {
   box-shadow: var(--shadow-md);
 }
