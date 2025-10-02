@@ -36,6 +36,7 @@ function App() {
         {/* Стартовая страница вне flow */}
         <Route path="/start" element={<StartPage />} />
         <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/socionics" element={<SocionicsModule />} />
 
         {/* Основной flow */}
         <Route path="/kyc" element={<KYCPage />} />

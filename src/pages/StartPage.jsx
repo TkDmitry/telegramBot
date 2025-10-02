@@ -24,6 +24,7 @@ function StartPage() {
         <button className="btn btn-secondary" onClick={() => navigate('/quotes')}>Мои цитаты</button>
         <button className="btn btn-secondary" onClick={() => navigate('/matches')}>Совпадения</button>
         <button className="btn btn-secondary" onClick={() => navigate('/clubs')}>Книжные клубы</button>
+        <button className="btn btn-secondary" onClick={() => navigate('/socionics')}>Соционический модуль</button>
         <button className="btn btn-secondary" onClick={() => navigate('/profile')}>Профиль</button>
       </section>
 

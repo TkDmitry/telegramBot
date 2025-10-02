@@ -188,3 +188,40 @@ blockquote {
 }
 
 /* Профиль end  */
+/* Соционический модуль */
+.compatibility-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.compatibility-grid .cell {
+  padding: 12px;
+  text-align: center;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  color: var(--text);
+}
+
+.cell.good {
+  background: rgba(212, 175, 55, 0.2); /* золото */
+  border: 1px solid var(--primary);
+}
+
+.cell.ok {
+  background: rgba(106, 166, 255, 0.15); /* мягкий голубой */
+  border: 1px solid #6aa6ff;
+}
+
+.cell.neutral {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+}
+
+.cell.bad {
+  background: rgba(255, 0, 0, 0.15);
+  border: 1px solid #ff4d4d;
+}
+/* Соционический модуль end*/
+
