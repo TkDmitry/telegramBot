@@ -55,6 +55,8 @@ function SocionicsModule() {
           <li className="list-item">Обсуди, какой герой ближе всего по характеру.</li>
         </ul>
       </section>
+      {/* Навигация */}
+      <NavBar active="socionics" />
     </div>
   );
 }

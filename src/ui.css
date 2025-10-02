@@ -225,3 +225,26 @@ blockquote {
 }
 /* Соционический модуль end*/
 
+/* Прогресс-бар */
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background: var(--bg-elev);
+  border-radius: var(--radius-sm);
+  margin: 12px 0 20px;
+  overflow: hidden;
+}
+.progress {
+  height: 100%;
+  background: var(--primary);
+  transition: width 0.3s ease;
+}
+
+/* Варианты ответов */
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+/* Прогресс-бар end*/
+

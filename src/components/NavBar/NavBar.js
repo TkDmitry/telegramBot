@@ -34,6 +34,14 @@ function NavBar({ active }) {
         <span>Совпадения</span>
       </button>
 
+      <button
+        className={active === "socionics" ? "active" : ""}
+        onClick={() => navigate("/socionics")}
+      >
+        <svg>...</svg>
+        <span>Соционика</span>
+      </button>
+
       <button 
         className={active === 'clubs' ? 'active' : ''} 
         onClick={() => navigate('/clubs')}
