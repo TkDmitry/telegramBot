@@ -1,5 +1,5 @@
 import { Routes, Route, useLocation, Navigate } from 'react-router-dom';
-import ProgressBar from './components/ProgressBar';
+
 import StartPage from './pages/StartPage';
 import ProfilePage from './pages/ProfilePage';
 
@@ -17,9 +17,7 @@ function App() {
 
   return (
     <>
-      {/* Прогресс-бар показываем только на пошаговых страницах */}
-      {currentStep !== undefined && <ProgressBar currentStep={currentStep} />}
-
+      
       <Routes>
         {/* редирект с корня на стартовую */}
         <Route path="/" element={<Navigate to="/start" replace />} />
