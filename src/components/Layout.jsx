@@ -4,7 +4,7 @@ import NavBar from './NavBar/NavBar';
 function Layout({ children, active }) {
   return (
     <div className="app-container">
-      <div className="content">{children}</div>
+      {children}
       <NavBar active={active} />
     </div>
   );
