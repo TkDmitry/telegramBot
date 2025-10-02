@@ -1,139 +1,214 @@
-/* ====== Базовые настройки ====== */
+/* =========================================
+   BookMatch UI Kit (ui.css)
+   Theme: Dark, minimalist, content-first
+   Mobile-first responsive styles
+   ========================================= */
+
+/* Root variables */
 :root {
-    --color-primary: #2AABEE;
-    --color-primary-hover: #229ED9;
-    --color-bg: #F5F5F5;
-    --color-card: #FFFFFF;
-    --color-text: #222222;
-    --color-text-secondary: #777777;
-    --color-success: #4CAF50;
-    --color-error: #E53935;
-  }
-  
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    background: var(--color-bg);
-    color: var(--color-text);
-    margin: 0;
-    padding: 0;
-  }
-  
-  /* ====== Заголовки и текст ====== */
-  h1, h2, h3 {
-    font-weight: 600;
-    margin: 0 0 12px;
-  }
-  
-  p {
-    margin: 0 0 8px;
-    line-height: 1.4;
-  }
-  
-  .text-secondary {
-    color: var(--color-text-secondary);
-    font-size: 13px;
-  }
-  
-  /* ====== Кнопки ====== */
-  .btn {
-    border: none;
-    border-radius: 12px;
-    padding: 10px 16px;
-    font-size: 15px;
-    cursor: pointer;
-    transition: background 0.2s;
-  }
-  
-  .btn-primary {
-    background: var(--color-primary);
-    color: #fff;
-    font-weight: 500;
-  }
-  
-  .btn-primary:hover {
-    background: var(--color-primary-hover);
-  }
-  
-  .btn-secondary {
-    background: #E9F5FB;
-    color: var(--color-primary);
-  }
-  
-  .btn-secondary:hover {
-    background: #D9EFF9;
-  }
-  
-  /* ====== Карточки ====== */
-  .card {
-    background: var(--color-card);
-    border-radius: 12px;
-    padding: 16px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-    margin-bottom: 12px;
-  }
-  
-  /* ====== Списки ====== */
-  .list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .list-item {
-    background: var(--color-card);
-    border-radius: 12px;
-    padding: 12px;
-    margin-bottom: 8px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-  }
-  
-  /* ====== Навигация ====== */
-  .navbar {
-    display: flex;
-    justify-content: space-around;
-    padding: 8px 0;
-    background: var(--color-card);
-    border-top: 1px solid #e0e0e0;
-    position: sticky;
-    bottom: 0;
-  }
-  
-  .navbar button {
-    flex: 1;
-    background: none;
-    border: none;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: #888;
-    font-size: 12px;
-    padding: 6px 0;
-    cursor: pointer;
-    transition: color 0.2s;
-  }
-  
-  .navbar button svg {
-    width: 22px;
-    height: 22px;
-    fill: currentColor;
-    margin-bottom: 2px;
-  }
-  
-  .navbar button.active {
-    color: var(--color-primary);
-  }
-  
-  .navbar button:hover {
-    color: var(--color-primary-hover);
-  }
-  
-  /* ====== Адаптив ====== */
-  @media (max-width: 480px) {
-    .navbar button span {
-      display: none; /* на мобильных только иконки */
-    }
-  }
-  
+  --bg: #0f1115;
+  --bg-card: #161a22;
+  --bg-elev: #1b2130;
+  --text: #e6e9ef;
+  --text-muted: #a9b0bf;
+  --primary: #6aa6ff;
+  --primary-hover: #5a93e6;
+  --secondary: #30384a;
+  --secondary-hover: #3a4256;
+  --success: #29c38f;
+  --danger: #ff6b6b;
+  --warning: #ffc857;
+  --border: #2a3244;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --shadow-sm: 0 2px 8px rgba(0,0,0,0.25);
+  --shadow-md: 0 6px 18px rgba(0,0,0,0.35);
+  --gap: 12px;
+}
+
+/* Base reset */
+* { box-sizing: border-box; }
+html, body, #root { height: 100%; }
+body {
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+  background: linear-gradient(180deg, #0e1014 0%, #0f1115 100%);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Typography */
+h1, h2, h3 {
+  margin: 0 0 8px 0;
+  line-height: 1.25;
+}
+h1 { font-size: 22px; font-weight: 700; }
+h2 { font-size: 18px; font-weight: 600; color: var(--text); }
+p { margin: 0 0 8px 0; color: var(--text); }
+.text-secondary { color: var(--text-muted); }
+
+/* Layout */
+.page.main {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 16px;
+}
+section { margin: 16px 0; }
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 12px;
+  box-shadow: var(--shadow-sm);
+}
+
+/* Lists */
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.list-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gap);
+  padding: 12px;
+  margin-bottom: 8px;
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 36px;
+  padding: 0 14px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.btn-primary {
+  color: #0b1220;
+  background: var(--primary);
+  border-color: var(--primary);
+}
+.btn-primary:hover { background: var(--primary-hover); }
+.btn-secondary {
+  color: var(--text);
+  background: var(--secondary);
+  border-color: var(--secondary);
+}
+.btn-secondary:hover { background: var(--secondary-hover); }
+
+/* Blockquote (for quotes on StartPage) */
+blockquote {
+  margin: 0;
+  padding: 12px 14px;
+  background: #1d2433;
+  color: #dbe6ff;
+  border-left: 3px solid var(--primary);
+  border-radius: 8px;
+}
+
+/* Images */
+img {
+  display: block;
+  max-width: 100%;
+  border-radius: 8px;
+}
+
+/* NavBar baseline (optional, if not already styled) */
+.navbar {
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--bg-card);
+  border-top: 1px solid var(--border);
+  padding: 8px 12px;
+  display: flex;
+  gap: 8px;
+  justify-content: space-around;
+  align-items: center;
+}
+.navbar .nav-item {
+  color: var(--text-muted);
+  font-size: 12px;
+  padding: 6px 10px;
+  border-radius: 8px;
+}
+.navbar .nav-item.active {
+  color: var(--text);
+  background: var(--secondary);
+}
+
+/* Utility: flex wrap rows */
+.row {
+  display: flex;
+  gap: var(--gap);
+  flex-wrap: wrap;
+}
+
+/* Utility: subtle separator */
+.hr {
+  height: 1px;
+  background: var(--border);
+  border: 0;
+  margin: 12px 0;
+}
+
+/* Responsive tweaks */
+@media (min-width: 640px) {
+  h1 { font-size: 24px; }
+  h2 { font-size: 20px; }
+  .card { padding: 14px; }
+}
+@media (min-width: 960px) {
+  .page.main { padding: 24px; }
+  .card { padding: 16px; }
+}
+
+/* Focus states for accessibility */
+.btn:focus,
+.list-item:focus,
+.navbar .nav-item:focus {
+  outline: 2px solid #94c1ff;
+  outline-offset: 2px;
+}
+
+/* Hover elevation */
+.card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+/* Chip / badge (for counts like “участников: 120”) */
+.badge {
+  display: inline-block;
+  padding: 4px 8px;
+  font-size: 12px;
+  color: #0b1220;
+  background: var(--warning);
+  border-radius: 999px;
+}
+
+/* Inline link style */
+a.link {
+  color: var(--primary);
+  text-decoration: none;
+}
+a.link:hover { text-decoration: underline; }

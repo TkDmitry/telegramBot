@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AppContext } from '../context/AppContext';
-import './ProfilePage.css';
+import '../ui.css';
 
 function ProfilePage() {
   const { transfers, user } = useContext(AppContext);
