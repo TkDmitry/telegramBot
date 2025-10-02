@@ -18,10 +18,11 @@ router = Router()
 async def start_handler(message: Message):
     markup = InlineKeyboardMarkup(
         inline_keyboard=[
-            [InlineKeyboardButton(text="🎁 Открыть GoGift", web_app=WebAppInfo(url="https://tkdmitry.github.io/telegramBot"))]
+            [InlineKeyboardButton(text="🎁 Открыть BookRandomCafe", web_app=WebAppInfo(url="https://tkdmitry.github.io/telegramBot"))],
+            [InlineKeyboardButton(text="📚 Документация", web_app=WebAppInfo(url="https://tkdmitry.github.io/telegramBot/docs"))]
         ]
     )
-    await message.answer("🛍️ Добро пожаловать в GoGift! Нажмите кнопку ниже чтобы открыть магазин:", reply_markup=markup)
+    await message.answer("🛍️ Добро пожаловать в BookRandomCafe! Нажмите кнопку ниже чтобы открыть сообщество:", reply_markup=markup)
 
 dp.include_router(router)
 
