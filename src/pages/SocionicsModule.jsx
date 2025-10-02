@@ -6,9 +6,9 @@ function SocionicsModule() {
   const [result, setResult] = useState(null);
 
   const handleStartTest = () => {
-    // здесь будет логика запуска теста
-    alert("Тест пока в разработке 🙂");
+    navigate('./socionics/test'); // или любой путь, который ты задал для SocionicsTest
   };
+
 
   return (
     <div className="page main">

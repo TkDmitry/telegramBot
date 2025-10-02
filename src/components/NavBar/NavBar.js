@@ -38,7 +38,7 @@ function NavBar({ active }) {
         className={active === "socionics" ? "active" : ""}
         onClick={() => navigate("/socionics")}
       >
-        <svg>...</svg>
+        <svg viewBox="0 0 24 24"><path d="M12 21s-6.7-4.6-9.3-9.1C.7 8.3 2.5 4 6.5 4c2.1 0 3.9 1.2 5.5 3.1C13.6 5.2 15.4 4 17.5 4c4 0 5.8 4.3 3.8 7.9C18.7 16.4 12 21 12 21z"/></svg>
         <span>Соционика</span>
       </button>
 
