@@ -1,52 +1,53 @@
 .navbar {
-    display: flex;
-    justify-content: space-around;
-    padding: 8px 0;
-    background: #ffffff;
-    border-top: 1px solid #e0e0e0;
-    position: sticky;
-    bottom: 0;
+  display: flex;
+  justify-content: space-around;
+  padding: 8px 0;
+  background: #161a22; /* тёмный фон */
+  border-top: 1px solid #2a3244;
+  position: sticky;
+  bottom: 0;
+  z-index: 10;
+}
+
+.navbar button {
+  flex: 1;
+  background: none;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #a9b0bf; /* приглушённый серый */
+  font-size: 12px;
+  padding: 6px 0;
+  cursor: pointer;
+  transition: color 0.2s, transform 0.15s;
+}
+
+.navbar button svg {
+  width: 22px;
+  height: 22px;
+  fill: currentColor;
+  margin-bottom: 2px;
+}
+
+.navbar button.active {
+  color: #6aa6ff; /* акцент BookMatch */
+}
+
+.navbar button:hover {
+  color: #94c1ff;
+  transform: translateY(-2px);
+}
+
+/* Адаптивы */
+@media (max-width: 480px) {
+  .navbar button span {
+    display: none; /* на мобильных только иконки */
   }
-  
-  .navbar button {
-    flex: 1;
-    background: none;
-    border: none;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: #888;
-    font-size: 12px;
-    padding: 6px 0;
-    cursor: pointer;
-    transition: color 0.2s;
+}
+
+@media (min-width: 481px) {
+  .navbar button span {
+    display: block; /* на планшетах и выше показываем подписи */
   }
-  
-  .navbar button svg {
-    width: 22px;
-    height: 22px;
-    fill: currentColor;
-    margin-bottom: 2px;
-  }
-  
-  .navbar button.active {
-    color: #2AABEE; /* Telegram blue */
-  }
-  
-  .navbar button:hover {
-    color: #229ed9;
-  }
-  
-  /* Адаптивы */
-  @media (max-width: 480px) {
-    .navbar button span {
-      display: none; /* на мобильных только иконки */
-    }
-  }
-  
-  @media (min-width: 481px) {
-    .navbar button span {
-      display: block; /* на планшетах и выше показываем подписи */
-    }
-  }
-  
+}
