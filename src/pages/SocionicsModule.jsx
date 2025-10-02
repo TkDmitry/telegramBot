@@ -8,7 +8,7 @@ function SocionicsModule() {
   const navigate = useNavigate(); // ✅ инициализация
 
   const handleStartTest = () => {
-    navigate('./socionics/test'); // или любой путь, который ты задал для SocionicsTest
+    navigate('/socionics/test'); // или любой путь, который ты задал для SocionicsTest
   };
 
 
