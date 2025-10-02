@@ -1,45 +1,59 @@
 import React, { useEffect, useState } from 'react';
+import '../ui.css';
 
 function ProfilePage() {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState({
+    name: "",
+    username: "",
+    photo: "",
+    city: "—",
+    age: null,
+    bookshelf: { read: [], reading: [], want: [] },
+    socionics: { type: "—", description: "Тест ещё не пройден" },
+    preferences: { genre: "—", location: "—", socionicsMatch: "—" }
+  });
 
   useEffect(() => {
     if (window.Telegram?.WebApp) {
       const tg = window.Telegram.WebApp;
       tg.ready();
-
-      // Достаём данные из Telegram
       const initData = tg.initDataUnsafe;
+
       if (initData?.user) {
-        setUser({
+        setUser(prev => ({
+          ...prev,
           name: `${initData.user.first_name} ${initData.user.last_name || ''}`,
           username: initData.user.username,
-          photo: initData.user.photo_url,
-          city: "—", // можно запросить дополнительно
-          age: null, // пользователь введёт сам
-        });
+          photo: initData.user.photo_url
+        }));
       }
     }
   }, []);
 
-  if (!user) return <p>Загрузка...</p>;
-
   return (
     <div className="page main">
+      {/* Личная информация */}
       <section className="card">
         <h2>👤 Личная информация</h2>
-        {user.photo && <img src={user.photo} alt="avatar" style={{width: 80, borderRadius: '50%'}} />}
-        <p><strong>Имя:</strong> {user.name}</p>
-        <p><strong>Username:</strong> @{user.username}</p>
-        <p><strong>Возраст:</strong> {user.age || 'не указано'}</p>
+        {user.photo && (
+          <img
+            src={user.photo}
+            alt="avatar"
+            style={{ width: 80, borderRadius: '50%', marginBottom: '12px' }}
+          />
+        )}
+        <p><strong>Имя:</strong> {user.name || "—"}</p>
+        <p><strong>Username:</strong> {user.username ? `@${user.username}` : "—"}</p>
+        <p><strong>Возраст:</strong> {user.age || "не указано"}</p>
         <p><strong>Город:</strong> {user.city}</p>
       </section>
+
       {/* Книжная полка */}
       <section className="card">
         <h2>📚 Книжная полка</h2>
-        <p><strong>Прочитанные:</strong> {user.bookshelf.read.join(", ")}</p>
-        <p><strong>Читаю сейчас:</strong> {user.bookshelf.reading.join(", ")}</p>
-        <p><strong>Хочу прочитать:</strong> {user.bookshelf.want.join(", ")}</p>
+        <p><strong>Прочитанные:</strong> {user.bookshelf.read.join(", ") || "—"}</p>
+        <p><strong>Читаю сейчас:</strong> {user.bookshelf.reading.join(", ") || "—"}</p>
+        <p><strong>Хочу прочитать:</strong> {user.bookshelf.want.join(", ") || "—"}</p>
       </section>
 
       {/* Рейтинги и отзывы */}
