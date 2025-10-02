@@ -1,59 +1,51 @@
-import { Routes, Route, useLocation, Navigate } from 'react-router-dom';
-import ProgressBar from './components/ProgressBar';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
+import Layout from './components/Layout';
 import StartPage from './pages/StartPage';
 import ProfilePage from './pages/ProfilePage';
-import CardPage from './pages/CardPage';
-import KYCPage from './pages/KYCPage';
-import PaymentPage from './pages/PaymentPage';
-import TransferStatus from './pages/TransferStatus';
-import TransferForm from './pages/TransferForm';
 import SocionicsModule from './pages/SocionicsModule';
 import SocionicsTest from './pages/SocionicsTest';
-import Layout from './components/Layout'; // общий Layout с NavBar
-import './ui.css';
-
 
 function App() {
-  const location = useLocation();
-
-  // Карта шагов для прогресс-бара (без стартовой страницы!)
-  const stepMap = {
-    '/kyc': 0,
-    '/transfer': 1,
-    '/payment': 2,
-    '/status': 3,
-    '/card': 4,
-  };
-
-  const currentStep = stepMap[location.pathname];
-
   return (
-    <>
-      {/* Прогресс-бар показываем только на пошаговых страницах */}
-      {currentStep !== undefined && <ProgressBar currentStep={currentStep} />}
-
+    <Router>
       <Routes>
-        {/* редирект с корня на стартовую */}
-        <Route path="/" element={<Navigate to="/start" replace />} />
-
-        {/* Стартовая страница вне flow */}
-        <Route path="/start" element={<StartPage />} />
-        <Route path="/profile" element={<ProfilePage />} />
-        <Route path="/socionics" element={<Layout active="socionics"><SocionicsModule /></Layout>} />
-        <Route path="/socionics/test" element={<Layout active="socionics"><SocionicsTest /></Layout>} />
-        {/* Основной flow */}
-        <Route path="/kyc" element={<KYCPage />} />
-        <Route path="/transfer" element={<TransferForm />} />
-        <Route path="/payment" element={<PaymentPage />} />
-        <Route path="/status" element={<TransferStatus />} />
-        <Route path="/card" element={<CardPage />} />
-
-        {/* catch-all: любые неизвестные пути → старт */}
-        <Route path="*" element={<Navigate to="/start" replace />} />
+        <Route
+          path="/"
+          element={
+            <Layout active="home">
+              <StartPage />
+            </Layout>
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <Layout active="profile">
+              <ProfilePage />
+            </Layout>
+          }
+        />
+        <Route
+          path="/socionics"
+          element={
+            <Layout active="socionics">
+              <SocionicsModule />
+            </Layout>
+          }
+        />
+        <Route
+          path="/socionics/test"
+          element={
+            <Layout active="socionics">
+              <SocionicsTest />
+            </Layout>
+          }
+        />
       </Routes>
-    </>
+    </Router>
   );
 }
 
 export default App;
-
