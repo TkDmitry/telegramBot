@@ -79,7 +79,7 @@ p {
   padding: 0 16px;
   border: 1px solid transparent;
   border-radius: var(--radius-sm);
-  border-color: var(--secondary);
+  border-color: var(--border);
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
