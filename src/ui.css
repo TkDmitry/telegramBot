@@ -82,16 +82,12 @@ p {
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
-
-  /* ✅ добавляем базовые стили */
-  background: var(--wasabi);   /* мягкий зелёный по умолчанию */
-  color: var(--bg);            /* тёмный текст */
-  border: 1px solid var(--wasabi);
+  background: transparent;   /* ✅ прозрачный фон */
 }
 
-/* Основная кнопка */
+/* Основная кнопка (заливка) */
 .btn-primary {
-  background: var(--primary);          /* Egyptian Earth */
+  background: var(--primary);
   color: #0e1a12;
   border: 1px solid var(--primary);
 }
@@ -99,15 +95,16 @@ p {
   background: var(--primary-hover);
 }
 
-/* Вторичная кнопка */
+/* Вторичная кнопка (outline‑стиль) */
 .btn-secondary {
-  background: var(--creased-khaki);    /* светлый беж */
-  color: var(--bg);                    /* тёмный текст */
-  border: 1px solid var(--wasabi);
+  background: transparent;          /* ✅ прозрачный фон */
+  color: var(--creased-khaki);      /* светлый текст */
+  border: 1px solid var(--creased-khaki); /* рамка */
 }
 .btn-secondary:hover {
-  background: #e8c86f;                 /* чуть темнее при наведении */
-  border-color: var(--primary);
+  background: rgba(240, 215, 148, 0.1); /* лёгкий подсвет при наведении */
+  border-color: var(--primary);         /* акцентная рамка */
+  color: var(--primary);                /* текст становится акцентным */
 }
 
 
