@@ -56,26 +56,26 @@ p {
   color: var(--text-muted);
 }
 
-/* Карточки */
+/* Карточки с glow */
 .card {
-  background: linear-gradient(145deg, #24382c, #2f4a3b); /* ✅ мягкий градиент вместо однотона */
+  background: linear-gradient(145deg, #24382c, #2f4a3b); /* глубокий зелёный градиент */
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
   padding: 14px;
   margin-bottom: 16px;
 
-  /* Тени и свечение */
+  /* Тени + свечение */
   box-shadow:
-    0 4px 12px rgba(0,0,0,0.35),          /* основная тень */
-    0 0 12px rgba(176, 105, 48, 0.25);    /* лёгкое золотистое свечение */
+    0 4px 12px rgba(0,0,0,0.35),
+    0 0 12px rgba(176, 105, 48, 0.25); /* янтарное свечение */
   transition: box-shadow 0.3s ease, transform 0.2s ease;
 }
 
 .card:hover {
-  transform: translateY(-2px);
+  transform: translateY(-3px);
   box-shadow:
     0 8px 20px rgba(0,0,0,0.45),
-    0 0 18px rgba(176, 105, 48, 0.35); /* glow усиливается */
+    0 0 20px rgba(176, 105, 48, 0.4); /* glow усиливается */
 }
 
 
@@ -94,30 +94,36 @@ p {
   border: 1px solid transparent;
 }
 
-/* Основная кнопка */
+/* Основная кнопка (янтарный неон) */
 .btn-primary {
-  background: linear-gradient(135deg, var(--primary), #c97a42); /* тёплый градиент */
+  background: linear-gradient(135deg, var(--primary), #c97a42);
   color: #0e1a12;
   border: 1px solid var(--primary);
-  box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+  box-shadow:
+    0 2px 6px rgba(0,0,0,0.25),
+    0 0 6px rgba(184, 105, 48, 0.5); /* янтарное свечение */
 }
 .btn-primary:hover {
   background: linear-gradient(135deg, var(--primary-hover), #8c4a22);
-  box-shadow: 0 4px 10px rgba(0,0,0,0.35),
-              0 0 8px rgba(176, 105, 48, 0.4);
+  box-shadow:
+    0 4px 12px rgba(0,0,0,0.35),
+    0 0 12px rgba(184, 105, 48, 0.7);
 }
 
-/* Вторичная кнопка */
+/* Вторичная кнопка (золотистый неон) */
 .btn-secondary {
-  background: linear-gradient(135deg, #f0d794, #e8c86f); /* золотистый градиент */
+  background: linear-gradient(135deg, #f0d794, #e8c86f);
   color: var(--bg);
   border: 1px solid #d6b85f;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  box-shadow:
+    0 2px 6px rgba(0,0,0,0.2),
+    0 0 6px rgba(240, 215, 148, 0.5); /* золотистое свечение */
 }
 .btn-secondary:hover {
   background: linear-gradient(135deg, #e8c86f, #d6b85f);
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3),
-              0 0 8px rgba(240, 215, 148, 0.4);
+  box-shadow:
+    0 4px 12px rgba(0,0,0,0.3),
+    0 0 12px rgba(240, 215, 148, 0.7);
 }
 
 
