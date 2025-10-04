@@ -26,7 +26,7 @@
 body {
   margin: 0;
   font-family: 'Inter', Georgia, serif;
-  background: url('/images/leather-texture.jpg') no-repeat center center fixed; /* ✅ твоя картинка */
+  background: url('/public/images/leather-texture.jpg') no-repeat center center fixed; /* ✅ твоя картинка */
   background-size: cover; /* растягиваем */
   color: var(--text);
   -webkit-font-smoothing: antialiased;
