@@ -70,7 +70,7 @@ p {
   box-shadow: var(--shadow-md);
 }
 
-/* Кнопки */
+/* Базовые кнопки */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -82,21 +82,24 @@ p {
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
+  background: transparent;   /* ✅ по умолчанию прозрачный фон */
+  color: inherit;            /* ✅ текст наследует цвет */
+  border: 1px solid transparent;
 }
 
 /* Основная кнопка */
 .btn-primary {
   background: var(--primary);          /* Egyptian Earth */
-  color: #0e1a12;
+  color: #0e1a12;                      /* тёмный текст */
   border: 1px solid var(--primary);
 }
 .btn-primary:hover {
   background: var(--primary-hover);
 }
 
-/* Вторичная кнопка — светлее карточки */
+/* Вторичная кнопка */
 .btn-secondary {
-  background: var(--creased-khaki);    /* золотисто-бежевый */
+  background: var(--creased-khaki);    /* светлый беж */
   color: var(--bg);                    /* тёмный текст */
   border: 1px solid var(--wasabi);     /* мягкая зелёная обводка */
 }
