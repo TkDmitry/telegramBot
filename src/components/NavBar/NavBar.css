@@ -1,53 +1,103 @@
 .navbar {
-  display: flex;
-  justify-content: space-around;
-  padding: 8px 0;
-  background: var(--bg-card);
-  border-top: 1px solid var(--border);
-  position: sticky;
+  position: fixed;
   bottom: 0;
-  z-index: 10;
+  left: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  display: flex;
+  padding: 8px 4px;
+  z-index: 1000;
 }
 
-.navbar button {
-  flex: 1;
-  background: none;
-  border: none;
+.nav-item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: var(--text-muted);
-  font-size: 12px;
-  padding: 6px 0;
+  flex: 1;
+  background: none;
+  border: none;
+  padding: 8px 4px;
+  border-radius: 12px;
   cursor: pointer;
-  transition: color 0.2s, transform 0.15s;
+  transition: all 0.3s ease;
+  min-height: 56px;
 }
 
-.navbar button svg {
-  width: 22px;
-  height: 22px;
-  fill: currentColor;
-  margin-bottom: 2px;
+.nav-item:hover {
+  background: rgba(72, 187, 120, 0.1);
 }
 
-.navbar button.active {
-  color: var(--primary); /* золото */
+.nav-item--active {
+  background: rgba(72, 187, 120, 0.15);
 }
 
-.navbar button:hover {
-  color: var(--primary-hover);
-  transform: translateY(-2px);
+.nav-item--active .nav-item__icon {
+  color: #48bb78;
 }
 
-/* Адаптивы */
-@media (max-width: 480px) {
-  .navbar button span {
-    display: none;
+.nav-item--active .nav-item__label {
+  color: #48bb78;
+  font-weight: 600;
+}
+
+.nav-item__icon {
+  color: #718096;
+  margin-bottom: 4px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-item__label {
+  font-size: 10px;
+  color: #718096;
+  transition: all 0.3s ease;
+  text-align: center;
+  line-height: 1.2;
+}
+
+/* Адаптивность для разных размеров экрана */
+@media (min-width: 768px) {
+  .navbar {
+    position: static;
+    border-top: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 12px 8px;
+  }
+  
+  .nav-item {
+    flex-direction: row;
+    justify-content: center;
+    gap: 8px;
+    min-height: auto;
+    padding: 12px 8px;
+  }
+  
+  .nav-item__icon {
+    margin-bottom: 0;
+  }
+  
+  .nav-item__label {
+    font-size: 14px;
   }
 }
 
-@media (min-width: 481px) {
-  .navbar button span {
-    display: block;
+/* Анимация для активного состояния */
+@keyframes navItemActive {
+  0% {
+    transform: scale(1);
   }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.nav-item--active {
+  animation: navItemActive 0.3s ease;
 }

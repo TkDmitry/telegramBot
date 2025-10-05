@@ -7,83 +7,109 @@ function StartPage() {
   const navigate = useNavigate();
 
   return (
-    <div className="page main">
+    <div className="start-page">
       {/* Хедер */}
-      <header className="card" style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
-        <h1>BookMatch Mini App</h1>
-        <div>
-          <span className="text-secondary">Прочитано книг: 42</span>
-          <button className="btn btn-primary" style={{marginLeft: '12px'}} onClick={() => navigate('/profile')}>
-            Добавить книгу
-          </button>
+      <header className="page-header">
+        <div className="header-content">
+          <h1 className="app-title">BOOKRANDOMCAFE</h1>
+          <div className="header-stats">
+            <span className="books-count">Прочитано книг: 42</span>
+            <button 
+              className="btn btn-primary add-book-btn"
+              onClick={() => navigate('/add-book')}
+            >
+              Добавить книгу
+            </button>
+          </div>
         </div>
       </header>
 
       {/* Быстрые действия */}
-      <section className="card" style={{display: 'flex', gap: '12px', flexWrap: 'wrap'}}>
-        <button className="btn btn-secondary" onClick={() => navigate('/quotes')}>Мои цитаты</button>
-        <button className="btn btn-secondary" onClick={() => navigate('/matches')}>Совпадения</button>
-        <button className="btn btn-secondary" onClick={() => navigate('/clubs')}>Книжные клубы</button>
-        <button className="btn btn-secondary" onClick={() => navigate('/socionics')}>Соционический модуль</button>
-        <button className="btn btn-secondary" onClick={() => navigate('/profile')}>Профиль</button>
+      <section className="quick-actions">
+        <div className="actions-grid">
+          <button className="action-btn" onClick={() => navigate('/matches')}>
+            <span className="action-icon">👥</span>
+            Совпадения
+          </button>
+          <button className="action-btn" onClick={() => navigate('/profile')}>
+            <span className="action-icon">👤</span>
+            Профиль
+          </button>
+          <button className="action-btn" onClick={() => navigate('/quotes')}>
+            <span className="action-icon">💬</span>
+            Мои цитаты
+          </button>
+          <button className="action-btn" onClick={() => navigate('/clubs')}>
+            <span className="action-icon">📚</span>
+            Книжные клубы
+          </button>
+        </div>
       </section>
 
       {/* Рекомендации */}
-      <section>
-        <h2>Рекомендации сегодня</h2>
-        <div style={{display: 'flex', gap: '12px', flexWrap: 'wrap'}}>
-          <div className="card" style={{flex: '1 1 45%'}}>
-            <blockquote>
+      <section className="recommendations">
+        <h2 className="section-title">Рекомендации сегодня</h2>
+        <div className="recommendations-grid">
+          <div className="quote-card">
+            <div className="quote-content">
               «И мы живём, не замечая чудес, пока кто-то не напомнит нам о них.»
-            </blockquote>
-            <p className="text-secondary">Из книги: "Мастер и Маргарита"</p>
-            <button className="btn btn-primary" onClick={() => navigate('/matches')}>Найти единомышленников</button>
+            </div>
+            <div className="quote-source">Из книги: "Мастер и Маргарита"</div>
+            <button className="btn btn-secondary">Найти единомышленников</button>
           </div>
-          <div className="card" style={{flex: '1 1 45%'}}>
-            <blockquote>
+          
+          <div className="quote-card">
+            <div className="quote-content">
               «Чтение — это беседа с самыми лучшими людьми прошедших веков.»
-            </blockquote>
-            <p className="text-secondary">Из книги: "Размышления"</p>
-            <button className="btn btn-primary" onClick={() => navigate('/matches')}>Совпадения по цитате</button>
+            </div>
+            <div className="quote-source">Из книги: "Размышления"</div>
+            <button className="btn btn-secondary">Совпадения по цитате</button>
           </div>
         </div>
       </section>
 
-      {/* Книжные клубы */}
-      <section>
-        <h2>Актуальные клубы</h2>
-        <ul className="list">
-          <li className="list-item">
-            Философия и классика — участников: 120
-            <button className="btn btn-secondary" onClick={() => navigate('/clubs/philosophy')}>Вступить</button>
-          </li>
-          <li className="list-item">
-            Современная проза — участников: 85
-            <button className="btn btn-secondary" onClick={() => navigate('/clubs/prose')}>Вступить</button>
-          </li>
-        </ul>
+      {/* Актуальные клубы */}
+      <section className="clubs-section">
+        <h2 className="section-title">Актуальные клубы</h2>
+        <div className="clubs-list">
+          <div className="club-card">
+            <div className="club-info">
+              <h3>ОНЛАЙН-ДИСКУССИЯ ПО «1984»</h3>
+              <p>Завтра в 19:00</p>
+            </div>
+            <button className="btn btn-outline">ВСТУПИТЬ</button>
+          </div>
+          
+          <div className="club-card">
+            <div className="club-info">
+              <h3>ФИЛОСОФИЯ И КЛАССИКА</h3>
+              <p>Участников: 120</p>
+            </div>
+            <button className="btn btn-outline">ВСТУПИТЬ</button>
+          </div>
+        </div>
       </section>
 
       {/* Моя библиотека */}
-      <section className="card">
-        <h2>Моя библиотека</h2>
-        <p>Прочитано: 42 | Читаю сейчас: 3 | Хочу прочитать: 15</p>
-        <button className="btn btn-primary" onClick={() => navigate('/profile')}>Открыть</button>
-      </section>
-
-      {/* Новости и события */}
-      <section>
-        <h2>Новости и события</h2>
-        <ul className="list">
-          <li className="list-item">
-            Онлайн-дискуссия по «1984» завтра в 19:00
-            <button className="btn btn-secondary">Подробнее</button>
-          </li>
-          <li className="list-item">
-            Читательский челлендж: «7 книг за октябрь»
-            <button className="btn btn-secondary">Присоединиться</button>
-          </li>
-        </ul>
+      <section className="library-stats">
+        <div className="stats-card">
+          <h2>Моя библиотека</h2>
+          <div className="stats-grid">
+            <div className="stat-item">
+              <div className="stat-number">42</div>
+              <div className="stat-label">Прочитано</div>
+            </div>
+            <div className="stat-item">
+              <div className="stat-number">3</div>
+              <div className="stat-label">Читаю сейчас</div>
+            </div>
+            <div className="stat-item">
+              <div className="stat-number">33</div>
+              <div className="stat-label">Хочу прочитать</div>
+            </div>
+          </div>
+          <button className="btn btn-primary">Открыть библиотеку</button>
+        </div>
       </section>
 
       {/* Навигация */}

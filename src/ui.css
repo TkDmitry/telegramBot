@@ -2,8 +2,16 @@
    BookMatch UI Kit — "Green Leather & Gold"
    ========================================= */
 
-/* Цветовая палитра */
+
+  /* Based on your green-gold theme in ui.css */
 :root {
+  --primary-green: #2a7a2a;     /* Main brand green */
+  --accent-gold: #d4af37;       /* Accent gold */
+  --text-primary: #333333;      /* Main text */
+  --text-secondary: #666666;    /* Secondary text */
+  --background-light: #f8f8f8;  /* Card backgrounds */
+  --border-light: #e0e0e0;      /* Borders */
+
   --bg: #1C1C1C;             /* Noir de Vigne — общий фон */
   --bg-card: #284134;        /* Emerald Green — карточки */
   --bg-elev: #809076;        /* Wasabi — приподнятые блоки */
@@ -32,6 +40,210 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+.start-page {
+  padding: 16px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+}
+
+.page-header {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 20px;
+  backdrop-filter: blur(10px);
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.app-title {
+  color: #2d3748;
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0;
+}
+.header-stats {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.books-count {
+  color: #718096;
+  font-size: 14px;
+}
+.add-book-btn {
+  background: #48bb78;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+.quick-actions {
+  margin-bottom: 24px;
+}
+
+.actions-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+.action-btn {
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  padding: 16px 12px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.action-btn:hover {
+  background: rgba(255, 255, 255, 1);
+  transform: translateY(-2px);
+}
+
+.action-icon {
+  font-size: 20px;
+}
+
+.section-title {
+  color: white;
+  font-size: 18px;
+  margin-bottom: 16px;
+  font-weight: 600;
+}
+
+.recommendations-grid {
+  display: grid;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.quote-card {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 20px;
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+}
+
+.quote-content {
+  font-size: 16px;
+  font-style: italic;
+  color: #2d3748;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+.quote-source {
+  color: #718096;
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+
+.clubs-list {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.club-card {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 16px;
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.club-info h3 {
+  margin: 0 0 4px 0;
+  font-size: 14px;
+  color: #2d3748;
+}
+
+.club-info p {
+  margin: 0;
+  font-size: 12px;
+  color: #718096;
+}
+
+.library-stats {
+  margin-bottom: 80px;
+}
+
+.stats-card {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 20px;
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin: 20px 0;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-number {
+  font-size: 24px;
+  font-weight: 700;
+  color: #48bb78;
+}
+
+.stat-label {
+  font-size: 12px;
+  color: #718096;
+  margin-top: 4px;
+}
+
+/* Кнопки */
+.btn {
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-primary {
+  background: #48bb78;
+  color: white;
+}
+
+.btn-secondary {
+  background: #edf2f7;
+  color: #2d3748;
+}
+
+.btn-outline {
+  background: transparent;
+  border: 2px solid #48bb78;
+  color: #48bb78;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Новый стиль конец */
 
 .page {
   background: transparent;
