@@ -1,14 +1,13 @@
 {
   "files": {
-    "main.css": "/telegramBot/static/css/main.58c6d51c.css",
-    "main.js": "/telegramBot/static/js/main.d88ea789.js",
-    "static/media/leather-texture.jpg": "/telegramBot/static/media/leather-texture.494854aa3db06dd96129.jpg",
+    "main.css": "/telegramBot/static/css/main.32357d77.css",
+    "main.js": "/telegramBot/static/js/main.58dc2b48.js",
     "index.html": "/telegramBot/index.html",
-    "main.58c6d51c.css.map": "/telegramBot/static/css/main.58c6d51c.css.map",
-    "main.d88ea789.js.map": "/telegramBot/static/js/main.d88ea789.js.map"
+    "main.32357d77.css.map": "/telegramBot/static/css/main.32357d77.css.map",
+    "main.58dc2b48.js.map": "/telegramBot/static/js/main.58dc2b48.js.map"
   },
   "entrypoints": [
-    "static/css/main.58c6d51c.css",
-    "static/js/main.d88ea789.js"
+    "static/css/main.32357d77.css",
+    "static/js/main.58dc2b48.js"
   ]
 }
