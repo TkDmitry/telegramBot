@@ -11,17 +11,25 @@ function StartPage() {
 
       {/* Хедер */}
       <header className="card header">
-        <div>
+        <div className="header-top">
           <h1 className="brand-title">BookRandomCafe</h1>
           <p className="subtitle">Чтение, обсуждение, дружба</p>
         </div>
-        <div className="header-actions">
-          <span className="text-secondary">Прочитано книг: 42</span>
-          <button className="btn btn-primary" onClick={() => navigate('/profile')}>
+
+        <div className="header-actions-vertical">
+        <button
+            className="btn btn-primary btn-lg"
+            onClick={() => navigate('/profile')}
+          >
             Добавить книгу
           </button>
+          <button className="btn btn-secondary btn-lg" disabled>
+            Прочитано книг: 42
+          </button>
+
         </div>
       </header>
+
 
       {/* Быстрые действия */}
       <section className="card quick-actions">
