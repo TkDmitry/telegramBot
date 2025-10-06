@@ -51,7 +51,7 @@
 
   h1, .brand-title {
     font-family: 'Playfair Display SC', serif;
-    font-size: 40px;
+    font-size: 42px;
     font-weight: 700;
     letter-spacing: 0.5px;
     color: #BA6830; /* твой фирменный цвет */
@@ -379,6 +379,19 @@
 }
 .header-top {
   width: 100%;
+}
+.header-actions-inline {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  width: 100%;
+}
+
+.header-actions-inline .btn-lg {
+  flex: 1;            /* кнопки равной ширины */
+  height: 48px;
+  font-size: 16px;
+  font-weight: 700;
 }
 
 .header-actions-vertical {

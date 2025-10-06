@@ -16,7 +16,7 @@ function StartPage() {
           <p className="subtitle">Чтение, обсуждение, дружба</p>
         </div>
 
-        <div className="header-actions-vertical">
+        <div className="header-actions-inline">
         <button
             className="btn btn-primary btn-lg"
             onClick={() => navigate('/profile')}
