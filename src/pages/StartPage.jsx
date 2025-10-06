@@ -14,9 +14,10 @@ function StartPage() {
     <div className="page main">
       {/* Хедер */}
       <header className="card header">
-        <div className="header-top">
-          <h1 className="brand-title">BookRandomCafe</h1>
-          <p className="subtitle">Чтение, обсуждение, дружба</p>
+        <div className="w-full min-h-screen flex items-center justify-center bg-white" data-model-id="1645:17553-frame">
+          <div className="font-['Playfair_Display_SC'] font-normal text-[#ba6830] text-[42px] tracking-[0] leading-[normal]">
+            BookRandomCafe
+          </div>
         </div>
 
         <div className="header-actions-inline">
