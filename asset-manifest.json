@@ -1,13 +1,37 @@
 {
   "files": {
-    "main.css": "/telegramBot/static/css/main.178a5997.css",
+    "main.css": "/telegramBot/static/css/main.6fbd1896.css",
     "main.js": "/telegramBot/static/js/main.cb19b257.js",
+    "static/media/playfair-display-sc-latin-700-normal.woff2": "/telegramBot/static/media/playfair-display-sc-latin-700-normal.cf1b309dc7428479772c.woff2",
+    "static/media/playfair-display-sc-latin-900-normal.woff2": "/telegramBot/static/media/playfair-display-sc-latin-900-normal.3b3942b99ff6add4eb8d.woff2",
+    "static/media/playfair-display-sc-latin-400-normal.woff2": "/telegramBot/static/media/playfair-display-sc-latin-400-normal.8a06d73d22e50886f5d7.woff2",
+    "static/media/playfair-display-sc-latin-700-normal.woff": "/telegramBot/static/media/playfair-display-sc-latin-700-normal.6236035509fbc01689d3.woff",
+    "static/media/playfair-display-sc-latin-900-normal.woff": "/telegramBot/static/media/playfair-display-sc-latin-900-normal.e98760d8937a0a399d81.woff",
+    "static/media/playfair-display-sc-latin-400-normal.woff": "/telegramBot/static/media/playfair-display-sc-latin-400-normal.5bb2e8d03940bf7ac94d.woff",
+    "static/media/playfair-display-sc-latin-ext-700-normal.woff2": "/telegramBot/static/media/playfair-display-sc-latin-ext-700-normal.786c62c9671f2737d1c6.woff2",
+    "static/media/playfair-display-sc-latin-ext-900-normal.woff2": "/telegramBot/static/media/playfair-display-sc-latin-ext-900-normal.8dcba6ebe45e10e60e54.woff2",
+    "static/media/playfair-display-sc-latin-ext-400-normal.woff2": "/telegramBot/static/media/playfair-display-sc-latin-ext-400-normal.99813b173aba1b3809ac.woff2",
+    "static/media/playfair-display-sc-cyrillic-700-normal.woff2": "/telegramBot/static/media/playfair-display-sc-cyrillic-700-normal.4172bebc1172b7a8c25e.woff2",
+    "static/media/playfair-display-sc-cyrillic-900-normal.woff2": "/telegramBot/static/media/playfair-display-sc-cyrillic-900-normal.5eed52b888b4ad3f83a9.woff2",
+    "static/media/playfair-display-sc-latin-ext-700-normal.woff": "/telegramBot/static/media/playfair-display-sc-latin-ext-700-normal.13d3b7c0a7028e201d35.woff",
+    "static/media/playfair-display-sc-cyrillic-400-normal.woff2": "/telegramBot/static/media/playfair-display-sc-cyrillic-400-normal.fc3f232c5c59ff9cd5e3.woff2",
+    "static/media/playfair-display-sc-latin-ext-900-normal.woff": "/telegramBot/static/media/playfair-display-sc-latin-ext-900-normal.1f773004e9f570c547ac.woff",
+    "static/media/playfair-display-sc-latin-ext-400-normal.woff": "/telegramBot/static/media/playfair-display-sc-latin-ext-400-normal.fb0699fed47bab45ef6f.woff",
+    "static/media/playfair-display-sc-cyrillic-700-normal.woff": "/telegramBot/static/media/playfair-display-sc-cyrillic-700-normal.15fa994e1165bad30016.woff",
+    "static/media/playfair-display-sc-cyrillic-900-normal.woff": "/telegramBot/static/media/playfair-display-sc-cyrillic-900-normal.9d0d014dd77de3b4b51c.woff",
+    "static/media/playfair-display-sc-cyrillic-400-normal.woff": "/telegramBot/static/media/playfair-display-sc-cyrillic-400-normal.b4deee21c13e14ece3bc.woff",
+    "static/media/playfair-display-sc-vietnamese-700-normal.woff2": "/telegramBot/static/media/playfair-display-sc-vietnamese-700-normal.ea27994e57072b4c11cd.woff2",
+    "static/media/playfair-display-sc-vietnamese-400-normal.woff2": "/telegramBot/static/media/playfair-display-sc-vietnamese-400-normal.7130f91bd87be962ca65.woff2",
+    "static/media/playfair-display-sc-vietnamese-900-normal.woff2": "/telegramBot/static/media/playfair-display-sc-vietnamese-900-normal.e9a49de2bbd026dfe8b6.woff2",
+    "static/media/playfair-display-sc-vietnamese-700-normal.woff": "/telegramBot/static/media/playfair-display-sc-vietnamese-700-normal.9784a2186221f9b28da8.woff",
+    "static/media/playfair-display-sc-vietnamese-900-normal.woff": "/telegramBot/static/media/playfair-display-sc-vietnamese-900-normal.8fc14341df4dbe6d5e05.woff",
+    "static/media/playfair-display-sc-vietnamese-400-normal.woff": "/telegramBot/static/media/playfair-display-sc-vietnamese-400-normal.db10a99feb116f6a8689.woff",
     "index.html": "/telegramBot/index.html",
-    "main.178a5997.css.map": "/telegramBot/static/css/main.178a5997.css.map",
+    "main.6fbd1896.css.map": "/telegramBot/static/css/main.6fbd1896.css.map",
     "main.cb19b257.js.map": "/telegramBot/static/js/main.cb19b257.js.map"
   },
   "entrypoints": [
-    "static/css/main.178a5997.css",
+    "static/css/main.6fbd1896.css",
     "static/js/main.cb19b257.js"
   ]
 }
