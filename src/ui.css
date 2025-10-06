@@ -518,3 +518,40 @@
   margin-bottom: 12px;
 }
 
+/*  Актуальные клубы */
+
+.glass-club {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(128, 144, 118, 0.2);
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+  backdrop-filter: blur(4px);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.4),
+    inset 1px 0 0 rgba(255,255,255,0.32),
+    inset 0 -1px 2px rgba(0,0,0,0.13),
+    inset -1px 0 2px rgba(0,0,0,0.11);
+}
+
+.club-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.club-name {
+  font-family: 'Playfair Display SC', serif;
+  font-size: 16px;
+  color: #ea9432;
+  margin-bottom: 4px;
+}
+
+.club-count {
+  font-family: 'Oranienbaum', serif;
+  font-size: 13px;
+  color: #f8d794;
+}
+
+

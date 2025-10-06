@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import NavBar from '../components/NavBar/NavBar';
 import RecommendationGlass from "../components/RecommendationGlass";
+import ClubGlass from "../components/ClubGlass";
 import '../ui.css';
 
 function StartPage() {
@@ -60,7 +61,7 @@ function StartPage() {
       {/* Рекомендации */}
       <RecommendationGlass />
       {/* Рекомендации */}
-      <section className="card">
+      {/* <section className="card">
         <h2>✨ Рекомендации сегодня</h2>
         <div className="recommendations">
           <div className="recommendation">
@@ -82,10 +83,12 @@ function StartPage() {
             </button>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Книжные клубы */}
-      <section className="card">
+      <ClubGlass />
+      {/* Книжные клубы */}
+      {/* <section className="card">
         <h2>📚 Актуальные клубы</h2>
         <ul className="list">
           <li className="list-item">
@@ -97,7 +100,7 @@ function StartPage() {
             <button className="btn btn-secondary" onClick={() => navigate('/clubs/prose')}>Вступить</button>
           </li>
         </ul>
-      </section>
+      </section> */}
 
       {/* Моя библиотека */}
       <section className="card">
