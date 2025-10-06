@@ -10,10 +10,16 @@ function StartPage() {
     <div className="page main">
 
       {/* Хедер */}
+            
       <header className="card header">
-        <div className="header-top">
+        <div className="header-top" style={{textAlign: 'right'}}>
           <h1 className="brand-title">BookRandomCafe</h1>
-          <p className="subtitle">Чтение, обсуждение, дружба</p>
+          <p className="subtitle" style={{
+                fontFamily: "'Playfair Display SC', serif",
+                color: '#BA6830',
+                fontSize: '12px',
+                margin: 0
+              }}>Чтение, обсуждение, дружба</p>
         </div>
 
         <div className="header-actions-inline">
