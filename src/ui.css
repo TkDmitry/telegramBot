@@ -26,10 +26,16 @@
   body {
     margin: 0;
     font-family: 'Inter', sans-serif;
-    background: linear-gradient(135deg, #284239 32%, #A1B8B0 0%, #477565 48%); /* тёмный → зелёный */
+    background: linear-gradient(
+      135deg,
+      #284239 0%,   /* тёмный зелёный в начале */
+      #477565 48%,  /* средний зелёный */
+      #A1B8B0 100%  /* светлый акцент в конце */
+    );
     color: var(--text);
     -webkit-font-smoothing: antialiased;
   }
+  
   
   
   .page {
@@ -42,7 +48,19 @@
   }
   
   /* Заголовки */
-  h1, h2, h3 {
+
+  h1, .brand-title {
+    font-family: 'Playfair Display SC', serif;
+    font-size: 42px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: #BA6830; /* твой фирменный цвет */
+    margin: 0 0 16px;
+  }
+  
+
+  h2, h3 {
     margin: 0 0 12px;
     font-family: 'Playfair Display SC', serif;
     font-weight: 700;
