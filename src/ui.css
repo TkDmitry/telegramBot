@@ -57,6 +57,7 @@
     letter-spacing: 0.5px;
     color: #BA6830; /* твой фирменный цвет */
     margin: 0;
+    font-style: normal;
   }
   
 
@@ -412,6 +413,7 @@
   font-family: 'Playfair Display SC', serif;
   margin: 0;
   color: #BA6830;
+  font-style: normal;
 }
 .header-actions {
   display: flex;

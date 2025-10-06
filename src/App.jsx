@@ -7,6 +7,11 @@ import SocionicsModule from './pages/SocionicsModule';
 import SocionicsTest from './pages/SocionicsTest';
 import Layout from './components/Layout'; // общий Layout с NavBar
 import './ui.css';
+// Импортируйте базовое начертание (400)
+import "@fontsource/playfair-display-sc";
+// Импортируйте дополнительные, если нужны (700, 900)
+import "@fontsource/playfair-display-sc/700.css";
+import "@fontsource/playfair-display-sc/900.css";
 
 
 function App() {
