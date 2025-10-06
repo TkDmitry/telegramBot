@@ -1,15 +1,18 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import NavBar from '../components/NavBar/NavBar';
+import RecommendationGlass from "../components/RecommendationGlass";
 import '../ui.css';
 
 function StartPage() {
   const navigate = useNavigate();
 
   return (
+    
     <div className="page main">
 
       {/* Хедер */}
+     
             
       <header className="card header">
         <div className="header-top" style={{textAlign: 'right', padding: '0',
@@ -54,6 +57,8 @@ function StartPage() {
         <button className="btn btn-secondary" onClick={() => navigate('/socionics')}>🧩 Соционика</button>
       </section>
 
+      {/* Рекомендации */}
+      <RecommendationGlass />
       {/* Рекомендации */}
       <section className="card">
         <h2>✨ Рекомендации сегодня</h2>
