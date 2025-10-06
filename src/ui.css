@@ -79,15 +79,21 @@
   
   /* Карточки */
   .card {
-    background: linear-gradient(145deg, #24382c, #2f4a3b);
-    border: 1px solid var(--border);
+    /* Полупрозрачный фон */
+    background: rgba(255, 255, 255, 0.1);
+    /* Размытие заднего фона */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    /* Обводка и свечение */
+    border: 1px solid rgba(255, 255, 255, 0.25);
     border-radius: var(--radius-md);
     padding: 14px;
     margin-bottom: 16px;
     box-shadow:
-      0 4px 12px rgba(0,0,0,0.35),
-      0 0 12px rgba(176, 105, 48, 0.25);
+    0 4px 12px rgba(0, 0, 0, 0.25),
+    0 0 8px rgba(240, 215, 148, 0.35); /* золотистый glow */
     transition: box-shadow 0.3s ease, transform 0.2s ease;
+       
   }
   .card:hover {
     transform: translateY(-3px);
