@@ -12,13 +12,21 @@ function StartPage() {
       {/* Хедер */}
             
       <header className="card header">
-        <div className="header-top" style={{textAlign: 'right'}}>
-          <h1 className="brand-title">BookRandomCafe</h1>
+        <div className="header-top" style={{textAlign: 'right', padding: '0',
+          margin: '0'}}>
+          <h1 className="brand-title" style={{
+                fontFamily: "'Playfair Display SC', serif",
+                color: '#BA6830',
+                fontSize: '44px',
+                margin: 0,
+                padding: 0
+              }}>BookRandomCafe</h1>
           <p className="subtitle" style={{
                 fontFamily: "'Playfair Display SC', serif",
                 color: '#BA6830',
                 fontSize: '12px',
-                margin: 0
+                margin: 0,
+                padding: 0
               }}>Чтение, обсуждение, дружба</p>
         </div>
 
