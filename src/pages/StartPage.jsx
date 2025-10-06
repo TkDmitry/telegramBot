@@ -4,6 +4,7 @@ import NavBar from '../components/NavBar/NavBar';
 import RecommendationGlass from "../components/RecommendationGlass";
 import ClubGlass from "../components/ClubGlass";
 import LibraryGlass from "../components/LibraryGlass";
+import NewsGlass from "../components/NewsGlass";
 import '../ui.css';
 
 function StartPage() {
@@ -50,14 +51,14 @@ function StartPage() {
       </header>
 
 
-      {/* Быстрые действия */}
+      {/* Быстрые действия
       <section className="card quick-actions">
         <button className="btn btn-secondary" onClick={() => navigate('/matches')}>🤝 Совпадения</button>
         <button className="btn btn-secondary" onClick={() => navigate('/profile')}>👤 Профиль</button>
         <button className="btn btn-secondary" onClick={() => navigate('/quotes')}>💬 Цитаты</button>
         <button className="btn btn-secondary" onClick={() => navigate('/clubs')}>📚 Клубы</button>
         <button className="btn btn-secondary" onClick={() => navigate('/socionics')}>🧩 Соционика</button>
-      </section>
+      </section> */}
 
       {/* Рекомендации */}
       <RecommendationGlass />
@@ -112,7 +113,8 @@ function StartPage() {
       </section> */}
 
       {/* Новости и события */}
-      <section className="card">
+      <NewsGlass />
+      {/* <section className="card">
         <h2>🎉 Новости и события</h2>
         <ul className="list">
           <li className="list-item">
@@ -124,7 +126,7 @@ function StartPage() {
             <button className="btn btn-secondary">Присоединиться</button>
           </li>
         </ul>
-      </section>
+      </section> */}
 
       {/* Навигация */}
       <NavBar active="home" />
