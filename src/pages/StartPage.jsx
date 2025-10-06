@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import NavBar from '../components/NavBar/NavBar';
 import RecommendationGlass from "../components/RecommendationGlass";
 import ClubGlass from "../components/ClubGlass";
+import LibraryGlass from "../components/LibraryGlass";
 import '../ui.css';
 
 function StartPage() {
@@ -103,11 +104,12 @@ function StartPage() {
       </section> */}
 
       {/* Моя библиотека */}
-      <section className="card">
+      <LibraryGlass />
+      {/* <section className="card">
         <h2>📖 Моя библиотека</h2>
         <p>Прочитано: 42 | Читаю сейчас: 3 | Хочу прочитать: 15</p>
         <button className="btn btn-primary" onClick={() => navigate('/profile')}>Открыть</button>
-      </section>
+      </section> */}
 
       {/* Новости и события */}
       <section className="card">
