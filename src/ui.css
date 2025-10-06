@@ -101,6 +101,7 @@
   transform: translateY(-2px);
 }
 
+/* -- Новый стиль выше -- */
   
   body {
     margin: 0;
@@ -131,7 +132,7 @@
 
   h1, .brand-title {
     font-family: 'Playfair Display SC', serif;
-    font-size: 44px;
+    font-size: 42px;
     font-weight: 700;
     letter-spacing: 0.5px;
     color: #BA6830; /* твой фирменный цвет */
