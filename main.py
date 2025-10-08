@@ -6,6 +6,7 @@ from aiogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, W
 from aiogram.filters import Command
 from aiogram.fsm.storage.memory import MemoryStorage
 from flask import Flask
+from flask_cors import CORS  
 from database import database  # Your existing database instance
 import asyncio
 
@@ -15,6 +16,7 @@ from database import database  # Импортируем экземпляр ба�
 from books import books_bp
 # Create the Flask app first
 app = Flask(__name__)
+CORS(app, origins=["http://localhost:3000", "https://tkdmitry.github.io"])
 
 # Import and register your blueprint
 from books import books_bp
