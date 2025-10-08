@@ -17,7 +17,7 @@ from database import database  # Импортируем экземпляр ба�
 from books import books_bp
 # Create the Flask app first
 app = Flask(__name__)
-CORS(app, origins=["http://localhost:3000", "https://tkdmitry.github.io"])
+CORS(app, origins=["http://localhost:3000", "https://tkdmitry.github.io", "https://31.133.125.78:5000"])
 
 @app.errorhandler(500)
 def internal_server_error(error):
