@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/telegramBot/static/css/main.a80c8bd1.css",
-    "main.js": "/telegramBot/static/js/main.39291f60.js",
+    "main.css": "/telegramBot/static/css/main.cf36d2f9.css",
+    "main.js": "/telegramBot/static/js/main.15c94429.js",
     "static/media/playfair-display-sc-latin-700-normal.woff2": "/telegramBot/static/media/playfair-display-sc-latin-700-normal.cf1b309dc7428479772c.woff2",
     "static/media/playfair-display-sc-latin-900-normal.woff2": "/telegramBot/static/media/playfair-display-sc-latin-900-normal.3b3942b99ff6add4eb8d.woff2",
     "static/media/playfair-display-sc-latin-400-normal.woff2": "/telegramBot/static/media/playfair-display-sc-latin-400-normal.8a06d73d22e50886f5d7.woff2",
@@ -27,11 +27,11 @@
     "static/media/playfair-display-sc-vietnamese-900-normal.woff": "/telegramBot/static/media/playfair-display-sc-vietnamese-900-normal.8fc14341df4dbe6d5e05.woff",
     "static/media/playfair-display-sc-vietnamese-400-normal.woff": "/telegramBot/static/media/playfair-display-sc-vietnamese-400-normal.db10a99feb116f6a8689.woff",
     "index.html": "/telegramBot/index.html",
-    "main.a80c8bd1.css.map": "/telegramBot/static/css/main.a80c8bd1.css.map",
-    "main.39291f60.js.map": "/telegramBot/static/js/main.39291f60.js.map"
+    "main.cf36d2f9.css.map": "/telegramBot/static/css/main.cf36d2f9.css.map",
+    "main.15c94429.js.map": "/telegramBot/static/js/main.15c94429.js.map"
   },
   "entrypoints": [
-    "static/css/main.a80c8bd1.css",
-    "static/js/main.39291f60.js"
+    "static/css/main.cf36d2f9.css",
+    "static/js/main.15c94429.js"
   ]
 }
