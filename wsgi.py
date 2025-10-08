@@ -1,5 +1,13 @@
-# wsgi.py
-from main import app  # Импортируем Flask app из вашего основного файла
+# flask_app.py
+from main import app
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5000, host='0.0.0.0')
+    host = os.getenv("FLASK_HOST", "0.0.0.0")
+    port = int(os.getenv("FLASK_PORT", 5000))
+    
+    print(f"🚀 Запуск Flask сервера на {host}:{port}")
+    app.run(host=host, port=port, debug=False)

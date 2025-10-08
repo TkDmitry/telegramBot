@@ -10,14 +10,24 @@ from flask_cors import CORS
 from flask import jsonify 
 from database import database  # Your existing database instance
 import asyncio
+import os
+from dotenv import load_dotenv
 
 
 from database import database  # Импортируем экземпляр базы данных
 
 from books import books_bp
+
+load_dotenv()
+
 # Create the Flask app first
 app = Flask(__name__)
-CORS(app, origins=["http://localhost:3000", "https://tkdmitry.github.io", "https://31.133.125.78:5000"])
+CORS(app, origins=[
+    "http://localhost:3000", 
+    "https://tkdmitry.github.io", 
+    "http://31.133.125.78:5000",
+    "https://31.133.125.78:5000"  # Добавляем HTTPS версию
+    ])
 
 @app.errorhandler(500)
 def internal_server_error(error):
@@ -38,7 +48,10 @@ from books import books_bp
 app.register_blueprint(books_bp)
 
 
-TOKEN = "8348782064:AAHJVoZLD3lH63rzSJjoqcPNWlhcZqjUnLQ"
+# Получаем токен из переменных окружения
+TOKEN = os.getenv("BOT_TOKEN")
+if not TOKEN:
+    raise ValueError("❌ BOT_TOKEN не найден в .env файле!")
 
 # Инициализация бота с parse_mode
 bot = Bot(token=TOKEN, default=DefaultBotProperties(parse_mode=ParseMode.HTML))
