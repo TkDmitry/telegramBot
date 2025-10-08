@@ -6,6 +6,7 @@ function LibraryGlass() {
   const navigate = useNavigate();
 
   return (
+    
     <section className="card glass-section">
       <h2 className="section-title">Моя библиотека</h2>
 
