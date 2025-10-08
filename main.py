@@ -6,7 +6,8 @@ from aiogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, W
 from aiogram.filters import Command
 from aiogram.fsm.storage.memory import MemoryStorage
 from flask import Flask
-from flask_cors import CORS  
+from flask_cors import CORS 
+from flask import jsonify 
 from database import database  # Your existing database instance
 import asyncio
 
@@ -17,6 +18,20 @@ from books import books_bp
 # Create the Flask app first
 app = Flask(__name__)
 CORS(app, origins=["http://localhost:3000", "https://tkdmitry.github.io"])
+
+@app.errorhandler(500)
+def internal_server_error(error):
+    # Формируем JSON-ответ с ошибкой
+    response = jsonify({"error": "Internal Server Error"})
+    response.status_code = 500
+
+    # Вручную устанавливаем CORS-заголовки
+    response.headers['Access-Control-Allow-Origin'] = 'http://localhost:3000'
+    # При необходимости, добавьте другие заголовки:
+    # response.headers['Access-Control-Allow-Methods'] = 'GET, POST, OPTIONS'
+    # response.headers['Access-Control-Allow-Headers'] = 'Content-Type'
+
+    return response
 
 # Import and register your blueprint
 from books import books_bp
