@@ -45,7 +45,7 @@ function HeaderGlass() {
         author: bookData.author
       });
 
-      const response = await fetch('http://31.133.125.78/api/add_book', {
+      const response = await fetch('https://31.133.125.78/api/add_book', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
