@@ -1,6 +1,8 @@
 # bot/routes/books.py
 from flask import Blueprint, request, jsonify
 from database import database
+# В books.py
+
 
 books_bp = Blueprint('books', __name__)
 
@@ -17,8 +19,10 @@ async def add_book():
         if not all([tg_id, book_title, author]):
             return jsonify({"error": "Все поля обязательны"}), 400
         
+        database.sync_verify_connection()
+        
         # Используем асинхронный метод из вашей database.py
-        result = await database.add_user_book(
+        result = database.sync_add_user_book(
             user_id=tg_id,
             book_title=book_title,
             author=author
@@ -33,5 +37,5 @@ async def add_book():
             return jsonify({"error": "Не удалось добавить книгу"}), 500
             
     except Exception as e:
-        print(f"Ошибка при добавлении книги: {e}")
+        print(f"Ошибка в /api/add_book: {e}")  # Появится в логах сервера
         return jsonify({"error": "Внутренняя ошибка сервера"}), 500

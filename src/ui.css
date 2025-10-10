@@ -774,3 +774,14 @@
   border-radius: 6px;
   cursor: pointer;
 }
+
+Дополнительные стили для режима разработки
+.btn-glass.status {
+  background: rgba(255, 193, 7, 0.2);
+  border: 1px solid rgba(255, 193, 7, 0.5);
+  cursor: pointer;
+}
+
+.btn-glass.status:hover {
+  background: rgba(255, 193, 7, 0.3);
+}

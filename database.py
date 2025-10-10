@@ -1,4 +1,5 @@
-from neo4j import AsyncGraphDatabase
+from neo4j import AsyncGraphDatabase, GraphDatabase
+import asyncio 
 import os
 from dotenv import load_dotenv
 
@@ -11,6 +12,7 @@ class Neo4jDatabase:
         self.username = os.getenv("NEO4J_USERNAME", "neo4j")
         self.password = os.getenv("NEO4J_PASSWORD")
         self.driver = None
+        self.sync_driver = None
 
     async def connect(self):
         """Создание подключения к базе данных"""
@@ -20,12 +22,32 @@ class Neo4jDatabase:
         )
         # Проверяем подключение
         await self.verify_connection()
+        
+    def sync_connect(self):
+        """Создание подключения к базе данных"""
+        
+        self.sync_driver = GraphDatabase.driver(
+            self.uri, 
+            auth=(self.username, self.password)
+        )
+        # Проверяем подключение
+        # self.verify_connection()
+
 
     async def verify_connection(self):
         """Проверка подключения к БД"""
         try:
             async with self.driver.session() as session:
                 await session.run("RETURN 1 as test")
+            print("✅ Успешное подключение к Neo4j!")
+        except Exception as e:
+            print(f"❌ Ошибка подключения к Neo4j: {e}")
+            raise
+    def sync_verify_connection(self):
+        """Проверка подключения к БД"""
+        try:
+            with self.sync_driver.session() as session:
+                session.run("RETURN 1 as test")
             print("✅ Успешное подключение к Neo4j!")
         except Exception as e:
             print(f"❌ Ошибка подключения к Neo4j: {e}")
@@ -63,6 +85,19 @@ class Neo4jDatabase:
         async with self.driver.session() as session:
             result = await session.run(query, user_id=user_id, book_title=book_title, author=author)
             return await result.single()
+        
+    def sync_add_user_book(self, user_id: int, book_title: str, author: str):
+        """Add a book and mark that a user has read it"""
+        query = """
+        MERGE (u:User {tg_id: $user_id})
+        MERGE (b:Book {title: $book_title, author: $author})
+        MERGE (u)-[r:READ]->(b)
+        SET r.timestamp = datetime()
+        RETURN b.title as book_title
+        """
+        with self.sync_driver.session() as session:
+            result = session.run(query, user_id=user_id, book_title=book_title, author=author)
+            return result.single()
 
     async def add_quote_with_emotion(self, user_id: int, quote_text: str, book_title: str, emotion_name: str):
         """Add a quote and link it to a book, user, and emotion"""

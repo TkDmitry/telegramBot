@@ -12,39 +12,43 @@ from database import database  # Your existing database instance
 import asyncio
 import os
 from dotenv import load_dotenv
-
-
 from database import database  # Импортируем экземпляр базы данных
-
 from books import books_bp
+
+
 
 load_dotenv()
 
 # Create the Flask app first
 app = Flask(__name__)
-CORS(app, origins=[
-    "http://localhost:3000", 
-    "https://tkdmitry.github.io", 
-    "http://31.133.125.78:5000",
-    "https://31.133.125.78:5000"  # Добавляем HTTPS версию
-    ])
+
+
+
+
+CORS(app, 
+     origins=["http://localhost:3000", "https://tkdmitry.github.io"],
+     methods=["GET", "POST", "OPTIONS"],  # Явно разрешаем необходимые методы
+     allow_headers=["Content-Type"]  # Явно разрешаем необходимые заголовки
+)
+
+@app.before_request
+def init_db():
+    database.sync_connect()
+    print(init_db)
+    
 
 @app.errorhandler(500)
 def internal_server_error(error):
-    # Формируем JSON-ответ с ошибкой
     response = jsonify({"error": "Internal Server Error"})
     response.status_code = 500
-
-    # Вручную устанавливаем CORS-заголовки
+    # Используем тот же origin, что и в основных настройках CORS, или более гибкий подход
     response.headers['Access-Control-Allow-Origin'] = 'http://localhost:3000'
-    # При необходимости, добавьте другие заголовки:
-    # response.headers['Access-Control-Allow-Methods'] = 'GET, POST, OPTIONS'
-    # response.headers['Access-Control-Allow-Headers'] = 'Content-Type'
-
+    # Убедитесь, что для ошибки также разрешены нужные методы и заголовки
+    response.headers['Access-Control-Allow-Methods'] = 'GET, POST, OPTIONS'
+    response.headers['Access-Control-Allow-Headers'] = 'Content-Type'
     return response
 
 # Import and register your blueprint
-from books import books_bp
 app.register_blueprint(books_bp)
 
 
@@ -78,31 +82,31 @@ async def start_handler(message: Message):
 # Пример обработчика для добавления книги
 # Add this to your main.py
 @router.message(Command("add_book"))
-async def add_book_handler(message: Message):
-    # Example command: /add_book "Преступление и наказание" "Ф.М. Достоевский"
-    try:
-        # Simple parsing (you might want to make this more robust)
-        parts = message.text.split('"')
-        if len(parts) < 3:
-            await message.answer('❌ Use: /add_book "Book Title" "Author"')
-            return
+# async def add_book_handler(message: Message):
+#     # Example command: /add_book "Преступление и наказание" "Ф.М. Достоевский"
+#     try:
+#         # Simple parsing (you might want to make this more robust)
+#         parts = message.text.split('"')
+#         if len(parts) < 3:
+#             await message.answer('❌ Use: /add_book "Book Title" "Author"')
+#             return
             
-        title = parts[1]
-        author = parts[3]
+#         title = parts[1]
+#         author = parts[3]
         
-        result = await database.add_user_book(
-            user_id=message.from_user.id,
-            book_title=title,
-            author=author
-        )
+#         result = await database.add_user_book(
+#             user_id=message.from_user.id,
+#             book_title=title,
+#             author=author
+#         )
         
-        if result:
-            await message.answer(f"📚 Book '{result['book_title']}' was added to your library!")
-        else:
-            await message.answer("❌ Failed to add the book.")
+#         if result:
+#             await message.answer(f"📚 Book '{result['book_title']}' was added to your library!")
+#         else:
+#             await message.answer("❌ Failed to add the book.")
             
-    except Exception as e:
-        await message.answer(f"❌ Error: {str(e)}")
+#     except Exception as e:
+#         await message.answer(f"❌ Error: {str(e)}")
 
 # Добавь команды для работы с цитатами
 @router.message(Command("add_quote"))
